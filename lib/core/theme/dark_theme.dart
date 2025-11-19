@@ -2,9 +2,18 @@ import 'package:easy_download_manager/core/constant/app_color.dart';
 import 'package:flutter/material.dart';
 
 final appDarkTheme = ThemeData.dark(
-  useMaterial3: true
+  //useMaterial3: true
 ).copyWith(
   scaffoldBackgroundColor: AppColor.backgroundColor,
+  colorScheme: ColorScheme.dark(
+    onPrimary: AppColor.onBackgroundColor,
+  ),
+
+
+  appBarTheme: AppBarTheme(
+    backgroundColor: AppColor.onBackgroundColor,
+    //foregroundColor: AppColor.activeEndColor,
+  ),
 
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
   backgroundColor: AppColor.onBackgroundColor,
@@ -13,6 +22,6 @@ final appDarkTheme = ThemeData.dark(
   showUnselectedLabels: true,
   selectedLabelStyle: TextStyle(color: AppColor.navBarActiveColor,),
   unselectedLabelStyle: TextStyle(color: AppColor.navBarInActiveColor,),
-  type: BottomNavigationBarType.shifting
+  type: BottomNavigationBarType.fixed
   )
 );
