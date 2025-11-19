@@ -1,4 +1,5 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:easy_download_manager/core/constant/router.dart';
 import 'package:easy_download_manager/core/theme/dark_theme.dart';
 import 'package:easy_download_manager/core/theme/light_theme.dart';
 import 'package:easy_download_manager/main_page.dart';
@@ -17,12 +18,13 @@ class MyApp extends StatelessWidget {
       light: appLightTheme,
       dark: appDarkTheme,
       initial: AdaptiveThemeMode.dark,
-      builder: (theme, darkTheme) => MaterialApp(
+      builder: (theme, darkTheme) => MaterialApp.router(
         debugShowCheckedModeBanner: false,
         title: 'EDM',
         theme: theme,
         darkTheme: darkTheme,
-        home: const MainPage(),
+        routerConfig: router,
+       // home: const MainPage(),
       ),
     );
   }
