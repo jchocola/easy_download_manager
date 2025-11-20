@@ -12,4 +12,7 @@ class AppIcon {
   static final pauseIcon = Icons.pause;
   static final cancelIcon = Icons.cancel_outlined;
   static final continueIcon = Icons.forward;
+  static final completedIcon = Icons.done_all_outlined;
+
+  static final errorIcon = Icons.error_outline;
 }

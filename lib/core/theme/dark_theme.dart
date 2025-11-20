@@ -14,8 +14,9 @@ final appDarkTheme = ThemeData.dark(
 
     tertiary: AppColor.mainTextColor,
     error: AppColor.cancelTextColor,
-
+    tertiaryFixed: AppColor.pauseColor,
     scrim: AppColor.successColor,
+    
 
   ),
 
