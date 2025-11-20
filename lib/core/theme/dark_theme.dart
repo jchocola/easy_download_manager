@@ -13,8 +13,9 @@ final appDarkTheme = ThemeData.dark(
     secondary: AppColor.activeProgressColor,
 
     tertiary: AppColor.mainTextColor,
+    onTertiary: AppColor.secondTextColor,
     error: AppColor.cancelTextColor,
-    tertiaryFixed: AppColor.pauseColor,
+    tertiaryFixed: AppColor.inactiveProgressColor,
     scrim: AppColor.successColor,
     
 

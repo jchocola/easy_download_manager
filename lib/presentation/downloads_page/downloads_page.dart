@@ -10,9 +10,12 @@ class DownloadsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppAppBar(title: 'Downloads'),
-      body: _buildBody(context)
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        appBar: AppAppBar(title: 'Downloads'),
+        body: _buildBody(context)
+      ),
     );
   }
 

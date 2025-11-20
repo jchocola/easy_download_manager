@@ -2,8 +2,8 @@ import 'package:easy_download_manager/core/constant/app_constant.dart';
 import 'package:flutter/material.dart';
 
 class Input extends StatelessWidget {
-  const Input({super.key});
-
+  const Input({super.key , this.hintText = 'Hint text'});
+  final String hintText;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -11,7 +11,8 @@ class Input extends StatelessWidget {
 
       cursorColor: theme.focusColor,
       decoration: InputDecoration(
-      
+        hintText: hintText,
+        hintStyle: theme.textTheme.bodySmall,
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
             color: theme.unselectedWidgetColor

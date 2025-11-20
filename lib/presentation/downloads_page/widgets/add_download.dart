@@ -21,7 +21,7 @@ class AddDownload extends StatelessWidget {
          SizedBox(height: AppConstant.containerPadding,), 
           Row(
             children: [
-              Flexible(child: Input()),
+              Flexible(child: Input(hintText: 'Insert URL ...',)),
               SizedBox(width: AppConstant.containerPadding,),
               FloatingActionButton(onPressed: () {}, child: Icon(Icons.add)),
             ],

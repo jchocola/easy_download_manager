@@ -15,4 +15,19 @@ class AppIcon {
   static final completedIcon = Icons.done_all_outlined;
 
   static final errorIcon = Icons.error_outline;
+
+  static final speedIcon = Icons.speed;
+  static final timeIcon = Icons.timer_outlined;
+
+  static final urlIcon = Icons.link_outlined;
+  static final folderIcon = Icons.folder_open_outlined;
+  static final calendarIcon = Icons.calendar_today_outlined;
+
+  static final sourceIcon = Icons.flash_on_rounded;
+
+  static final priorityIcon = Icons.flag_outlined;
+  static final resumableIcon = Icons.recycling_outlined;
+
+  static final arrowBackIcon = Icons.arrow_back_ios_new_rounded;
+  static final arrowForwardIcon = Icons.arrow_forward_ios_rounded;
 }

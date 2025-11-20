@@ -8,88 +8,93 @@ import 'package:flutter/material.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class DownloadCard extends StatelessWidget {
-  const DownloadCard({
+   DownloadCard({
     super.key,
     this.status = DOWNLOAD_CARD_STATUS.DOWNLOADING,
+    this.onTap
   });
   final DOWNLOAD_CARD_STATUS status;
+  void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final size = MediaQuery.of(context).size;
-    return Container(
-      margin: EdgeInsets.only(bottom: AppConstant.containerPadding),
-      padding: EdgeInsets.all(AppConstant.containerPadding),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(AppConstant.borderRadius),
-        color: theme.colorScheme.onPrimary,
-      ),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              ContainerWithBorderColor(),
-
-              SizedBox(width: AppConstant.containerPadding),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        margin: EdgeInsets.only(bottom: AppConstant.containerPadding),
+        padding: EdgeInsets.all(AppConstant.containerPadding),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(AppConstant.borderRadius),
+          color: theme.colorScheme.onPrimary,
+        ),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                ContainerWithBorderColor(),
+      
+                SizedBox(width: AppConstant.containerPadding),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Presentation.pdf', style: theme.textTheme.titleMedium),
+                    buildProgress(context),
+                    if (status == DOWNLOAD_CARD_STATUS.DOWNLOADING)
+                      buildSpeedDuration(context),
+                    if (status == DOWNLOAD_CARD_STATUS.DOWNLOADING)
+                      SizedBox(width: size.width * 0.7, child: Divider()),
+      
+                     if (status == DOWNLOAD_CARD_STATUS.COMPLETED) Text('Completed', style: theme.textTheme.bodyMedium!.copyWith(color: theme.colorScheme.scrim),) ,
+                      if (status == DOWNLOAD_CARD_STATUS.ERROR) Text('Ошибка загрузки', style: theme.textTheme.bodyMedium!.copyWith(color: theme.colorScheme.error),) , 
+                  ],
+                ),
+              ],
+            ),
+      
+      
+            if (status == DOWNLOAD_CARD_STATUS.ERROR) ButtonWithIcon(
+              label: 'Cancel',
+              icon: AppIcon.cancelIcon,
+                    color: theme.colorScheme.error, 
+            ),
+      
+            if (status == DOWNLOAD_CARD_STATUS.DOWNLOADING)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text('Presentation.pdf', style: theme.textTheme.titleMedium),
-                  buildProgress(context),
-                  if (status == DOWNLOAD_CARD_STATUS.DOWNLOADING)
-                    buildSpeedDuration(context),
-                  if (status == DOWNLOAD_CARD_STATUS.DOWNLOADING)
-                    SizedBox(width: size.width * 0.7, child: Divider()),
-
-                   if (status == DOWNLOAD_CARD_STATUS.COMPLETED) Text('Completed', style: theme.textTheme.bodyMedium!.copyWith(color: theme.colorScheme.scrim),) ,
-                    if (status == DOWNLOAD_CARD_STATUS.ERROR) Text('Ошибка загрузки', style: theme.textTheme.bodyMedium!.copyWith(color: theme.colorScheme.error),) , 
+                  ButtonWithIcon(
+                    label: 'Pause',
+                    icon: AppIcon.pauseIcon,
+                    color: theme.colorScheme.tertiary,
+                  ),
+                  ButtonWithIcon(
+                    label: 'Cancel',
+                    icon: AppIcon.cancelIcon,
+                    color: theme.colorScheme.error,
+                  ),
                 ],
               ),
-            ],
-          ),
-
-
-          if (status == DOWNLOAD_CARD_STATUS.ERROR) ButtonWithIcon(
-            label: 'Cancel',
-            icon: AppIcon.cancelIcon,
-                  color: theme.colorScheme.error, 
-          ),
-
-          if (status == DOWNLOAD_CARD_STATUS.DOWNLOADING)
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                ButtonWithIcon(
-                  label: 'Pause',
-                  icon: AppIcon.pauseIcon,
-                  color: theme.colorScheme.tertiary,
-                ),
-                ButtonWithIcon(
-                  label: 'Cancel',
-                  icon: AppIcon.cancelIcon,
-                  color: theme.colorScheme.error,
-                ),
-              ],
-            ),
-
-
-              if (status == DOWNLOAD_CARD_STATUS.PAUSED)
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                ButtonWithIcon(
-                  label: 'Continue',
-                  icon: AppIcon.continueIcon,
-                  color: theme.colorScheme.tertiary,
-                ),
-                ButtonWithIcon(
-                  label: 'Cancel',
-                  icon: AppIcon.cancelIcon,
-                  color: theme.colorScheme.error,
-                ),
-              ],
-            ),
-        ],
+      
+      
+                if (status == DOWNLOAD_CARD_STATUS.PAUSED)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  ButtonWithIcon(
+                    label: 'Continue',
+                    icon: AppIcon.continueIcon,
+                    color: theme.colorScheme.tertiary,
+                  ),
+                  ButtonWithIcon(
+                    label: 'Cancel',
+                    icon: AppIcon.cancelIcon,
+                    color: theme.colorScheme.error,
+                  ),
+                ],
+              ),
+          ],
+        ),
       ),
     );
   }
@@ -106,7 +111,7 @@ class DownloadCard extends StatelessWidget {
             fallbackLength: size.width * 0.7,
             totalSteps: 100,
             currentStep: 32,
-            size: 10,
+            size: AppConstant.loadingHeight,
             padding: 0,
             selectedColor: AppColor.activeProgressColor,
             unselectedColor: AppColor.inactiveProgressColor,
