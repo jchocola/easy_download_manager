@@ -6,13 +6,22 @@ class FourStatusCategory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      shrinkWrap: true,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+    return Column(
+      children: [
+        Row(
+          children: [
+            Expanded(flex: 1, child: StatusCategoryCard()),
+            Expanded(flex: 1, child: StatusCategoryCard()),
+          ],
+        ),
 
-        crossAxisCount: 2,
-      ),
-      itemBuilder: (context, index) => StatusCategoryCard(),
+        Row(
+          children: [
+            Expanded(flex: 1, child: StatusCategoryCard()),
+            Expanded(flex: 1, child: StatusCategoryCard()),
+          ],
+        ),
+      ],
     );
   }
 }

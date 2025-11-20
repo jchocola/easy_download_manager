@@ -1,0 +1,33 @@
+import 'package:easy_download_manager/core/constant/app_constant.dart';
+import 'package:easy_download_manager/widget/input.dart';
+import 'package:flutter/material.dart';
+
+class AddDownload extends StatelessWidget {
+  const AddDownload({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Container(
+      padding: EdgeInsets.all(AppConstant.containerPadding),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.onPrimary,
+        borderRadius: BorderRadius.circular(AppConstant.borderRadius),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Добавить загрузку', style: theme.textTheme.titleMedium),
+         SizedBox(height: AppConstant.containerPadding,), 
+          Row(
+            children: [
+              Flexible(child: Input()),
+              SizedBox(width: AppConstant.containerPadding,),
+              FloatingActionButton(onPressed: () {}, child: Icon(Icons.add)),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}

@@ -1,4 +1,7 @@
+import 'package:easy_download_manager/core/constant/app_constant.dart';
 import 'package:easy_download_manager/presentation/downloads_page/widgets/4_status_category.dart';
+import 'package:easy_download_manager/presentation/downloads_page/widgets/active_completed_all.dart';
+import 'package:easy_download_manager/presentation/downloads_page/widgets/add_download.dart';
 import 'package:easy_download_manager/widget/appbar.dart';
 import 'package:flutter/material.dart';
 
@@ -14,10 +17,18 @@ class DownloadsPage extends StatelessWidget {
   }
 
   Widget _buildBody(context) {
-    return Column(
-      children: [
-       // FourStatusCategory(),
-      ],
+    return Padding(
+      padding:  EdgeInsets.symmetric(vertical: AppConstant.containerPadding/2 , horizontal: AppConstant.containerPadding),
+      child: SingleChildScrollView(
+        child: Column(
+          spacing: AppConstant.containerPadding,
+          children: [
+            FourStatusCategory(),
+            AddDownload(),
+            ActiveCompletedAll()
+          ],
+        ),
+      ),
     );
   }
 }
