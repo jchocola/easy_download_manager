@@ -65,4 +65,6 @@ class AppIcon {
   static final deleteIcon = Icons.delete_outline_rounded;
 
   static final wifiIcon = Icons.wifi;
+
+  static final languageIcon = Icons.language_outlined;
 }
