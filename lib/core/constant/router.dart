@@ -4,7 +4,9 @@ import 'package:easy_download_manager/presentation/downloads_page/pages/add_down
 import 'package:easy_download_manager/presentation/downloads_page/pages/download_confirm_page/download_confirm_page.dart';
 import 'package:easy_download_manager/presentation/downloads_page/pages/download_detail_page/download_detail_page.dart';
 import 'package:easy_download_manager/presentation/files_page/files_page.dart';
+import 'package:easy_download_manager/presentation/settings_page/pages/network_setting_page/network_setting_page.dart';
 import 'package:easy_download_manager/presentation/settings_page/pages/network_speed_page/network_speed_page.dart';
+import 'package:easy_download_manager/presentation/settings_page/pages/notification_page/notification_page.dart';
 import 'package:easy_download_manager/presentation/settings_page/settings_page.dart';
 import 'package:easy_download_manager/presentation/torrents_page/torrents_page.dart';
 import 'package:go_router/go_router.dart';
@@ -73,6 +75,16 @@ final GoRouter router = GoRouter(
                 GoRoute(
                   path: '/network_speed',
                   builder: (context, state) => const NetworkSpeedPage(),
+                ),
+
+                 GoRoute(
+                  path: '/network_setting',
+                  builder: (context, state) => const NetworkSettingPage(),
+                ),
+
+                  GoRoute(
+                  path: '/notification_setting',
+                  builder: (context, state) => const NotificationPage(),
                 ),
               ],
             ),

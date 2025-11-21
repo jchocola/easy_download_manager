@@ -24,8 +24,8 @@ class SettingCategories extends StatelessWidget {
           Text('КАТЕГОРИИ НАСТРОЕК'),
 
           FileInfoCard2(title: 'Ограничение скорости', icon: AppIcon.speedIcon,subtitle: 'Установите лимит скорости и правила автоматического применения',onTap: () => context.pushReplacement('/settings/network_speed')),
-          FileInfoCard2(title: 'Управление сетью', icon: AppIcon.networkIcon, subtitle: 'Настройте поведение при изменении сетевого подключения', ),
-          FileInfoCard2(title: 'Уведомления',icon: AppIcon.notificationIcon, subtitle: 'Управляйте уведомлениями о загрузках и звуковыми оповещениями',),
+          FileInfoCard2(title: 'Управление сетью', icon: AppIcon.networkIcon, subtitle: 'Настройте поведение при изменении сетевого подключения' ,onTap: () => context.pushReplacement('/settings/network_setting')),
+          FileInfoCard2(title: 'Уведомления',icon: AppIcon.notificationIcon, subtitle: 'Управляйте уведомлениями о загрузках и звуковыми оповещениями', onTap: () => context.pushReplacement('/settings/notification_setting')),
         ],
       ),
     );

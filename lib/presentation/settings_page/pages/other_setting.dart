@@ -9,28 +9,35 @@ class OtherSetting extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final currentLocation = GoRouterState.of(context).uri.toString();
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: AppConstant.containerPadding,
       children: [
         Text('ДРУГИЕ НАСТРОЙКИ'),
-        FileInfoCard2(
-          title: 'Ограничение скорости',
-          icon: AppIcon.speedIcon,
-          subtitle:
-              'Установите лимит скорости и правила автоматического применения',
-          onTap: () => context.pushReplacement('/settings/network_speed'),
-        ),
-        FileInfoCard2(
-          title: 'Управление сетью',
-          icon: AppIcon.networkIcon,
-          subtitle: 'Настройте поведение при изменении сетевого подключения',
-        ),
-        FileInfoCard2(
+        //Text(currentLocation),
+        if (currentLocation != '/settings/network_speed')
+          FileInfoCard2(
+            title: 'Ограничение скорости',
+            icon: AppIcon.speedIcon,
+            subtitle:
+                'Установите лимит скорости и правила автоматического применения',
+            onTap: () => context.pushReplacement('/settings/network_speed'),
+          ),
+        if (currentLocation != '/settings/network_setting')
+          FileInfoCard2(
+            title: 'Управление сетью',
+            icon: AppIcon.networkIcon,
+            subtitle: 'Настройте поведение при изменении сетевого подключения',
+              onTap: () => context.pushReplacement('/settings/network_setting'),
+          ),
+        if (currentLocation != '/settings/notification_setting') FileInfoCard2(
           title: 'Уведомления',
           icon: AppIcon.notificationIcon,
           subtitle:
               'Управляйте уведомлениями о загрузках и звуковыми оповещениями',
+               onTap: () => context.pushReplacement('/settings/notification_setting'), 
         ),
       ],
     );

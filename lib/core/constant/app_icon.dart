@@ -63,4 +63,6 @@ class AppIcon {
   static final shareIcon = Icons.ios_share_rounded;
 
   static final deleteIcon = Icons.delete_outline_rounded;
+
+  static final wifiIcon = Icons.wifi;
 }
