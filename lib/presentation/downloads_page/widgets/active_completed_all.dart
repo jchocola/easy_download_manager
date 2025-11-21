@@ -2,6 +2,7 @@ import 'package:easy_download_manager/core/constant/app_icon.dart';
 import 'package:easy_download_manager/presentation/downloads_page/widgets/active_downloads_list.dart';
 import 'package:easy_download_manager/presentation/downloads_page/widgets/completed_downloads_list.dart';
 import 'package:easy_download_manager/presentation/downloads_page/widgets/others_downloads_list.dart';
+import 'package:easy_download_manager/presentation/downloads_page/widgets/sort_modal_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -19,6 +20,18 @@ class _ActiveCompletedAllState extends State<ActiveCompletedAll> {
     setState(() {
       currentIndex = value;
     });
+  }
+
+  void onSortTapped() {
+    showModalBottomSheet(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      context: context,
+      showDragHandle: true,
+      builder: (context) => SizedBox(
+        height: MediaQuery.of(context).size.height * 0.4,
+        child: SortModalPage(),
+      ),
+    );
   }
 
   @override
@@ -45,7 +58,7 @@ class _ActiveCompletedAllState extends State<ActiveCompletedAll> {
               },
             ),
 
-            IconButton(onPressed: () {}, icon: Icon(AppIcon.sortIcon)),
+            IconButton(onPressed: onSortTapped, icon: Icon(AppIcon.sortIcon)),
           ],
         ),
 

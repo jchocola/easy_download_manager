@@ -73,4 +73,7 @@ class AppIcon {
   static final developerIcon = Icons.people_outlined;
 
   static final privacyPolicyIcon = Icons.lock_outlined;
+
+  static final descSortIcon = Icons.sort_by_alpha;
+  static final ascSortIcon = Icons.sort;
 }
