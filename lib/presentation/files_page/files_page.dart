@@ -1,4 +1,7 @@
+import 'package:easy_download_manager/core/constant/app_constant.dart';
+import 'package:easy_download_manager/core/constant/app_icon.dart';
 import 'package:easy_download_manager/widget/appbar.dart';
+import 'package:easy_download_manager/widget/container_with_border_color.dart';
 import 'package:flutter/material.dart';
 
 class FilesPage extends StatelessWidget {
@@ -7,8 +10,60 @@ class FilesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: AppAppBar(title: 'Files'),
-      body: Text('FilePage'),
+      appBar: AppAppBar(title: 'Files'),
+      body: buildBody(context),
+    );
+  }
+
+  Widget buildBody(context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        vertical: AppConstant.containerPadding / 2,
+        horizontal: AppConstant.containerPadding,
+      ),
+      child: Column(
+        spacing: AppConstant.containerPadding,
+        children: [
+          _FileInfoCard(title: 'Downloads', icon: AppIcon.downloadIcon, subtitle: AppConstant.pathDefault,),
+          _FileInfoCard(title: 'Documents', icon: AppIcon.folderIcon , subtitle: AppConstant.pathDefault),
+          _FileInfoCard(title: 'Videos', icon: AppIcon.videoIcon, subtitle: AppConstant.pathDefault),
+          _FileInfoCard(title: 'Musics', icon: AppIcon.musicIcon, subtitle: AppConstant.pathDefault),
+        ],
+      ),
+    );
+  }
+}
+
+class _FileInfoCard extends StatelessWidget {
+  const _FileInfoCard({
+    super.key,
+    this.icon = Icons.download,
+    this.title = 'title',
+    this.subtitle = 'subtitle',
+    this.withSwitch = false,
+  });
+  final IconData icon;
+  final String title;
+  final String subtitle;
+  final bool withSwitch;
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(AppConstant.borderRadius),
+        color: theme.colorScheme.onPrimary,
+      ),
+      child: ListTile(
+        leading: ContainerWithBorderColor(icon: icon, withGradient: true),
+        title: Text(title, style: theme.textTheme.bodyMedium),
+        subtitle: Text(subtitle, style: theme.textTheme.bodySmall),
+        trailing: Icon(
+          AppIcon.arrowForwardIcon,
+          size: 14,
+          color: theme.colorScheme.onTertiary,
+        ),
+      ),
     );
   }
 }

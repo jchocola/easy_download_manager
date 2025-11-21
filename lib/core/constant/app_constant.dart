@@ -6,4 +6,6 @@ class AppConstant {
   static final double loadingHeight = 10;
 
   static final String urlHintText = 'https://example.com/book.pdf';
+
+  static final String pathDefault = '0/EDM/Downloads/';
 }
