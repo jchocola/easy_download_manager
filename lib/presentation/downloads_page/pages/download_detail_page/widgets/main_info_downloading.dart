@@ -4,8 +4,8 @@ import 'package:easy_download_manager/widget/container_with_border_color.dart';
 import 'package:flutter/material.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
-class MainInfo extends StatelessWidget {
-  const MainInfo({super.key});
+class MainInfoDownloading extends StatelessWidget {
+  const MainInfoDownloading({super.key});
 
   @override
   Widget build(BuildContext context) {

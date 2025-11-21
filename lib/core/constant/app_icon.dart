@@ -51,4 +51,16 @@ class AppIcon {
   static final notificationIcon = Icons.notifications_active_outlined;
 
   static final infoIcon = Icons.info_outline;
+
+  static final peersIcon = Icons.people_outline;
+  static final seedIcon = Icons.share;
+
+  static final sizeIcon = Icons.storage_outlined;
+
+  static final pathIcon = Icons.navigation_outlined;
+  static final typeFileIcon = Icons.document_scanner_outlined;
+
+  static final shareIcon = Icons.ios_share_rounded;
+
+  static final deleteIcon = Icons.delete_outline_rounded;
 }

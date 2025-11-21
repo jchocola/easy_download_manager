@@ -22,7 +22,7 @@ class DownloadCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        margin: EdgeInsets.only(bottom: AppConstant.containerPadding),
+        margin: EdgeInsets.symmetric(vertical: AppConstant.containerPadding),
         padding: EdgeInsets.all(AppConstant.containerPadding),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(AppConstant.borderRadius),

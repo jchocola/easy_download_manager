@@ -1,8 +1,13 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:easy_download_manager/core/constant/app_constant.dart';
 import 'package:easy_download_manager/core/constant/app_icon.dart';
 import 'package:easy_download_manager/presentation/downloads_page/pages/download_detail_page/widgets/action_buttons.dart';
+import 'package:easy_download_manager/presentation/downloads_page/pages/download_detail_page/widgets/additional_info.dart';
 import 'package:easy_download_manager/presentation/downloads_page/pages/download_detail_page/widgets/file_info.dart';
-import 'package:easy_download_manager/presentation/downloads_page/pages/download_detail_page/widgets/main_info.dart';
+import 'package:easy_download_manager/presentation/downloads_page/pages/download_detail_page/widgets/main_info_completed.dart';
+import 'package:easy_download_manager/presentation/downloads_page/pages/download_detail_page/widgets/main_info_downloading.dart';
+import 'package:easy_download_manager/presentation/downloads_page/pages/download_detail_page/widgets/open_share_delete.dart';
 import 'package:easy_download_manager/presentation/downloads_page/pages/download_detail_page/widgets/speed_remain.dart';
 import 'package:easy_download_manager/widget/appbar.dart';
 import 'package:easy_download_manager/widget/big_button.dart';
@@ -15,11 +20,11 @@ class DownloadDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppAppBar(title: 'Детали загрузки', showLeading: true),
-      body: buildBody(context),
+      body: buildBody_when_completed(context),
     );
   }
 
-  Widget buildBody(context) {
+  Widget buildBody_when_downloading(context) {
     return Padding(
       padding: EdgeInsetsGeometry.symmetric(
         vertical: AppConstant.containerPadding / 2,
@@ -29,7 +34,7 @@ class DownloadDetailPage extends StatelessWidget {
         child: Column(
           spacing: AppConstant.containerPadding,
           children: [
-            MainInfo(),
+            MainInfoDownloading(),
             SpeedRemain(),
             FileInfo(),
             ActionButtons(),
@@ -38,6 +43,33 @@ class DownloadDetailPage extends StatelessWidget {
               icon: AppIcon.settingIcon,
               title: 'Настройки загрузки',
             ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildBody_when_completed(context) {
+    return Padding(
+      padding: EdgeInsetsGeometry.symmetric(
+        vertical: AppConstant.containerPadding / 2,
+        horizontal: AppConstant.containerPadding,
+      ),
+      child: SingleChildScrollView(
+        child: Column(
+          spacing: AppConstant.containerPadding,
+          children: [
+            MainInfoCompleted(),
+            OpenShareDelete(),
+            AdditionalInfo(),
+            // SpeedRemain(),
+            // FileInfo(),
+            // ActionButtons(),
+            // BigButton(
+            //   withGradient: true,
+            //   icon: AppIcon.settingIcon,
+            //   title: 'Настройки загрузки',
+            // ),
           ],
         ),
       ),
