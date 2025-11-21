@@ -1,6 +1,8 @@
 import 'package:easy_download_manager/core/constant/app_constant.dart';
+import 'package:easy_download_manager/core/constant/app_icon.dart';
 import 'package:easy_download_manager/widget/input.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class AddDownload extends StatelessWidget {
   const AddDownload({super.key});
@@ -18,12 +20,17 @@ class AddDownload extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('Добавить загрузку', style: theme.textTheme.titleMedium),
-         SizedBox(height: AppConstant.containerPadding,), 
+          SizedBox(height: AppConstant.containerPadding),
           Row(
             children: [
-              Flexible(child: Input(hintText: 'Insert URL ...',)),
-              SizedBox(width: AppConstant.containerPadding,),
-              FloatingActionButton(onPressed: () {}, child: Icon(Icons.add)),
+              Flexible(child: Input(hintText: 'Insert URL ...')),
+              SizedBox(width: AppConstant.containerPadding),
+              FloatingActionButton(
+                onPressed: () {
+                  context.push('/downloads/add_download');
+                },
+                child: Icon(AppIcon.addIcon),
+              ),
             ],
           ),
         ],

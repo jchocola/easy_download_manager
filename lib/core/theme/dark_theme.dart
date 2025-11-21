@@ -51,6 +51,20 @@ final appDarkTheme = ThemeData.dark(
   ),
 
 
+  expansionTileTheme: ExpansionTileThemeData(
+    iconColor: AppColor.activeProgressColor,
+    shape: Border.all(color: AppColor.activeProgressColor),
+
+  ),
+
+  checkboxTheme: CheckboxThemeData(
+    checkColor: WidgetStatePropertyAll(AppColor.successColor),
+    fillColor: WidgetStatePropertyAll(AppColor.inactiveProgressColor),
+    overlayColor: WidgetStatePropertyAll(AppColor.inactiveProgressColor),
+    side: BorderSide(
+      color: AppColor.activeProgressColor
+    )
+  ),
 
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ButtonStyle(

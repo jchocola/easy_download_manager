@@ -4,4 +4,6 @@ class AppConstant {
   static final double containerMargin = 10;
 
   static final double loadingHeight = 10;
+
+  static final String urlHintText = 'https://example.com/book.pdf';
 }

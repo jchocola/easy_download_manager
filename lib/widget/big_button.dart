@@ -25,11 +25,11 @@ class BigButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(AppConstant.borderRadius),
           color: theme.colorScheme.onPrimary,
       
-          gradient: LinearGradient(
+          gradient: withGradient ? LinearGradient(
             colors: [AppColor.activeBeginColor, AppColor.activeEndColor],
             begin: AlignmentGeometry.topLeft,
             end: AlignmentGeometry.bottomRight,
-          ),
+          ) : null,
         ),
         child: Center(
           child: Row(

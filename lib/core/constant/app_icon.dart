@@ -30,4 +30,19 @@ class AppIcon {
 
   static final arrowBackIcon = Icons.arrow_back_ios_new_rounded;
   static final arrowForwardIcon = Icons.arrow_forward_ios_rounded;
+
+  static final addIcon = Icons.add;
+
+  static final downloadTypeHttpIcon = Icons.http_outlined;
+  static final downloadTypeTorrentIcon = Icons.share;
+  static final downloadTypeCloudIcon = Icons.cloud_download_outlined;
+
+  static final videoIcon = Icons.play_arrow_rounded;
+  static final musicIcon = Icons.music_note;
+
+  static final parameterIcon = Icons.settings_suggest_outlined;
+
+  static final slowIcon = Icons.slow_motion_video;
+   static final normalIcon = Icons.width_normal;
+     static final hightIcon = Icons.fast_forward; 
 }
