@@ -7,6 +7,7 @@ import 'package:easy_download_manager/presentation/downloads_page/pages/add_down
 import 'package:easy_download_manager/widget/appbar.dart';
 import 'package:easy_download_manager/widget/big_button.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class AddDownloadPage extends StatelessWidget {
   const AddDownloadPage({super.key});
@@ -22,7 +23,7 @@ class AddDownloadPage extends StatelessWidget {
     );
   }
 
-  Widget buildBody(context) {
+  Widget buildBody(BuildContext context) {
     return Padding(
       padding:  EdgeInsets.symmetric(vertical: AppConstant.containerPadding/2 , horizontal: AppConstant.containerPadding),
       child: SingleChildScrollView(
@@ -38,7 +39,7 @@ class AddDownloadPage extends StatelessWidget {
               spacing: AppConstant.containerPadding,
               children: [
                 Expanded(flex: 1, child: BigButton(title: 'Cancel',withGradient: false,icon: AppIcon.cancelIcon,)),
-                 Expanded(flex: 1, child: BigButton(title: 'Start download',withGradient: true,icon: AppIcon.downloadIcon,)),
+                 Expanded(flex: 1, child: BigButton(title: 'Next',withGradient: true,icon: AppIcon.continueIcon, onTap: () => context.push('/downloads/download_confirm'),)),
               ],
             )
           ],

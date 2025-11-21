@@ -1,6 +1,7 @@
 import 'package:easy_download_manager/main_page.dart';
 import 'package:easy_download_manager/presentation/downloads_page/downloads_page.dart';
 import 'package:easy_download_manager/presentation/downloads_page/pages/add_download_page/add_download_page.dart';
+import 'package:easy_download_manager/presentation/downloads_page/pages/download_confirm_page/download_confirm_page.dart';
 import 'package:easy_download_manager/presentation/downloads_page/pages/download_detail_page/download_detail_page.dart';
 import 'package:easy_download_manager/presentation/files_page/files_page.dart';
 import 'package:easy_download_manager/presentation/settings_page/settings_page.dart';
@@ -30,6 +31,11 @@ final GoRouter router = GoRouter(
                  GoRoute(
                   path: '/add_download',
                   builder: (context, state) => const AddDownloadPage(),
+                ),
+
+                GoRoute(
+                  path: '/download_confirm',
+                  builder: (context, state) => const DownloadConfirmPage(),
                 ),
               ],
             ),

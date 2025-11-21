@@ -50,6 +50,7 @@ class _FileInfoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Container(
+     // padding: EdgeInsets.symmetric(vertical: AppConstant.containerPadding/2, horizontal: AppConstant.containerPadding),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(AppConstant.borderRadius),
         color: theme.colorScheme.onPrimary,
