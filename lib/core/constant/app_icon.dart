@@ -67,4 +67,6 @@ class AppIcon {
   static final wifiIcon = Icons.wifi;
 
   static final languageIcon = Icons.language_outlined;
+
+  static final historyIcon = Icons.history;
 }

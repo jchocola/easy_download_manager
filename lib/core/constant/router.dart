@@ -3,6 +3,7 @@ import 'package:easy_download_manager/presentation/downloads_page/downloads_page
 import 'package:easy_download_manager/presentation/downloads_page/pages/add_download_page/add_download_page.dart';
 import 'package:easy_download_manager/presentation/downloads_page/pages/download_confirm_page/download_confirm_page.dart';
 import 'package:easy_download_manager/presentation/downloads_page/pages/download_detail_page/download_detail_page.dart';
+import 'package:easy_download_manager/presentation/downloads_page/pages/history_page/history_page.dart';
 import 'package:easy_download_manager/presentation/files_page/files_page.dart';
 import 'package:easy_download_manager/presentation/settings_page/pages/network_setting_page/network_setting_page.dart';
 import 'package:easy_download_manager/presentation/settings_page/pages/network_speed_page/network_speed_page.dart';
@@ -40,6 +41,11 @@ final GoRouter router = GoRouter(
                   path: '/download_confirm',
                   builder: (context, state) => const DownloadConfirmPage(),
                 ),
+
+                GoRoute(
+                  path: '/history',
+                  builder: (context, state) => const HistoryPage(),
+                )
               ],
             ),
           ],
