@@ -69,4 +69,8 @@ class AppIcon {
   static final languageIcon = Icons.language_outlined;
 
   static final historyIcon = Icons.history;
+
+  static final developerIcon = Icons.people_outlined;
+
+  static final privacyPolicyIcon = Icons.lock_outlined;
 }
