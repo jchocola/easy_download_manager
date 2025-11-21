@@ -43,6 +43,12 @@ class AppIcon {
   static final parameterIcon = Icons.settings_suggest_outlined;
 
   static final slowIcon = Icons.slow_motion_video;
-   static final normalIcon = Icons.width_normal;
-     static final hightIcon = Icons.fast_forward; 
+  static final normalIcon = Icons.width_normal;
+  static final hightIcon = Icons.fast_forward;
+
+  static final networkIcon = Icons.wifi;
+
+  static final notificationIcon = Icons.notifications_active_outlined;
+
+  static final infoIcon = Icons.info_outline;
 }

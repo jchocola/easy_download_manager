@@ -51,6 +51,15 @@ final appDarkTheme = ThemeData.dark(
   ),
 
 
+
+  switchTheme: SwitchThemeData(
+    thumbColor: WidgetStatePropertyAll(AppColor.inactiveProgressColor),
+    trackColor: WidgetStatePropertyAll(AppColor.activeProgressColor),
+    trackOutlineColor: WidgetStatePropertyAll(Colors.transparent),
+    
+  ),
+
+
   expansionTileTheme: ExpansionTileThemeData(
     iconColor: AppColor.activeProgressColor,
     shape: Border.all(color: AppColor.activeProgressColor),

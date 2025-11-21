@@ -6,10 +6,12 @@ class FileInfoCard extends StatelessWidget {
     this.icon = Icons.download,
     this.title = 'title',
     this.subtitle = 'subtitle',
+    this.withSwitch = false
   });
   final IconData icon;
   final String title;
   final String subtitle;
+  final bool withSwitch;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -22,6 +24,7 @@ class FileInfoCard extends StatelessWidget {
           color: theme.colorScheme.tertiary,
         ),
       ),
+      trailing: withSwitch ? Transform.scale(scale: 0.7, child: Switch(value: false, onChanged: (value){})) : null,
     );
   }
 }
