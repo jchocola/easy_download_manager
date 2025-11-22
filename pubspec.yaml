@@ -17,6 +17,9 @@ dependencies:
   go_router: ^17.0.0
   step_progress_indicator: ^1.0.2
   flutter_native_splash: ^2.4.7
+  flutter_localizations:
+    sdk: flutter
+  intl: any
 
 dev_dependencies:
   flutter_test:
@@ -25,7 +28,7 @@ dev_dependencies:
   flutter_lints: ^5.0.0
 
 flutter:
-
+  generate: true
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:

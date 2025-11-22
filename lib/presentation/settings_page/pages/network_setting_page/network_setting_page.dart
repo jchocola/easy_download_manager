@@ -1,11 +1,9 @@
 import 'package:easy_download_manager/core/constant/app_constant.dart';
 import 'package:easy_download_manager/core/constant/app_icon.dart';
-import 'package:easy_download_manager/presentation/settings_page/pages/network_speed_page/widgets/advice.dart';
-import 'package:easy_download_manager/presentation/settings_page/pages/network_speed_page/widgets/speed_setting.dart';
+import 'package:easy_download_manager/l10n/app_localizations.dart';
 import 'package:easy_download_manager/presentation/settings_page/pages/other_setting.dart';
 import 'package:easy_download_manager/widget/advice_card.dart';
 import 'package:easy_download_manager/widget/appbar.dart';
-import 'package:easy_download_manager/widget/big_button.dart';
 import 'package:easy_download_manager/widget/file_info_card.dart';
 import 'package:easy_download_manager/widget/setting_tile.dart';
 import 'package:flutter/material.dart';
@@ -15,14 +13,16 @@ class NetworkSettingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Scaffold(
-      appBar: AppAppBar(title: 'Настройки сети' , showLeading: true,),
+      appBar: AppAppBar(title: l10n.networkManagement, showLeading: true),
       body: buildBody(context),
     );
   }
 
   Widget buildBody(context) {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context);
     return Padding(
       padding: EdgeInsets.symmetric(
         vertical: AppConstant.containerPadding / 2,
@@ -32,7 +32,7 @@ class NetworkSettingPage extends StatelessWidget {
         child: Column(
           spacing: AppConstant.containerPadding,
           children: [
-            SettingTile(title: 'ЗАГРУЗКА ПО WI-FI', icon: AppIcon.speedIcon),
+            SettingTile(title: l10n.downloadViaWiFi, icon: AppIcon.speedIcon),
             Container(
               padding: EdgeInsets.all(AppConstant.containerPadding),
               decoration: BoxDecoration(
@@ -42,15 +42,14 @@ class NetworkSettingPage extends StatelessWidget {
               child: FileInfoCard(
                 withSwitch: true,
                 icon: AppIcon.wifiIcon,
-                title: 'Загрузка только по Wi-Fi',
-                subtitle: 'Загрузки будут доступны только при подключении к Wi-Fi сети',
+                title: l10n.downloadOnlyViaWiFi,
+                subtitle: l10n
+                    .downloadsWillOnlyBeAvailableWhenConnectedToAWiFiNetwork,
               ),
             ),
 
-
-
-              SettingTile(title: 'РОУМИНГ', icon: AppIcon.speedIcon),
-             Container(
+            SettingTile(title: l10n.roaming, icon: AppIcon.speedIcon),
+            Container(
               padding: EdgeInsets.all(AppConstant.containerPadding),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(AppConstant.borderRadius),
@@ -59,16 +58,16 @@ class NetworkSettingPage extends StatelessWidget {
               child: FileInfoCard(
                 withSwitch: true,
                 icon: AppIcon.infoIcon,
-                title: 'Пауза при роуминге',
-                subtitle: 'Автоматически приостанавливать загрузки при международном роуминге',
+                title: l10n.roamingPause,
+                subtitle:
+                    l10n.automaticallyPauseDownloadsWhenRoamingInternationally,
               ),
             ),
 
             //SpeedSetting(),
+            SettingTile(title: l10n.automaticRenewal, icon: AppIcon.speedIcon),
 
-              SettingTile(title: 'АВТОМАТИЧЕСКОЕ ВОЗОБНОВЛЕНИЕ', icon: AppIcon.speedIcon),
-
-              Container(
+            Container(
               padding: EdgeInsets.all(AppConstant.containerPadding),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(AppConstant.borderRadius),
@@ -77,16 +76,17 @@ class NetworkSettingPage extends StatelessWidget {
               child: FileInfoCard(
                 withSwitch: true,
                 icon: AppIcon.infoIcon,
-                title: 'Автоматическое возобновление',
-                subtitle: 'Возобновлять загрузки при восстановлении сетевого подключения',
+                title: l10n.automaticRenewal,
+                subtitle: l10n.resumeDownloadsWhenNetworkConnectionIsRestored,
               ),
             ),
 
             OtherSetting(),
-            AdviceCard(title: 'Совет по экономии трафика', subtitle: 'Включите "Загрузка только по Wi-Fi" и "Пауза при роуминге" для экономии мобильного трафика и снижения расходов.',),
-
-
-          
+            AdviceCard(
+              title: l10n.tipsForSavingTraffic,
+              subtitle: l10n
+                  .enableDownloadOnlyViaWiFiAndPauseWhenRoamingToSaveMobileDataAndReduceCosts,
+            ),
           ],
         ),
       ),

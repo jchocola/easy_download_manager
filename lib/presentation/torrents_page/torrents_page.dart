@@ -1,4 +1,5 @@
 import 'package:easy_download_manager/core/constant/app_constant.dart';
+import 'package:easy_download_manager/l10n/app_localizations.dart';
 import 'package:easy_download_manager/presentation/torrents_page/widgets/all_active_comple_torrent.dart';
 import 'package:easy_download_manager/widget/appbar.dart';
 import 'package:flutter/material.dart';
@@ -8,8 +9,9 @@ class TorrentsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+     final l10n = AppLocalizations.of(context);
     return Scaffold(
-      appBar: AppAppBar(title: 'Torrents'),
+      appBar: AppAppBar(title: l10n.torrents),
       body: buildBody(context),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:easy_download_manager/core/constant/app_constant.dart';
 import 'package:easy_download_manager/core/constant/app_icon.dart';
+import 'package:easy_download_manager/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class Advice extends StatelessWidget {
@@ -8,6 +9,7 @@ class Advice extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context);
     return Container(
       padding: EdgeInsets.all(AppConstant.containerPadding),
       decoration: BoxDecoration(
@@ -18,16 +20,16 @@ class Advice extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         spacing: AppConstant.containerPadding,
         children: [
-          Icon(AppIcon.infoIcon ,color: theme.colorScheme.secondary,),
+          Icon(AppIcon.infoIcon, color: theme.colorScheme.secondary),
 
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Совет' , style: theme.textTheme.titleMedium,),
+                Text(l10n.advice, style: theme.textTheme.titleMedium),
                 Text(
-                  'Используйте ограничение скорости для экономии трафика и предотвращения перегрузки сети. Настройки сети помогут оптимизировать загрузки в зависимости от типа подключения.',
-                   style: theme.textTheme.bodySmall,
+                  l10n.useSpeedLimitsToSaveBandwidthAndPreventNetworkOverloadNetworkSettingsWillHelpOptimizeDownloadsDependingOnTheTypeOfConnection,
+                  style: theme.textTheme.bodySmall,
                 ),
               ],
             ),

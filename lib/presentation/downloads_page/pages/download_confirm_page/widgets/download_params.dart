@@ -1,5 +1,6 @@
 import 'package:easy_download_manager/core/constant/app_constant.dart';
 import 'package:easy_download_manager/core/constant/app_icon.dart';
+import 'package:easy_download_manager/l10n/app_localizations.dart';
 import 'package:easy_download_manager/widget/file_info_card.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +10,7 @@ class DownloadParams extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
      final theme = Theme.of(context);
+      final l10n = AppLocalizations.of(context);
     return Container(
         padding: EdgeInsets.symmetric(horizontal: AppConstant.containerPadding, vertical: AppConstant.containerPadding/2),
       decoration: BoxDecoration(
@@ -20,14 +22,14 @@ class DownloadParams extends StatelessWidget {
         children: [
             FileInfoCard(
             icon: AppIcon.downloadIcon,
-            title: 'Тип загрузки',
+            title: l10n.downloadType,
             subtitle: 'Прямая ссылка (HTTP/HTTPS)',
             withSwitch: false,
           ),
 
            FileInfoCard(
             icon: AppIcon.pathIcon,
-            title: 'Путь сохранения',
+            title: l10n.storageLocation,
             subtitle: '/storage/Documents/Archives',
             withSwitch: false,
           ),
@@ -35,14 +37,14 @@ class DownloadParams extends StatelessWidget {
 
            FileInfoCard(
             icon: AppIcon.priorityIcon,
-            title: 'Приоритет',
+            title: l10n.priority,
             subtitle: 'Высокий',
             withSwitch: false,
           ),
 
            FileInfoCard(
             icon: AppIcon.speedIcon,
-            title: 'Ограничение скорости',
+            title: l10n.speedLimit,
             subtitle: '5.0 МБ/с',
             withSwitch: false,
           ),

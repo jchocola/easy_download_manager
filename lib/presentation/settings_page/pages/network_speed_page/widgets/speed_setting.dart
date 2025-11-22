@@ -1,4 +1,5 @@
 import 'package:easy_download_manager/core/constant/app_constant.dart';
+import 'package:easy_download_manager/l10n/app_localizations.dart';
 import 'package:easy_download_manager/widget/button_with_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
@@ -9,6 +10,7 @@ class SpeedSetting extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+     final l10n = AppLocalizations.of(context);
     return Container(
       padding: EdgeInsets.all(AppConstant.containerPadding),
       decoration: BoxDecoration(
@@ -21,7 +23,7 @@ class SpeedSetting extends StatelessWidget {
           Row(
             spacing: AppConstant.containerPadding,
             children: [
-              Text('Максимальная скорость', style: theme.textTheme.titleSmall),
+              Text(l10n.maximumSpeed, style: theme.textTheme.titleSmall),
               Spacer(),
               Text(
                 '80.0',
@@ -52,7 +54,7 @@ class SpeedSetting extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               ButtonWithIcon(label: '10 Мбит/с'),
-              ButtonWithIcon(label: 'Max speed'),
+              ButtonWithIcon(label: l10n.maximumSpeed),
             ],
           ),
         ],

@@ -1,4 +1,5 @@
 import 'package:easy_download_manager/core/constant/app_constant.dart';
+import 'package:easy_download_manager/l10n/app_localizations.dart';
 import 'package:easy_download_manager/widget/appbar.dart';
 import 'package:easy_download_manager/widget/history_card.dart';
 import 'package:flutter/material.dart';
@@ -8,8 +9,9 @@ class HistoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+     final l10n = AppLocalizations.of(context);
     return Scaffold(
-      appBar: AppAppBar(title: 'История загрузок', showLeading: true),
+      appBar: AppAppBar(title: l10n.downloadHistory, showLeading: true),
       body: buildBody(context),
     );
   }
@@ -24,14 +26,8 @@ class HistoryPage extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         spacing: AppConstant.containerPadding,
-        children: [
-          HistoryCard(),
-
-         
-        ],
+        children: [HistoryCard()],
       ),
     );
   }
 }
-
-

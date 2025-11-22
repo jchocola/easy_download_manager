@@ -8,4 +8,9 @@ class AppConstant {
   static final String urlHintText = 'https://example.com/book.pdf';
 
   static final String pathDefault = '0/EDM/Downloads/';
+
+  static final String appVersion = 'Version 1.0.0+1 (BETA)';
+  static final String developer = 'Nguen T.B';
+
+  static final String BacDev = '©2025 BacDev';
 }

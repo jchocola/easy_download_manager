@@ -1,4 +1,5 @@
 import 'package:easy_download_manager/core/constant/app_icon.dart';
+import 'package:easy_download_manager/l10n/app_localizations.dart';
 import 'package:easy_download_manager/presentation/downloads_page/widgets/active_downloads_list.dart';
 import 'package:easy_download_manager/presentation/downloads_page/widgets/completed_downloads_list.dart';
 import 'package:easy_download_manager/presentation/downloads_page/widgets/others_downloads_list.dart';
@@ -25,6 +26,7 @@ class _ActiveCompletedAllTorrentState extends State<ActiveCompletedAllTorrent> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+     final l10n = AppLocalizations.of(context);
     return Column(
       children: [
         Row(
@@ -35,9 +37,9 @@ class _ActiveCompletedAllTorrentState extends State<ActiveCompletedAllTorrent> {
               thumbColor: theme.colorScheme.onPrimaryContainer,
               groupValue: currentIndex,
               children: {
-                'actived': Text('Actived'),
-                'completed': Text('Completed '),
-                'others': Text('Others'),
+                'actived': Text(l10n.active),
+                'completed': Text(l10n.completed),
+                'others': Text(l10n.others),
                 // 'error': Text('Error'),
                 //'all': Text('All'),
               },

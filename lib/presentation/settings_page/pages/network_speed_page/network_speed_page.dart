@@ -1,8 +1,10 @@
 import 'package:easy_download_manager/core/constant/app_constant.dart';
 import 'package:easy_download_manager/core/constant/app_icon.dart';
-import 'package:easy_download_manager/presentation/settings_page/pages/network_speed_page/widgets/advice.dart';
+import 'package:easy_download_manager/l10n/app_localizations.dart';
+
 import 'package:easy_download_manager/presentation/settings_page/pages/network_speed_page/widgets/speed_setting.dart';
 import 'package:easy_download_manager/presentation/settings_page/pages/other_setting.dart';
+import 'package:easy_download_manager/widget/advice_card.dart';
 import 'package:easy_download_manager/widget/appbar.dart';
 import 'package:easy_download_manager/widget/big_button.dart';
 import 'package:easy_download_manager/widget/file_info_card.dart';
@@ -14,14 +16,16 @@ class NetworkSpeedPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Scaffold(
-      appBar: AppAppBar(title: 'Ограничение скорости' , showLeading: true,),
+      appBar: AppAppBar(title: l10n.speedLimit, showLeading: true),
       body: buildBody(context),
     );
   }
 
   Widget buildBody(context) {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context);
     return Padding(
       padding: EdgeInsets.symmetric(
         vertical: AppConstant.containerPadding / 2,
@@ -31,7 +35,7 @@ class NetworkSpeedPage extends StatelessWidget {
         child: Column(
           spacing: AppConstant.containerPadding,
           children: [
-            SettingTile(title: 'ОСНОВНЫЕ НАСТРОЙКИ', icon: AppIcon.speedIcon),
+            SettingTile(title: l10n.basicSettings, icon: AppIcon.speedIcon),
             Container(
               padding: EdgeInsets.all(AppConstant.containerPadding),
               decoration: BoxDecoration(
@@ -41,19 +45,15 @@ class NetworkSpeedPage extends StatelessWidget {
               child: FileInfoCard(
                 withSwitch: true,
                 icon: AppIcon.speedIcon,
-                title: 'Ограничение скорости',
-                subtitle: 'Включить ограничение скорости загрузки',
+                title: l10n.speedLimit,
+                subtitle: l10n.enableDownloadSpeedLimit,
               ),
             ),
 
             SpeedSetting(),
 
-
             OtherSetting(),
-            Advice(),
-
-
-          
+            AdviceCard(title: l10n.optimizationAdvice, subtitle: l10n.setASpeedLimitToReserveBandwidthForOtherApplicationsAndEnsureAStableConnection,),
           ],
         ),
       ),

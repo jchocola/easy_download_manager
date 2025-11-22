@@ -1,5 +1,6 @@
 import 'package:easy_download_manager/core/constant/app_constant.dart';
 import 'package:easy_download_manager/core/constant/app_icon.dart';
+import 'package:easy_download_manager/l10n/app_localizations.dart';
 import 'package:easy_download_manager/widget/button_with_icon.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +10,7 @@ class SortModalPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context);
     return Padding(
       padding: EdgeInsets.symmetric(
         vertical: AppConstant.containerPadding / 2,
@@ -19,11 +21,11 @@ class SortModalPage extends StatelessWidget {
           Expanded(
             child: Column(
               children: [
-                Text('Сортировка', style: theme.textTheme.titleMedium),
+                Text(l10n.sorting, style: theme.textTheme.titleMedium),
 
-                _sortButton(title: 'By date',),
-                _sortButton(title: 'By name',),
-                _sortButton(title: 'By size',),
+                _sortButton(title: l10n.byDate),
+                _sortButton(title: l10n.byName),
+                _sortButton(title: l10n.bySize),
               ],
             ),
           ),
@@ -32,8 +34,20 @@ class SortModalPage extends StatelessWidget {
             spacing: AppConstant.containerPadding,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Expanded(flex: 1, child: ButtonWithIcon(label: 'По возрастанию',icon: AppIcon.descSortIcon,)),
-              Expanded(flex: 1, child: ButtonWithIcon(label: 'По убыванию',icon: AppIcon.ascSortIcon,)),
+              Expanded(
+                flex: 1,
+                child: ButtonWithIcon(
+                  label: l10n.byAscending,
+                  icon: AppIcon.descSortIcon,
+                ),
+              ),
+              Expanded(
+                flex: 1,
+                child: ButtonWithIcon(
+                  label: l10n.byDescending,
+                  icon: AppIcon.ascSortIcon,
+                ),
+              ),
             ],
           ),
         ],
@@ -43,14 +57,14 @@ class SortModalPage extends StatelessWidget {
 }
 
 class _sortButton extends StatelessWidget {
-  const _sortButton({super.key , this.title = 'Title'});
+  const _sortButton({super.key, this.title = 'Title'});
   final String title;
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(title , ),
+        Text(title),
         Checkbox(value: true, onChanged: (value) {}),
       ],
     );

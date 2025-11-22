@@ -1,6 +1,7 @@
 import 'package:easy_download_manager/core/constant/app_constant.dart';
 import 'package:easy_download_manager/core/constant/app_icon.dart';
-import 'package:easy_download_manager/presentation/settings_page/pages/network_speed_page/widgets/advice.dart';
+import 'package:easy_download_manager/l10n/app_localizations.dart';
+
 import 'package:easy_download_manager/presentation/settings_page/pages/network_speed_page/widgets/speed_setting.dart';
 import 'package:easy_download_manager/presentation/settings_page/pages/other_setting.dart';
 import 'package:easy_download_manager/widget/advice_card.dart';
@@ -15,14 +16,16 @@ class NotificationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Scaffold(
-      appBar: AppAppBar(title: 'Уведомления', showLeading: true),
+      appBar: AppAppBar(title: l10n.notification, showLeading: true),
       body: buildBody(context),
     );
   }
 
   Widget buildBody(context) {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context);
     return Padding(
       padding: EdgeInsets.symmetric(
         vertical: AppConstant.containerPadding / 2,
@@ -33,7 +36,7 @@ class NotificationPage extends StatelessWidget {
           spacing: AppConstant.containerPadding,
           children: [
             SettingTile(
-              title: 'УВЕДОМЛЕНИЯ О ЗАВЕРШЕНИИ',
+              title: l10n.notifyWhenCompleted,
               icon: AppIcon.speedIcon,
             ),
             Container(
@@ -45,12 +48,12 @@ class NotificationPage extends StatelessWidget {
               child: FileInfoCard(
                 withSwitch: true,
                 icon: AppIcon.wifiIcon,
-                title: 'Уведомления о завершении',
-                subtitle: 'Получать уведомления когда загрузка завершена',
+                title: l10n.notifyWhenCompleted,
+                subtitle: l10n.getNotifiedWhenTheDownloadIsComplete,
               ),
             ),
 
-            SettingTile(title: 'ЗВУКОВЫЕ ОПОВЕЩЕНИЯ', icon: AppIcon.speedIcon),
+            SettingTile(title: l10n.audibleAlerts, icon: AppIcon.speedIcon),
             Container(
               padding: EdgeInsets.all(AppConstant.containerPadding),
               decoration: BoxDecoration(
@@ -60,16 +63,16 @@ class NotificationPage extends StatelessWidget {
               child: FileInfoCard(
                 withSwitch: true,
                 icon: AppIcon.infoIcon,
-                title: 'Звуковые оповещения',
-                subtitle: 'Воспроизводить звук при завершении загрузки',
+                title: l10n.audibleAlerts,
+                subtitle: l10n.playSoundWhenDownloadIsComplete,
               ),
             ),
 
             OtherSetting(),
             AdviceCard(
-              title: 'Совет',
-              subtitle:
-                  'Включите звуковые оповещения, чтобы не пропустить завершение важных загрузок. Прогресс в статус-баре помогает отслеживать загрузки без открытия приложения.',
+              title: l10n.advice,
+              subtitle: l10n
+                  .enableSoundNotificationsSoYouDonTMissImportantDownloadsCompletingTheProgressBarHelpsYouTrackDownloadsWithoutOpeningTheApp,
             ),
           ],
         ),

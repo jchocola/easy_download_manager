@@ -1,5 +1,6 @@
 import 'package:easy_download_manager/core/constant/app_constant.dart';
 import 'package:easy_download_manager/core/constant/app_icon.dart';
+import 'package:easy_download_manager/l10n/app_localizations.dart';
 import 'package:easy_download_manager/widget/file_info_card.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +10,7 @@ class QuickSetting extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context);
     return Container(
       padding: EdgeInsets.all(AppConstant.containerPadding),
       decoration: BoxDecoration(
@@ -22,35 +24,35 @@ class QuickSetting extends StatelessWidget {
             spacing: AppConstant.containerPadding,
             children: [
               Icon(AppIcon.settingIcon, color: theme.colorScheme.secondary),
-              Text('БЫСТРЫЕ ПЕРЕКЛЮЧАТЕЛИ', style: theme.textTheme.titleMedium),
+              Text(l10n.quickSwitches, style: theme.textTheme.titleMedium),
             ],
           ),
 
           FileInfoCard(
             icon: AppIcon.speedIcon,
-            title: 'Ограничение скорости',
-            subtitle: 'Включить общий лимит скорости',
+            title: l10n.speedLimit,
+            subtitle: l10n.enableGeneralSpeedLimit,
             withSwitch: true,
           ),
 
           FileInfoCard(
             icon: AppIcon.networkIcon,
-            title: 'Только Wi-Fi',
-            subtitle: 'Загружать только по Wi-Fi',
+            title: l10n.onlyWiFi,
+            subtitle: l10n.downloadOnlyViaWiFi,
             withSwitch: true,
           ),
 
           FileInfoCard(
             icon: AppIcon.infoIcon,
-            title: 'Пауза при роуминге',
-            subtitle: 'Приостановить при роуминге',
+            title: l10n.roamingPause,
+            subtitle: l10n.suspendWhileRoaming,
             withSwitch: true,
           ),
 
           FileInfoCard(
             icon: AppIcon.notificationIcon,
-            title: 'Уведомления',
-            subtitle: 'Уведомлять о завершении',
+            title: l10n.notification,
+            subtitle: l10n.notifyWhenCompleted,
             withSwitch: true,
           ),
         ],

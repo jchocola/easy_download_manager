@@ -1,5 +1,6 @@
 import 'package:easy_download_manager/core/constant/app_constant.dart';
 import 'package:easy_download_manager/core/constant/app_icon.dart';
+import 'package:easy_download_manager/l10n/app_localizations.dart';
 import 'package:easy_download_manager/widget/button_with_icon.dart';
 import 'package:easy_download_manager/widget/expantion_tile.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ class AdditionalParameter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context);
     return Container(
       padding: EdgeInsets.all(AppConstant.containerPadding),
       decoration: BoxDecoration(
@@ -25,38 +27,40 @@ class AdditionalParameter extends StatelessWidget {
             children: [
               Icon(AppIcon.parameterIcon, color: theme.colorScheme.secondary),
               Text(
-                'Дополнительные параметры',
+                l10n.additionalParameters,
                 style: theme.textTheme.titleMedium,
               ),
             ],
           ),
 
-          Text(
-            'Опциональные настройки загрузки',
-            style: theme.textTheme.bodySmall,
+          Text(l10n.optionalDownloadSettings, style: theme.textTheme.bodySmall),
+
+          ExpansionTile(
+            leading: Icon(
+              AppIcon.speedIcon,
+              color: theme.colorScheme.secondary,
+            ),
+            title: Text(l10n.speedLimit),
+            //  subtitle: Text('dshjshds'),
+            children: [
+              Row(
+                children: [
+                  ButtonWithIcon(label: 'Slow', icon: AppIcon.slowIcon),
+                  ButtonWithIcon(label: 'Normal', icon: AppIcon.normalIcon),
+                  ButtonWithIcon(label: 'Hight', icon: AppIcon.hightIcon),
+                ],
+              ),
+            ],
           ),
 
           ExpansionTile(
-            leading: Icon(AppIcon.speedIcon , color: theme.colorScheme.secondary,),
-            title: Text('Ограничение скорости'),
-          //  subtitle: Text('dshjshds'),
-            children: [
-               Row(children: [
-               ButtonWithIcon(label: 'Slow',icon: AppIcon.slowIcon,),
-                ButtonWithIcon(label: 'Normal', icon: AppIcon.normalIcon,),
-                 ButtonWithIcon(label: 'Hight',icon: AppIcon.hightIcon,)
-              ],)
-            ],
-          ),
-
-
-            ExpansionTile(
-            leading: Icon(AppIcon.priorityIcon ,color: theme.colorScheme.secondary),
-            title: Text('Приоритет'),
-          //  subtitle: Text('dshjshds'),
-            children: [
-             
-            ],
+            leading: Icon(
+              AppIcon.priorityIcon,
+              color: theme.colorScheme.secondary,
+            ),
+            title: Text(l10n.priority),
+            //  subtitle: Text('dshjshds'),
+            children: [],
           ),
         ],
       ),

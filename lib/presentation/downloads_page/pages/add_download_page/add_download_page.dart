@@ -1,5 +1,6 @@
 import 'package:easy_download_manager/core/constant/app_constant.dart';
 import 'package:easy_download_manager/core/constant/app_icon.dart';
+import 'package:easy_download_manager/l10n/app_localizations.dart';
 import 'package:easy_download_manager/presentation/downloads_page/pages/add_download_page/widgets/additional_parameter.dart';
 import 'package:easy_download_manager/presentation/downloads_page/pages/add_download_page/widgets/download_type.dart';
 import 'package:easy_download_manager/presentation/downloads_page/pages/add_download_page/widgets/saving_place.dart';
@@ -14,18 +15,23 @@ class AddDownloadPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
-        appBar: AppAppBar(title: 'Добавить загрузку', showLeading: true),
+        appBar: AppAppBar(title: l10n.addDownload, showLeading: true),
         body: buildBody(context),
       ),
     );
   }
 
   Widget buildBody(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Padding(
-      padding:  EdgeInsets.symmetric(vertical: AppConstant.containerPadding/2 , horizontal: AppConstant.containerPadding),
+      padding: EdgeInsets.symmetric(
+        vertical: AppConstant.containerPadding / 2,
+        horizontal: AppConstant.containerPadding,
+      ),
       child: SingleChildScrollView(
         child: Column(
           spacing: AppConstant.containerPadding,
@@ -34,14 +40,29 @@ class AddDownloadPage extends StatelessWidget {
             DownloadType(),
             SavingPlace(),
             AdditionalParameter(),
-            SizedBox(height: AppConstant.containerPadding*3,),
+            SizedBox(height: AppConstant.containerPadding * 3),
             Row(
               spacing: AppConstant.containerPadding,
               children: [
-                Expanded(flex: 1, child: BigButton(title: 'Cancel',withGradient: false,icon: AppIcon.cancelIcon,)),
-                 Expanded(flex: 1, child: BigButton(title: 'Next',withGradient: true,icon: AppIcon.continueIcon, onTap: () => context.push('/downloads/download_confirm'),)),
+                Expanded(
+                  flex: 1,
+                  child: BigButton(
+                    title: l10n.cancel,
+                    withGradient: false,
+                    icon: AppIcon.cancelIcon,
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: BigButton(
+                    title: l10n.next,
+                    withGradient: true,
+                    icon: AppIcon.continueIcon,
+                    onTap: () => context.push('/downloads/download_confirm'),
+                  ),
+                ),
               ],
-            )
+            ),
           ],
         ),
       ),

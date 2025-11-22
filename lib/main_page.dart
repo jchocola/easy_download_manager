@@ -1,4 +1,5 @@
 import 'package:easy_download_manager/core/constant/app_icon.dart';
+import 'package:easy_download_manager/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -10,6 +11,7 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Scaffold(
       body: navigationShell,
       bottomNavigationBar: BottomNavigationBar(
@@ -22,19 +24,19 @@ class MainPage extends StatelessWidget {
         items: [
           BottomNavigationBarItem(
             icon: Icon(AppIcon.downloadIcon),
-            label: 'Downloads',
+            label: l10n.downloads,
           ),
           BottomNavigationBarItem(
             icon: Icon(AppIcon.filesIcon),
-            label: 'Files',
+            label: l10n.files,
           ),
           BottomNavigationBarItem(
             icon: Icon(AppIcon.torrentIcon),
-            label: 'Torrents',
+            label: l10n.torrents,
           ),
           BottomNavigationBarItem(
             icon: Icon(AppIcon.settingIcon),
-            label: 'Settings',
+            label: l10n.settings,
           ),
         ],
       ),
