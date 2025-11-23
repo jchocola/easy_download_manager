@@ -76,4 +76,6 @@ class AppIcon {
 
   static final descSortIcon = Icons.sort_by_alpha;
   static final ascSortIcon = Icons.sort;
+
+  static final pickIcon = Icons.task_rounded;
 }

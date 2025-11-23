@@ -1,10 +1,12 @@
 import 'package:easy_download_manager/core/constant/app_constant.dart';
 import 'package:easy_download_manager/core/constant/app_icon.dart';
+import 'package:easy_download_manager/core/enum/download_method.dart';
 import 'package:easy_download_manager/l10n/app_localizations.dart';
 import 'package:easy_download_manager/presentation/downloads_page/blocs/add_download_bloc.dart';
 import 'package:easy_download_manager/presentation/downloads_page/pages/add_download_page/widgets/additional_parameter.dart';
 import 'package:easy_download_manager/presentation/downloads_page/pages/add_download_page/widgets/download_type.dart';
 import 'package:easy_download_manager/presentation/downloads_page/pages/add_download_page/widgets/saving_place.dart';
+import 'package:easy_download_manager/presentation/downloads_page/pages/add_download_page/widgets/torrent_pick_file.dart';
 import 'package:easy_download_manager/presentation/downloads_page/pages/add_download_page/widgets/url_input.dart';
 import 'package:easy_download_manager/widget/appbar.dart';
 import 'package:easy_download_manager/widget/big_button.dart';
@@ -38,7 +40,23 @@ class AddDownloadPage extends StatelessWidget {
         child: Column(
           spacing: AppConstant.containerPadding,
           children: [
-            UrlInput(),
+            BlocBuilder<AddDownloadBloc, AddDownloadBlocState>(
+              builder: (context, state) {
+                if (state is AddDownloadBlocStateLoaded) {
+                  switch (state.downloadMethod) {
+                    case DOWNLOAD_METHOD.HTTP_HTTPS:
+                      return UrlInput();
+                    case DOWNLOAD_METHOD.TORRENT:
+                      return TorrentPickFile();
+                    case DOWNLOAD_METHOD.CLOUD:
+                      return UrlInput();
+                  }
+                } else {
+                  return CircularProgressIndicator();
+                }
+              },
+            ),
+
             DownloadType(),
             SavingPlace(),
             AdditionalParameter(),
