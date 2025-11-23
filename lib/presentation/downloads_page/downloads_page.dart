@@ -1,11 +1,13 @@
 import 'package:easy_download_manager/core/constant/app_constant.dart';
 import 'package:easy_download_manager/core/constant/app_icon.dart';
 import 'package:easy_download_manager/l10n/app_localizations.dart';
+import 'package:easy_download_manager/presentation/downloads_page/blocs/download_tab_bloc.dart';
 import 'package:easy_download_manager/presentation/downloads_page/widgets/4_status_category.dart';
 import 'package:easy_download_manager/presentation/downloads_page/widgets/active_completed_all.dart';
 import 'package:easy_download_manager/presentation/downloads_page/widgets/add_download.dart';
 import 'package:easy_download_manager/widget/appbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class DownloadsPage extends StatelessWidget {
@@ -14,16 +16,22 @@ class DownloadsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
-      child: Scaffold(
-        appBar: AppAppBar(
-          title: l10n.downloads,
-          showActions: true,
-          actionIcon: AppIcon.historyIcon,
-          onActionTapped: () => context.push('/downloads/history'),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context)=>  DownloadTabBloc()..add(DownloadTabBlocEvent_SetInitValue())),
+
+      ],
+      child: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: Scaffold(
+          appBar: AppAppBar(
+            title: l10n.downloads,
+            showActions: true,
+            actionIcon: AppIcon.historyIcon,
+            onActionTapped: () => context.push('/downloads/history'),
+          ),
+          body: _buildBody(context),
         ),
-        body: _buildBody(context),
       ),
     );
   }

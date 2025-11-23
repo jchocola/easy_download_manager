@@ -1,11 +1,14 @@
+import 'package:easy_download_manager/core/constant/app_constant.dart';
 import 'package:easy_download_manager/core/constant/app_icon.dart';
 import 'package:easy_download_manager/l10n/app_localizations.dart';
+import 'package:easy_download_manager/presentation/downloads_page/blocs/download_tab_bloc.dart';
 import 'package:easy_download_manager/presentation/downloads_page/widgets/active_downloads_list.dart';
 import 'package:easy_download_manager/presentation/downloads_page/widgets/completed_downloads_list.dart';
 import 'package:easy_download_manager/presentation/downloads_page/widgets/others_downloads_list.dart';
 import 'package:easy_download_manager/presentation/downloads_page/widgets/sort_modal_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ActiveCompletedAll extends StatefulWidget {
   const ActiveCompletedAll({super.key});
@@ -15,13 +18,13 @@ class ActiveCompletedAll extends StatefulWidget {
 }
 
 class _ActiveCompletedAllState extends State<ActiveCompletedAll> {
-  String currentIndex = 'actived';
+  //String currentIndex = 'actived';
 
-  void changeIndex(String value) {
-    setState(() {
-      currentIndex = value;
-    });
-  }
+  // void changeIndex(String value) {
+  //   setState(() {
+  //     currentIndex = value;
+  //   });
+  // }
 
   void onSortTapped() {
     showModalBottomSheet(
@@ -44,19 +47,29 @@ class _ActiveCompletedAllState extends State<ActiveCompletedAll> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            CupertinoSlidingSegmentedControl(
-              backgroundColor: theme.colorScheme.onPrimary,
-              thumbColor: theme.colorScheme.onPrimaryContainer,
-              groupValue: currentIndex,
-              children: {
-                'actived': Text(l10n.active),
-                'completed': Text(l10n.completed),
-                'others': Text(l10n.others),
-                // 'error': Text('Error'),
-                //'all': Text('All'),
-              },
-              onValueChanged: (value) {
-                changeIndex(value!);
+            BlocBuilder<DownloadTabBloc, DownloadTabBlocState>(
+              builder: (context, state) {
+                if (state is DownloadTabBlocStateLoaded) {
+                  return CupertinoSlidingSegmentedControl(
+                    backgroundColor: theme.colorScheme.onPrimary,
+                    thumbColor: theme.colorScheme.onPrimaryContainer,
+                    groupValue: state.value,
+                    children: {
+                      AppConstant.downloadTab_actived: Text(l10n.active),
+                      AppConstant.downloadTab_completed: Text(l10n.completed),
+                      AppConstant.downloadTab_others: Text(l10n.others),
+                      // 'error': Text('Error'),
+                      //'all': Text('All'),
+                    },
+                    onValueChanged: (value) {
+                      context.read<DownloadTabBloc>().add(
+                        DownloadTabBlocEvent_ChangeValue(value: value!),
+                      );
+                    },
+                  );
+                } else {
+                  return CircularProgressIndicator();
+                }
               },
             ),
 
@@ -70,16 +83,24 @@ class _ActiveCompletedAllState extends State<ActiveCompletedAll> {
   }
 
   Widget buildContent(context) {
-    switch (currentIndex) {
-      case 'actived':
-        return ActiveDownloadsList();
-      case 'completed':
-        return CompletedDownloadsList();
-      case 'others':
-        return OthersDownloadsList();
+    return BlocBuilder<DownloadTabBloc, DownloadTabBlocState>(
+      builder: (context, state) {
+        if (state is DownloadTabBlocStateLoaded) {
+          switch (state.value) {
+            case AppConstant.downloadTab_actived:
+              return ActiveDownloadsList();
+            case AppConstant.downloadTab_completed:
+              return CompletedDownloadsList();
+            case AppConstant.downloadTab_others:
+              return OthersDownloadsList();
 
-      default:
-        return Text('Error');
-    }
+            default:
+              return Text('Error');
+          }
+        } else {
+          return CircularProgressIndicator();
+        }
+      },
+    );
   }
 }

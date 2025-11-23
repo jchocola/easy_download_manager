@@ -13,4 +13,8 @@ class AppConstant {
   static final String developer = 'Nguen T.B';
 
   static final String BacDev = '©2025 BacDev';
+
+  static const String downloadTab_actived = 'actived';
+    static const String downloadTab_completed = 'completed'; 
+   static const String downloadTab_others = 'others';  
 }
