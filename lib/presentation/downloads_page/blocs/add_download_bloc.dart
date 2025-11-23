@@ -2,6 +2,7 @@
 
 import 'dart:io';
 
+import 'package:easy_download_manager/core/enum/save_place.dart';
 import 'package:easy_download_manager/main.dart';
 import 'package:equatable/equatable.dart';
 import 'package:file_picker/file_picker.dart';
@@ -49,6 +50,23 @@ class AddDownloadBlocEvent_RemoveTorrentFile extends AddDownloadBlocEvent {
   List<Object?> get props => [];
 }
 
+class AddDownloadBlocEvent_ChangeSavePlace extends AddDownloadBlocEvent {
+  final SAVE_PLACE savePlace;
+  AddDownloadBlocEvent_ChangeSavePlace({required this.savePlace});
+
+  @override
+  List<Object?> get props => [savePlace];
+}
+
+
+class AddDownloadBlocEvent_ChangeFileName extends AddDownloadBlocEvent {
+  final String value;
+  AddDownloadBlocEvent_ChangeFileName({required this.value});
+
+  @override
+  List<Object?> get props => [value];
+}
+
 ///
 /// STATE
 ///
@@ -67,6 +85,7 @@ class AddDownloadBlocStateLoaded extends AddDownloadBlocState {
   final String fileName;
   final String savePath;
   final File? torrentFile;
+  final SAVE_PLACE savePlace;
 
   AddDownloadBlocStateLoaded({
     required this.downloadUrl,
@@ -74,6 +93,7 @@ class AddDownloadBlocStateLoaded extends AddDownloadBlocState {
     required this.fileName,
     required this.savePath,
     this.torrentFile,
+    required this.savePlace,
   });
 
   @override
@@ -83,6 +103,7 @@ class AddDownloadBlocStateLoaded extends AddDownloadBlocState {
     fileName,
     savePath,
     torrentFile,
+    savePlace,
   ];
 
   AddDownloadBlocStateLoaded copyWith({
@@ -91,13 +112,15 @@ class AddDownloadBlocStateLoaded extends AddDownloadBlocState {
     String? fileName,
     String? savePath,
     File? torrentFile,
+    SAVE_PLACE? savePlace,
   }) {
     return AddDownloadBlocStateLoaded(
       downloadUrl: downloadUrl ?? this.downloadUrl,
       downloadMethod: downloadMethod ?? this.downloadMethod,
       fileName: fileName ?? this.fileName,
       savePath: savePath ?? this.savePath,
-      torrentFile: torrentFile ,
+      torrentFile: torrentFile,
+      savePlace: savePlace ?? this.savePlace,
     );
   }
 }
@@ -115,14 +138,16 @@ class AddDownloadBloc extends Bloc<AddDownloadBlocEvent, AddDownloadBlocState> {
     /// INIT
     ///
 
-    on<AddDownloadBlocEvent_Init>((event, emit) {
+    on<AddDownloadBlocEvent_Init>((event, emit) async {
       logger.i('ADD DOWNLOAD BLOC - INIT');
+      final savePath = await getFullSavingPath(place: SAVE_PLACE.DOWNLOADS);
       emit(
         AddDownloadBlocStateLoaded(
           downloadUrl: '',
           downloadMethod: DOWNLOAD_METHOD.HTTP_HTTPS,
           fileName: '',
-          savePath: '/saving',
+          savePlace: SAVE_PLACE.DOWNLOADS, // default
+          savePath: savePath, // default
         ),
       );
     });
@@ -181,11 +206,36 @@ class AddDownloadBloc extends Bloc<AddDownloadBlocEvent, AddDownloadBlocState> {
     /// REMOVE TORRENT FILE
     ///
     on<AddDownloadBlocEvent_RemoveTorrentFile>((event, emit) {
-       final currentState = state;
-          if (currentState is AddDownloadBlocStateLoaded) {
-            logger.i('ADD DOWNLOAD BLOC - REMOVE TORRENT FILE ');
-            emit(currentState.copyWith(torrentFile: null));
-          }
+      final currentState = state;
+      if (currentState is AddDownloadBlocStateLoaded) {
+        logger.i('ADD DOWNLOAD BLOC - REMOVE TORRENT FILE ');
+        emit(currentState.copyWith(torrentFile: null));
+      }
+    });
+
+    ///
+    /// CHANGE SAVE PLACE
+    ///
+    on<AddDownloadBlocEvent_ChangeSavePlace>((event, emit) async{
+      final currentState = state;
+      if (currentState is AddDownloadBlocStateLoaded) {
+        logger.i('ADD DOWNLOAD BLOC - CHANGE SAVE PLACE ');
+        final savePath = await getFullSavingPath(place: event.savePlace);
+        emit(currentState.copyWith(savePlace: event.savePlace, savePath: savePath));
+      }
+    });
+
+
+    ///
+    /// CHANGE FILE NAME
+    ///
+      on<AddDownloadBlocEvent_ChangeFileName>((event, emit) {
+      final currentState = state;
+
+      if (currentState is AddDownloadBlocStateLoaded) {
+        logger.i('ADD DOWNLOAD BLOC - CHANGE FILE NAME ${event.value}');
+        emit(currentState.copyWith(fileName: event.value));
+      }
     });
   }
 }
