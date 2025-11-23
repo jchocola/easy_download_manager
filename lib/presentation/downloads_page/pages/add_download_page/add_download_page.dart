@@ -1,6 +1,7 @@
 import 'package:easy_download_manager/core/constant/app_constant.dart';
 import 'package:easy_download_manager/core/constant/app_icon.dart';
 import 'package:easy_download_manager/l10n/app_localizations.dart';
+import 'package:easy_download_manager/presentation/downloads_page/blocs/add_download_bloc.dart';
 import 'package:easy_download_manager/presentation/downloads_page/pages/add_download_page/widgets/additional_parameter.dart';
 import 'package:easy_download_manager/presentation/downloads_page/pages/add_download_page/widgets/download_type.dart';
 import 'package:easy_download_manager/presentation/downloads_page/pages/add_download_page/widgets/saving_place.dart';
@@ -8,6 +9,7 @@ import 'package:easy_download_manager/presentation/downloads_page/pages/add_down
 import 'package:easy_download_manager/widget/appbar.dart';
 import 'package:easy_download_manager/widget/big_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class AddDownloadPage extends StatelessWidget {

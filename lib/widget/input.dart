@@ -2,13 +2,17 @@ import 'package:easy_download_manager/core/constant/app_constant.dart';
 import 'package:flutter/material.dart';
 
 class Input extends StatelessWidget {
-  const Input({super.key , this.hintText = 'Hint text'});
+  const Input({super.key , this.hintText = 'Hint text' , this.onChanged , this.controller});
   final String hintText;
+  final void Function(String)? onChanged;
+  final TextEditingController? controller;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return TextField(
-
+    
+      controller: controller,
+      onChanged: onChanged,
       cursorColor: theme.focusColor,
       decoration: InputDecoration(
         hintText: hintText,
