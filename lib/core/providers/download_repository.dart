@@ -1,17 +1,22 @@
 import 'dart:async';
 
+import 'package:dtorrent_parser/dtorrent_parser.dart';
+import 'package:easy_download_manager/core/enum/download_method.dart';
 import 'package:easy_download_manager/core/enum/download_status.dart';
 import 'package:easy_download_manager/core/models/download_task.dart';
 import 'package:easy_download_manager/core/services/download_client.dart';
 import 'package:easy_download_manager/core/services/notification_service.dart';
+import 'package:easy_download_manager/core/services/torrent_client.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DownloadRepository {
   DownloadRepository._({
     required DownloadClient client,
+    required TorrentClient torrentClient,
     required SharedPreferences prefs,
     NotificationService? notificationService,
   })  : _client = client,
+        _torrentClient = torrentClient,
         _prefs = prefs,
         _notificationService = notificationService {
     _restoreTasks();
@@ -23,6 +28,7 @@ class DownloadRepository {
   static const String _wifiOnlyKey = 'edm.download.wifi_only';
 
   final DownloadClient _client;
+  final TorrentClient _torrentClient;
   final SharedPreferences _prefs;
   final NotificationService? _notificationService;
   final Map<String, DownloadTask> _tasks = {};
@@ -31,11 +37,13 @@ class DownloadRepository {
 
   static Future<DownloadRepository> create({
     required DownloadClient client,
+    required TorrentClient torrentClient,
     NotificationService? notificationService,
   }) async {
     final prefs = await SharedPreferences.getInstance();
     return DownloadRepository._(
       client: client,
+      torrentClient: torrentClient,
       prefs: prefs,
       notificationService: notificationService,
     );
@@ -43,8 +51,8 @@ class DownloadRepository {
 
   Stream<List<DownloadTask>> watchTasks() => _controller.stream;
 
-  List<DownloadTask> get currentTasks =>
-      _tasks.values.toList()..sort((a, b) => b.createdAt.compareTo(a.createdAt));
+  List<DownloadTask> get currentTasks => _tasks.values.toList()
+    ..sort((a, b) => b.createdAt.compareTo(a.createdAt));
 
   DownloadTask? getTask(String id) => _tasks[id];
 
@@ -66,6 +74,7 @@ class DownloadRepository {
       isResumable: true,
       createdAt: now,
       updatedAt: now,
+      method: DOWNLOAD_METHOD.HTTP_HTTPS,
     );
     _tasks[task.id] = task;
     _emitAndPersist();
@@ -80,8 +89,53 @@ class DownloadRepository {
     return task;
   }
 
+  Future<DownloadTask> enqueueTorrentDownload({
+    required String torrentPath,
+    required String directory,
+    required String fileName,
+  }) async {
+    final torrent = await Torrent.parse(torrentPath);
+    final trimmedName = fileName.trim();
+    final normalizedName = trimmedName.isEmpty ? torrent.name : trimmedName;
+    final now = DateTime.now();
+    final task = DownloadTask(
+      id: now.microsecondsSinceEpoch.toString(),
+      url: torrentPath,
+      fileName: normalizedName,
+      directory: directory,
+      method: DOWNLOAD_METHOD.TORRENT,
+      status: DownloadStatus.QUEUED,
+      downloadedBytes: 0,
+      totalBytes: torrent.length,
+      speedBytesPerSecond: 0,
+      isResumable: true,
+      createdAt: now,
+      updatedAt: now,
+      torrentPath: torrentPath,
+    );
+    _tasks[task.id] = task;
+    _emitAndPersist();
+
+    unawaited(
+      _torrentClient.enqueue(
+        task: task,
+        torrent: torrent,
+        onProgress: _handleProgress,
+      ),
+    );
+
+    return task;
+  }
+
   Future<void> pauseTask(String id) async {
-    final progress = await _client.pause(id);
+    final task = _tasks[id];
+    if (task == null) return;
+    DownloadProgress? progress;
+    if (task.method == DOWNLOAD_METHOD.TORRENT) {
+      progress = await _torrentClient.pause(id);
+    } else {
+      progress = await _client.pause(id);
+    }
     if (progress != null) {
       _handleProgress(progress);
     }
@@ -90,16 +144,30 @@ class DownloadRepository {
   Future<void> resumeTask(String id) async {
     final task = _tasks[id];
     if (task == null) return;
-    unawaited(
-      _client.resume(
-        task: task,
-        onProgress: _handleProgress,
-      ),
-    );
+    if (task.method == DOWNLOAD_METHOD.TORRENT) {
+      final progress = await _torrentClient.resume(id);
+      if (progress != null) {
+        _handleProgress(progress);
+      }
+    } else {
+      unawaited(
+        _client.resume(
+          task: task,
+          onProgress: _handleProgress,
+        ),
+      );
+    }
   }
 
   Future<void> cancelTask(String id) async {
-    final progress = await _client.cancel(id);
+    final task = _tasks[id];
+    if (task == null) return;
+    DownloadProgress? progress;
+    if (task.method == DOWNLOAD_METHOD.TORRENT) {
+      progress = await _torrentClient.cancel(id);
+    } else {
+      progress = await _client.cancel(id);
+    }
     if (progress != null) {
       _handleProgress(progress);
     } else {
@@ -141,6 +209,7 @@ class DownloadRepository {
   Future<void> dispose() async {
     await _controller.close();
     await _client.dispose();
+    await _torrentClient.dispose();
   }
 
   void _restoreTasks() {
@@ -204,4 +273,3 @@ class DownloadRepository {
     _prefs.setString(_storageKey, DownloadTask.encodeList(snapshot));
   }
 }
-

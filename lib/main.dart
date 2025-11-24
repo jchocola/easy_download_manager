@@ -3,6 +3,7 @@ import 'package:easy_download_manager/core/constant/router.dart';
 import 'package:easy_download_manager/core/providers/download_repository.dart';
 import 'package:easy_download_manager/core/services/download_client.dart';
 import 'package:easy_download_manager/core/services/notification_service.dart';
+import 'package:easy_download_manager/core/services/torrent_client.dart';
 import 'package:easy_download_manager/core/theme/dark_theme.dart';
 import 'package:easy_download_manager/core/theme/light_theme.dart';
 import 'package:easy_download_manager/l10n/app_localizations.dart';
@@ -18,9 +19,10 @@ Future<void> main() async {
   final notificationService = NotificationService();
   await notificationService.initialize();
   final downloadClient = DownloadClient();
-  final downloadRepository =
-      await DownloadRepository.create(
+  final torrentClient = TorrentClient();
+  final downloadRepository = await DownloadRepository.create(
     client: downloadClient,
+    torrentClient: torrentClient,
     notificationService: notificationService,
   );
   runApp(MyApp(downloadRepository: downloadRepository));
@@ -36,7 +38,6 @@ class MyApp extends StatelessWidget {
     return RepositoryProvider.value(
       value: downloadRepository,
       child: MultiBlocProvider(
-
         // USE FOR GLOBAL PROVIDERS
         providers: [
           BlocProvider(

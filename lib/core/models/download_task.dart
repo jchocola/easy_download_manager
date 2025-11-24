@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:equatable/equatable.dart';
 import 'package:path/path.dart' as path;
 
+import 'package:easy_download_manager/core/enum/download_method.dart';
 import 'package:easy_download_manager/core/enum/download_status.dart';
 
 const _sentinel = Object();
@@ -13,6 +14,7 @@ class DownloadTask extends Equatable {
     required this.url,
     required this.fileName,
     required this.directory,
+    required this.method,
     required this.status,
     required this.downloadedBytes,
     required this.totalBytes,
@@ -21,12 +23,14 @@ class DownloadTask extends Equatable {
     required this.createdAt,
     required this.updatedAt,
     this.error,
+    this.torrentPath,
   });
 
   final String id;
   final String url;
   final String fileName;
   final String directory;
+  final DOWNLOAD_METHOD method;
   final DownloadStatus status;
   final int downloadedBytes;
   final int? totalBytes;
@@ -35,6 +39,7 @@ class DownloadTask extends Equatable {
   final DateTime createdAt;
   final DateTime updatedAt;
   final String? error;
+  final String? torrentPath;
 
   double get progress {
     if (totalBytes == null || totalBytes == 0) {
@@ -51,6 +56,7 @@ class DownloadTask extends Equatable {
       status == DownloadStatus.FAILED;
 
   DownloadTask copyWith({
+    DOWNLOAD_METHOD? method,
     DownloadStatus? status,
     int? downloadedBytes,
     Object? totalBytes = _sentinel,
@@ -60,21 +66,27 @@ class DownloadTask extends Equatable {
     Object? error = _sentinel,
     String? fileName,
     String? directory,
+    Object? torrentPath = _sentinel,
   }) {
     return DownloadTask(
       id: id,
       url: url,
       fileName: fileName ?? this.fileName,
       directory: directory ?? this.directory,
+      method: method ?? this.method,
       status: status ?? this.status,
       downloadedBytes: downloadedBytes ?? this.downloadedBytes,
-      totalBytes:
-          identical(totalBytes, _sentinel) ? this.totalBytes : totalBytes as int?,
+      totalBytes: identical(totalBytes, _sentinel)
+          ? this.totalBytes
+          : totalBytes as int?,
       speedBytesPerSecond: speedBytesPerSecond ?? this.speedBytesPerSecond,
       isResumable: isResumable ?? this.isResumable,
       createdAt: createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
       error: identical(error, _sentinel) ? this.error : error as String?,
+      torrentPath: identical(torrentPath, _sentinel)
+          ? this.torrentPath
+          : torrentPath as String?,
     );
   }
 
@@ -84,6 +96,7 @@ class DownloadTask extends Equatable {
       'url': url,
       'fileName': fileName,
       'directory': directory,
+      'method': method.name,
       'status': status.name,
       'downloadedBytes': downloadedBytes,
       'totalBytes': totalBytes,
@@ -92,6 +105,7 @@ class DownloadTask extends Equatable {
       'createdAt': createdAt.toIso8601String(),
       'updatedAt': updatedAt.toIso8601String(),
       'error': error,
+      'torrentPath': torrentPath,
     };
   }
 
@@ -101,6 +115,9 @@ class DownloadTask extends Equatable {
       url: json['url'] as String,
       fileName: json['fileName'] as String,
       directory: json['directory'] as String,
+      method: DOWNLOAD_METHOD.values.firstWhere(
+          (entry) => entry.name == json['method'],
+          orElse: () => DOWNLOAD_METHOD.HTTP_HTTPS),
       status: DownloadStatus.values
           .firstWhere((status) => status.name == json['status']),
       downloadedBytes: json['downloadedBytes'] as int,
@@ -110,6 +127,7 @@ class DownloadTask extends Equatable {
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
       error: json['error'] as String?,
+      torrentPath: json['torrentPath'] as String?,
     );
   }
 
@@ -131,6 +149,7 @@ class DownloadTask extends Equatable {
         url,
         fileName,
         directory,
+        method,
         status,
         downloadedBytes,
         totalBytes,
@@ -139,6 +158,6 @@ class DownloadTask extends Equatable {
         createdAt,
         updatedAt,
         error,
+        torrentPath,
       ];
 }
-

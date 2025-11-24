@@ -8,8 +8,11 @@ import 'package:easy_download_manager/main.dart';
 import 'package:equatable/equatable.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:path/path.dart' as p;
 
 import 'package:easy_download_manager/core/enum/download_method.dart';
+
+const _sentinel = Object();
 
 ///
 /// EVENT
@@ -59,7 +62,6 @@ class AddDownloadBlocEvent_ChangeSavePlace extends AddDownloadBlocEvent {
   List<Object?> get props => [savePlace];
 }
 
-
 class AddDownloadBlocEvent_ChangeFileName extends AddDownloadBlocEvent {
   final String value;
   AddDownloadBlocEvent_ChangeFileName({required this.value});
@@ -101,20 +103,20 @@ class AddDownloadBlocStateLoaded extends AddDownloadBlocState {
 
   @override
   List<Object?> get props => [
-    downloadUrl,
-    downloadMethod,
-    fileName,
-    savePath,
-    torrentFile,
-    savePlace,
-  ];
+        downloadUrl,
+        downloadMethod,
+        fileName,
+        savePath,
+        torrentFile,
+        savePlace,
+      ];
 
   AddDownloadBlocStateLoaded copyWith({
     String? downloadUrl,
     DOWNLOAD_METHOD? downloadMethod,
     String? fileName,
     String? savePath,
-    File? torrentFile,
+    Object? torrentFile = _sentinel,
     SAVE_PLACE? savePlace,
   }) {
     return AddDownloadBlocStateLoaded(
@@ -122,7 +124,9 @@ class AddDownloadBlocStateLoaded extends AddDownloadBlocState {
       downloadMethod: downloadMethod ?? this.downloadMethod,
       fileName: fileName ?? this.fileName,
       savePath: savePath ?? this.savePath,
-      torrentFile: torrentFile ?? this.torrentFile,
+      torrentFile: identical(torrentFile, _sentinel)
+          ? this.torrentFile
+          : torrentFile as File?,
       savePlace: savePlace ?? this.savePlace,
     );
   }
@@ -167,7 +171,8 @@ class AddDownloadBloc extends Bloc<AddDownloadBlocEvent, AddDownloadBlocState> {
 
       if (currentState is AddDownloadBlocStateLoaded) {
         logger.i('ADD DOWNLOAD BLOC - CHANGE DOWNLOAD URL ${event.value}');
-        final shouldAutofillName = currentState.fileName.isEmpty;
+        final shouldAutofillName = currentState.fileName.isEmpty &&
+            currentState.downloadMethod != DOWNLOAD_METHOD.TORRENT;
         emit(
           currentState.copyWith(
             downloadUrl: event.value,
@@ -207,7 +212,15 @@ class AddDownloadBloc extends Bloc<AddDownloadBlocEvent, AddDownloadBlocState> {
           final currentState = state;
           if (currentState is AddDownloadBlocStateLoaded) {
             logger.i('ADD DOWNLOAD BLOC - PICK TORRENT FILE ');
-            emit(currentState.copyWith(torrentFile: file));
+            final updatedName = currentState.fileName.isEmpty
+                ? p.basenameWithoutExtension(file.path)
+                : currentState.fileName;
+            emit(
+              currentState.copyWith(
+                torrentFile: file,
+                fileName: updatedName,
+              ),
+            );
           }
         } else {
           // User canceled the picker
@@ -231,21 +244,21 @@ class AddDownloadBloc extends Bloc<AddDownloadBlocEvent, AddDownloadBlocState> {
     ///
     /// CHANGE SAVE PLACE
     ///
-    on<AddDownloadBlocEvent_ChangeSavePlace>((event, emit) async{
+    on<AddDownloadBlocEvent_ChangeSavePlace>((event, emit) async {
       final currentState = state;
       if (currentState is AddDownloadBlocStateLoaded) {
         logger.i('ADD DOWNLOAD BLOC - CHANGE SAVE PLACE ');
         final savePath = await getFullSavingPath(place: event.savePlace);
         await _downloadRepository.setDefaultDirectory(savePath);
-        emit(currentState.copyWith(savePlace: event.savePlace, savePath: savePath));
+        emit(currentState.copyWith(
+            savePlace: event.savePlace, savePath: savePath));
       }
     });
-
 
     ///
     /// CHANGE FILE NAME
     ///
-      on<AddDownloadBlocEvent_ChangeFileName>((event, emit) {
+    on<AddDownloadBlocEvent_ChangeFileName>((event, emit) {
       final currentState = state;
 
       if (currentState is AddDownloadBlocStateLoaded) {
@@ -261,28 +274,45 @@ class AddDownloadBloc extends Bloc<AddDownloadBlocEvent, AddDownloadBlocState> {
       final currentState = state;
       if (currentState is! AddDownloadBlocStateLoaded) return;
 
-      final url = currentState.downloadUrl.trim();
-      if (url.isEmpty) {
-        emit(AddDownloadBlocStateError());
-        emit(currentState);
-        return;
-      }
-
       emit(AddDownloadBlocStateLoading());
       try {
-        final fileName = (currentState.fileName.trim().isEmpty)
-            ? _inferFileName(url)
-            : currentState.fileName.trim();
-        await _downloadRepository.enqueueHttpDownload(
-          url: url,
-          fileName: fileName,
-          directory: currentState.savePath,
-        );
+        switch (currentState.downloadMethod) {
+          case DOWNLOAD_METHOD.TORRENT:
+            final torrentFile = currentState.torrentFile;
+            if (torrentFile == null) {
+              throw Exception('torrent_file_required');
+            }
+            final torrentName = currentState.fileName.trim().isEmpty
+                ? p.basenameWithoutExtension(torrentFile.path)
+                : currentState.fileName.trim();
+            await _downloadRepository.enqueueTorrentDownload(
+              torrentPath: torrentFile.path,
+              directory: currentState.savePath,
+              fileName: torrentName,
+            );
+            break;
+          case DOWNLOAD_METHOD.HTTP_HTTPS:
+          case DOWNLOAD_METHOD.CLOUD:
+            final url = currentState.downloadUrl.trim();
+            if (url.isEmpty) {
+              throw Exception('url_required');
+            }
+            final fileName = (currentState.fileName.trim().isEmpty)
+                ? _inferFileName(url)
+                : currentState.fileName.trim();
+            await _downloadRepository.enqueueHttpDownload(
+              url: url,
+              fileName: fileName,
+              directory: currentState.savePath,
+            );
+            break;
+        }
         emit(AddDownloadBlocStateSucces());
         emit(
           currentState.copyWith(
             downloadUrl: '',
             fileName: '',
+            torrentFile: null,
           ),
         );
       } catch (error, stackTrace) {

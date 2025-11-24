@@ -1,5 +1,6 @@
 import 'package:easy_download_manager/core/constant/app_constant.dart';
 import 'package:easy_download_manager/core/constant/app_icon.dart';
+import 'package:easy_download_manager/core/enum/download_method.dart';
 import 'package:easy_download_manager/core/enum/download_status.dart';
 import 'package:easy_download_manager/core/models/download_task.dart';
 import 'package:easy_download_manager/widget/download_card.dart';
@@ -21,6 +22,7 @@ class ActiveDownloadsListTorrent extends StatelessWidget {
           url: '',
           fileName: 'Torrent file #$index',
           directory: '',
+          method: DOWNLOAD_METHOD.TORRENT,
           status: DownloadStatus.DOWNLOADING,
           downloadedBytes: 0,
           totalBytes: 0,
@@ -28,6 +30,7 @@ class ActiveDownloadsListTorrent extends StatelessWidget {
           isResumable: true,
           createdAt: DateTime.now(),
           updatedAt: DateTime.now(),
+          torrentPath: null,
         );
         return Column(
           //spacing: AppConstant.containerPadding,
@@ -36,7 +39,6 @@ class ActiveDownloadsListTorrent extends StatelessWidget {
               task: placeholderTask,
               onTap: () => context.push('/downloads/download_detail_page'),
             ),
-
             Row(
               spacing: AppConstant.containerPadding * 2,
               children: [
