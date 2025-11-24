@@ -208,11 +208,29 @@ abstract class AppLocalizations {
   /// **'Cancel'**
   String get cancel;
 
+  /// No description provided for @cancelDownload.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel download'**
+  String get cancelDownload;
+
+  /// No description provided for @canceled.
+  ///
+  /// In en, this message translates to:
+  /// **'Canceled'**
+  String get canceled;
+
   /// No description provided for @categoriesSettings.
   ///
   /// In en, this message translates to:
   /// **'CATEGORIES SETTINGS'**
   String get categoriesSettings;
+
+  /// No description provided for @changeFolder.
+  ///
+  /// In en, this message translates to:
+  /// **'Change folder'**
+  String get changeFolder;
 
   /// No description provided for @cloud.
   ///
@@ -226,6 +244,12 @@ abstract class AppLocalizations {
   /// **'Completed'**
   String get completed;
 
+  /// No description provided for @delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get delete;
+
   /// No description provided for @configureBehaviorWhenNetworkConnectionChanges.
   ///
   /// In en, this message translates to:
@@ -237,6 +261,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Developer'**
   String get developer;
+
+  /// No description provided for @downloadAdded.
+  ///
+  /// In en, this message translates to:
+  /// **'Download added'**
+  String get downloadAdded;
 
   /// No description provided for @directDownloadFromWebServer.
   ///
@@ -291,6 +321,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Download type'**
   String get downloadType;
+
+  /// No description provided for @downloadFailedToAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to start download'**
+  String get downloadFailedToAdd;
+
+  /// No description provided for @downloadSizeUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown size'**
+  String get downloadSizeUnknown;
 
   /// No description provided for @downloadViaWiFi.
   ///
@@ -367,6 +409,12 @@ abstract class AppLocalizations {
   /// **'Files'**
   String get files;
 
+  /// No description provided for @failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed'**
+  String get failed;
+
   /// No description provided for @getNotifiedWhenTheDownloadIsComplete.
   ///
   /// In en, this message translates to:
@@ -396,6 +444,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'LEGAL INFORMATION'**
   String get legalInformation;
+
+  /// No description provided for @noActiveDownloads.
+  ///
+  /// In en, this message translates to:
+  /// **'No active downloads yet'**
+  String get noActiveDownloads;
+
+  /// No description provided for @noCompletedDownloads.
+  ///
+  /// In en, this message translates to:
+  /// **'No completed downloads yet'**
+  String get noCompletedDownloads;
+
+  /// No description provided for @noOtherDownloads.
+  ///
+  /// In en, this message translates to:
+  /// **'No paused or failed downloads'**
+  String get noOtherDownloads;
 
   /// No description provided for @manageDownloadNotificationsAndSoundAlerts.
   ///
@@ -450,6 +516,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'On pause'**
   String get onPause;
+
+  /// No description provided for @paused.
+  ///
+  /// In en, this message translates to:
+  /// **'Paused'**
+  String get paused;
+
+  /// No description provided for @pause.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause'**
+  String get pause;
 
   /// No description provided for @optimizationAdvice.
   ///
@@ -510,6 +588,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Resume downloads when network connection is restored'**
   String get resumeDownloadsWhenNetworkConnectionIsRestored;
+
+  /// No description provided for @resume.
+  ///
+  /// In en, this message translates to:
+  /// **'Resume'**
+  String get resume;
+
+  /// No description provided for @retry.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get retry;
 
   /// No description provided for @roaming.
   ///
@@ -625,6 +715,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'URL'**
   String get url;
+
+  /// No description provided for @queued.
+  ///
+  /// In en, this message translates to:
+  /// **'Queued'**
+  String get queued;
 
   /// No description provided for @urlDownloads.
   ///

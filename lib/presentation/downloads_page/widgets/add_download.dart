@@ -27,40 +27,53 @@ class _AddDownloadState extends State<AddDownload> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final l10n = AppLocalizations.of(context);
-    return Container(
-      padding: EdgeInsets.all(AppConstant.containerPadding),
-      decoration: BoxDecoration(
-        color: theme.colorScheme.onPrimary,
-        borderRadius: BorderRadius.circular(AppConstant.borderRadius),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(l10n.addDownload, style: theme.textTheme.titleMedium),
-          SizedBox(height: AppConstant.containerPadding),
-          Row(
-            children: [
-              Flexible(
-                child: Input(
-                  hintText: l10n.insertUrl,
-                  controller: urlController,
-                  onChanged: (value) {
-                    context.read<AddDownloadBloc>().add(
-                      AddDownloadBlocEvent_ChangeDownloadUrl(value: value),
-                    );
-                  },
+    return BlocListener<AddDownloadBloc, AddDownloadBlocState>(
+      listenWhen: (previous, current) =>
+          current is AddDownloadBlocStateLoaded,
+      listener: (context, state) {
+        if (state is AddDownloadBlocStateLoaded &&
+            state.downloadUrl.isEmpty &&
+            urlController.text.isNotEmpty) {
+          urlController.clear();
+        }
+      },
+      child: Container(
+        padding: EdgeInsets.all(AppConstant.containerPadding),
+        decoration: BoxDecoration(
+          color: theme.colorScheme.onPrimary,
+          borderRadius: BorderRadius.circular(AppConstant.borderRadius),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(l10n.addDownload, style: theme.textTheme.titleMedium),
+            SizedBox(height: AppConstant.containerPadding),
+            Row(
+              children: [
+                Flexible(
+                  child: Input(
+                    hintText: l10n.insertUrl,
+                    controller: urlController,
+                    onChanged: (value) {
+                      context.read<AddDownloadBloc>().add(
+                            AddDownloadBlocEvent_ChangeDownloadUrl(
+                              value: value,
+                            ),
+                          );
+                    },
+                  ),
                 ),
-              ),
-              SizedBox(width: AppConstant.containerPadding),
-              FloatingActionButton(
-                onPressed: () {
-                  context.push('/downloads/add_download');
-                },
-                child: Icon(AppIcon.addIcon),
-              ),
-            ],
-          ),
-        ],
+                SizedBox(width: AppConstant.containerPadding),
+                FloatingActionButton(
+                  onPressed: () {
+                    context.push('/downloads/add_download');
+                  },
+                  child: Icon(AppIcon.addIcon),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -1,7 +1,8 @@
 import 'package:easy_download_manager/core/constant/app_constant.dart';
 import 'package:easy_download_manager/core/constant/app_icon.dart';
 import 'package:easy_download_manager/l10n/app_localizations.dart';
-import 'package:easy_download_manager/presentation/downloads_page/blocs/add_download_bloc.dart';
+import 'package:easy_download_manager/core/providers/download_repository.dart';
+import 'package:easy_download_manager/presentation/downloads_page/blocs/download_list_bloc.dart';
 import 'package:easy_download_manager/presentation/downloads_page/blocs/download_tab_bloc.dart';
 import 'package:easy_download_manager/presentation/downloads_page/widgets/4_status_category.dart';
 import 'package:easy_download_manager/presentation/downloads_page/widgets/active_completed_all.dart';
@@ -19,7 +20,15 @@ class DownloadsPage extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context)=>  DownloadTabBloc()..add(DownloadTabBlocEvent_SetInitValue())),
+        BlocProvider(
+          create: (context) =>
+              DownloadTabBloc()..add(DownloadTabBlocEvent_SetInitValue()),
+        ),
+        BlocProvider(
+          create: (context) => DownloadListBloc(
+            repository: context.read<DownloadRepository>(),
+          ),
+        ),
       ],
       child: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),

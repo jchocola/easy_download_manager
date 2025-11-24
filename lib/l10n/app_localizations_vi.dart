@@ -64,7 +64,16 @@ class AppLocalizationsVi extends AppLocalizations {
   String get cancel => 'Huỷ';
 
   @override
+  String get cancelDownload => 'Hủy tải xuống';
+
+  @override
+  String get canceled => 'Đã hủy';
+
+  @override
   String get categoriesSettings => 'DANH MỤC CÀI ĐẶT';
+
+  @override
+  String get changeFolder => 'Đổi thư mục';
 
   @override
   String get cloud => 'Cloud';
@@ -73,11 +82,17 @@ class AppLocalizationsVi extends AppLocalizations {
   String get completed => 'Hoàn thành';
 
   @override
+  String get delete => 'Xóa';
+
+  @override
   String get configureBehaviorWhenNetworkConnectionChanges =>
       'Cấu hình hành vi khi kết nối mạng thay đổi';
 
   @override
   String get developer => 'Nhà phát triển';
+
+  @override
+  String get downloadAdded => 'Đã thêm tải xuống';
 
   @override
   String get directDownloadFromWebServer => 'Tải trực tiếp từ Web Server';
@@ -106,6 +121,12 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get downloadType => 'Phương thức tải';
+
+  @override
+  String get downloadFailedToAdd => 'Không thể bắt đầu tải xuống';
+
+  @override
+  String get downloadSizeUnknown => 'Dung lượng chưa xác định';
 
   @override
   String get downloadViaWiFi => 'Tải xuống qua Wi-Fi';
@@ -150,6 +171,9 @@ class AppLocalizationsVi extends AppLocalizations {
   String get files => 'Tệp';
 
   @override
+  String get failed => 'Thất bại';
+
+  @override
   String get getNotifiedWhenTheDownloadIsComplete =>
       'Nhận thông báo khi quá trình tải xuống hoàn tất.';
 
@@ -164,6 +188,15 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get legalInformation => 'THÔNG TIN PHÁP LÝ';
+
+  @override
+  String get noActiveDownloads => 'Chưa có tải xuống đang chạy';
+
+  @override
+  String get noCompletedDownloads => 'Chưa có tải xuống hoàn tất';
+
+  @override
+  String get noOtherDownloads => 'Không có tải xuống tạm dừng hoặc lỗi';
 
   @override
   String get manageDownloadNotificationsAndSoundAlerts =>
@@ -192,6 +225,12 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get onPause => 'Ngừng';
+
+  @override
+  String get paused => 'Tạm dừng';
+
+  @override
+  String get pause => 'Tạm dừng';
 
   @override
   String get optimizationAdvice => 'Lời khuyên tối ưu hóa';
@@ -224,6 +263,12 @@ class AppLocalizationsVi extends AppLocalizations {
   @override
   String get resumeDownloadsWhenNetworkConnectionIsRestored =>
       'Tiếp tục tải xuống khi kết nối mạng được khôi phục.';
+
+  @override
+  String get resume => 'Tiếp tục';
+
+  @override
+  String get retry => 'Thử lại';
 
   @override
   String get roaming => 'DỊCH VỤ ROAMING';
@@ -285,6 +330,9 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get url => 'URL';
+
+  @override
+  String get queued => 'Đang chờ';
 
   @override
   String get urlDownloads => 'URL Downloads';

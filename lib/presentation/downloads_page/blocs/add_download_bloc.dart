@@ -3,6 +3,7 @@
 import 'dart:io';
 
 import 'package:easy_download_manager/core/enum/save_place.dart';
+import 'package:easy_download_manager/core/providers/download_repository.dart';
 import 'package:easy_download_manager/main.dart';
 import 'package:equatable/equatable.dart';
 import 'package:file_picker/file_picker.dart';
@@ -67,6 +68,8 @@ class AddDownloadBlocEvent_ChangeFileName extends AddDownloadBlocEvent {
   List<Object?> get props => [value];
 }
 
+class AddDownloadBlocEvent_Submit extends AddDownloadBlocEvent {}
+
 ///
 /// STATE
 ///
@@ -119,7 +122,7 @@ class AddDownloadBlocStateLoaded extends AddDownloadBlocState {
       downloadMethod: downloadMethod ?? this.downloadMethod,
       fileName: fileName ?? this.fileName,
       savePath: savePath ?? this.savePath,
-      torrentFile: torrentFile,
+      torrentFile: torrentFile ?? this.torrentFile,
       savePlace: savePlace ?? this.savePlace,
     );
   }
@@ -133,14 +136,18 @@ class AddDownloadBlocStateError extends AddDownloadBlocState {}
 /// BLOC
 ///
 class AddDownloadBloc extends Bloc<AddDownloadBlocEvent, AddDownloadBlocState> {
-  AddDownloadBloc() : super(AddDownloadBlocStateInitial()) {
+  AddDownloadBloc({required DownloadRepository downloadRepository})
+      : _downloadRepository = downloadRepository,
+        super(AddDownloadBlocStateInitial()) {
     ///
     /// INIT
     ///
 
     on<AddDownloadBlocEvent_Init>((event, emit) async {
       logger.i('ADD DOWNLOAD BLOC - INIT');
-      final savePath = await getFullSavingPath(place: SAVE_PLACE.DOWNLOADS);
+      final defaultPath = _downloadRepository.defaultDirectory;
+      final savePath =
+          defaultPath ?? await getFullSavingPath(place: SAVE_PLACE.DOWNLOADS);
       emit(
         AddDownloadBlocStateLoaded(
           downloadUrl: '',
@@ -160,7 +167,15 @@ class AddDownloadBloc extends Bloc<AddDownloadBlocEvent, AddDownloadBlocState> {
 
       if (currentState is AddDownloadBlocStateLoaded) {
         logger.i('ADD DOWNLOAD BLOC - CHANGE DOWNLOAD URL ${event.value}');
-        emit(currentState.copyWith(downloadUrl: event.value));
+        final shouldAutofillName = currentState.fileName.isEmpty;
+        emit(
+          currentState.copyWith(
+            downloadUrl: event.value,
+            fileName: shouldAutofillName
+                ? _inferFileName(event.value)
+                : currentState.fileName,
+          ),
+        );
       }
     });
 
@@ -221,6 +236,7 @@ class AddDownloadBloc extends Bloc<AddDownloadBlocEvent, AddDownloadBlocState> {
       if (currentState is AddDownloadBlocStateLoaded) {
         logger.i('ADD DOWNLOAD BLOC - CHANGE SAVE PLACE ');
         final savePath = await getFullSavingPath(place: event.savePlace);
+        await _downloadRepository.setDefaultDirectory(savePath);
         emit(currentState.copyWith(savePlace: event.savePlace, savePath: savePath));
       }
     });
@@ -237,5 +253,59 @@ class AddDownloadBloc extends Bloc<AddDownloadBlocEvent, AddDownloadBlocState> {
         emit(currentState.copyWith(fileName: event.value));
       }
     });
+
+    ///
+    /// SUBMIT DOWNLOAD
+    ///
+    on<AddDownloadBlocEvent_Submit>((event, emit) async {
+      final currentState = state;
+      if (currentState is! AddDownloadBlocStateLoaded) return;
+
+      final url = currentState.downloadUrl.trim();
+      if (url.isEmpty) {
+        emit(AddDownloadBlocStateError());
+        emit(currentState);
+        return;
+      }
+
+      emit(AddDownloadBlocStateLoading());
+      try {
+        final fileName = (currentState.fileName.trim().isEmpty)
+            ? _inferFileName(url)
+            : currentState.fileName.trim();
+        await _downloadRepository.enqueueHttpDownload(
+          url: url,
+          fileName: fileName,
+          directory: currentState.savePath,
+        );
+        emit(AddDownloadBlocStateSucces());
+        emit(
+          currentState.copyWith(
+            downloadUrl: '',
+            fileName: '',
+          ),
+        );
+      } catch (error, stackTrace) {
+        logger.e(
+          'Failed to enqueue download',
+          error: error,
+          stackTrace: stackTrace,
+        );
+        emit(AddDownloadBlocStateError());
+        emit(currentState);
+      }
+    });
+  }
+
+  final DownloadRepository _downloadRepository;
+
+  String _inferFileName(String url) {
+    final uri = Uri.tryParse(url.trim());
+    final lastSegment =
+        uri != null && uri.pathSegments.isNotEmpty ? uri.pathSegments.last : '';
+    if (lastSegment.isNotEmpty && !lastSegment.endsWith('/')) {
+      return lastSegment;
+    }
+    return 'download_${DateTime.now().millisecondsSinceEpoch}';
   }
 }

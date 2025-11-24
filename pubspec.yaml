@@ -13,10 +13,14 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.8
+  http: ^1.2.2
   adaptive_theme: ^3.7.2
   go_router: ^17.0.0
   step_progress_indicator: ^1.0.2
   flutter_native_splash: ^2.4.7
+  shared_preferences: ^2.3.2
+  path: ^1.9.0
+  flutter_local_notifications: ^17.2.2
   flutter_localizations:
     sdk: flutter
   intl: any
@@ -25,6 +29,7 @@ dependencies:
   logger: ^2.6.2
   file_picker: ^10.3.7
   path_provider: ^2.1.5
+  toastification: ^3.0.3
 
 dev_dependencies:
   flutter_test:

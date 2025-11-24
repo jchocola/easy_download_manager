@@ -64,7 +64,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get cancel => 'Cancel';
 
   @override
+  String get cancelDownload => 'Cancel download';
+
+  @override
+  String get canceled => 'Canceled';
+
+  @override
   String get categoriesSettings => 'CATEGORIES SETTINGS';
+
+  @override
+  String get changeFolder => 'Change folder';
 
   @override
   String get cloud => 'Cloud';
@@ -73,11 +82,17 @@ class AppLocalizationsEn extends AppLocalizations {
   String get completed => 'Completed';
 
   @override
+  String get delete => 'Delete';
+
+  @override
   String get configureBehaviorWhenNetworkConnectionChanges =>
       'Configure behavior when network connection changes';
 
   @override
   String get developer => 'Developer';
+
+  @override
+  String get downloadAdded => 'Download added';
 
   @override
   String get directDownloadFromWebServer => 'Direct download from web server';
@@ -107,6 +122,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get downloadType => 'Download type';
+
+  @override
+  String get downloadFailedToAdd => 'Failed to start download';
+
+  @override
+  String get downloadSizeUnknown => 'Unknown size';
 
   @override
   String get downloadViaWiFi => 'Download via Wi-Fi';
@@ -152,6 +173,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get files => 'Files';
 
   @override
+  String get failed => 'Failed';
+
+  @override
   String get getNotifiedWhenTheDownloadIsComplete =>
       'Get notified when the download is complete';
 
@@ -166,6 +190,15 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get legalInformation => 'LEGAL INFORMATION';
+
+  @override
+  String get noActiveDownloads => 'No active downloads yet';
+
+  @override
+  String get noCompletedDownloads => 'No completed downloads yet';
+
+  @override
+  String get noOtherDownloads => 'No paused or failed downloads';
 
   @override
   String get manageDownloadNotificationsAndSoundAlerts =>
@@ -194,6 +227,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get onPause => 'On pause';
+
+  @override
+  String get paused => 'Paused';
+
+  @override
+  String get pause => 'Pause';
 
   @override
   String get optimizationAdvice => 'Optimization advice';
@@ -226,6 +265,12 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get resumeDownloadsWhenNetworkConnectionIsRestored =>
       'Resume downloads when network connection is restored';
+
+  @override
+  String get resume => 'Resume';
+
+  @override
+  String get retry => 'Retry';
 
   @override
   String get roaming => 'ROAMING';
@@ -287,6 +332,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get url => 'URL';
+
+  @override
+  String get queued => 'Queued';
 
   @override
   String get urlDownloads => 'URL Downloads';

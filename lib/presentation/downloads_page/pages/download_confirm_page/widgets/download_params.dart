@@ -38,7 +38,9 @@ class DownloadParams extends StatelessWidget {
                 FileInfoCard(
                   icon: AppIcon.pathIcon,
                   title: l10n.storageLocation,
-                  subtitle: state.savePath +'/'+ state.fileName,
+                  subtitle: state.fileName.isEmpty
+                      ? state.savePath
+                      : '${state.savePath}/${state.fileName}',
                   withSwitch: false,
                 ),
 

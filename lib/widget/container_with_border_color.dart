@@ -1,6 +1,5 @@
 import 'package:easy_download_manager/core/constant/app_color.dart';
 import 'package:easy_download_manager/core/constant/app_constant.dart';
-import 'package:easy_download_manager/core/constant/app_icon.dart';
 import 'package:flutter/material.dart';
 
 class ContainerWithBorderColor extends StatelessWidget {

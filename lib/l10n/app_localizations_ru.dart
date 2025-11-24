@@ -64,7 +64,16 @@ class AppLocalizationsRu extends AppLocalizations {
   String get cancel => 'Cancel';
 
   @override
+  String get cancelDownload => 'Отменить загрузку';
+
+  @override
+  String get canceled => 'Отменена';
+
+  @override
   String get categoriesSettings => 'CATEGORIES SETTINGS';
+
+  @override
+  String get changeFolder => 'Изменить папку';
 
   @override
   String get cloud => 'Cloud';
@@ -73,11 +82,17 @@ class AppLocalizationsRu extends AppLocalizations {
   String get completed => 'Completed';
 
   @override
+  String get delete => 'Удалить';
+
+  @override
   String get configureBehaviorWhenNetworkConnectionChanges =>
       'Configure behavior when network connection changes';
 
   @override
   String get developer => 'Developer';
+
+  @override
+  String get downloadAdded => 'Загрузка добавлена';
 
   @override
   String get directDownloadFromWebServer => 'Direct download from web server';
@@ -107,6 +122,12 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get downloadType => 'Download type';
+
+  @override
+  String get downloadFailedToAdd => 'Не удалось запустить загрузку';
+
+  @override
+  String get downloadSizeUnknown => 'Неизвестный размер';
 
   @override
   String get downloadViaWiFi => 'Download via Wi-Fi';
@@ -152,6 +173,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get files => 'Files';
 
   @override
+  String get failed => 'Ошибка';
+
+  @override
   String get getNotifiedWhenTheDownloadIsComplete =>
       'Get notified when the download is complete';
 
@@ -166,6 +190,15 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get legalInformation => 'LEGAL INFORMATION';
+
+  @override
+  String get noActiveDownloads => 'Активных загрузок пока нет';
+
+  @override
+  String get noCompletedDownloads => 'Завершённых загрузок пока нет';
+
+  @override
+  String get noOtherDownloads => 'Нет приостановленных или неудачных загрузок';
 
   @override
   String get manageDownloadNotificationsAndSoundAlerts =>
@@ -194,6 +227,12 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get onPause => 'On pause';
+
+  @override
+  String get paused => 'На паузе';
+
+  @override
+  String get pause => 'Пауза';
 
   @override
   String get optimizationAdvice => 'Optimization advice';
@@ -226,6 +265,12 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get resumeDownloadsWhenNetworkConnectionIsRestored =>
       'Resume downloads when network connection is restored';
+
+  @override
+  String get resume => 'Продолжить';
+
+  @override
+  String get retry => 'Повторить';
 
   @override
   String get roaming => 'ROAMING';
@@ -287,6 +332,9 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get url => 'URL';
+
+  @override
+  String get queued => 'В очереди';
 
   @override
   String get urlDownloads => 'URL Downloads';
