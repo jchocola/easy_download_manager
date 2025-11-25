@@ -11,12 +11,12 @@ Future<String> getFullSavingPath({required SAVE_PLACE place}) async {
 
   switch (place) {
     case SAVE_PLACE.DOWNLOADS:
-      return '${downloadsDir!.path}/EDM/Downloads';
+      return '${downloadsDir!.path}/Downloads';
     case SAVE_PLACE.DOCUMENTS:
-      return '${downloadsDir!.path}/EDM/Documents';
+      return '${downloadsDir!.path}/Documents';
       case SAVE_PLACE.VIDEOS:
-      return '${downloadsDir!.path}/EDM/Videos';
+      return '${downloadsDir!.path}/Videos';
       case SAVE_PLACE.MUSICS:
-      return '${downloadsDir!.path}/EDM/Musics'; 
+      return '${downloadsDir!.path}/Musics'; 
   }
 }
