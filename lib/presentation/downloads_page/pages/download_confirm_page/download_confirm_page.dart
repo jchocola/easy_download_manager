@@ -1,5 +1,6 @@
 import 'package:easy_download_manager/core/constant/app_constant.dart';
 import 'package:easy_download_manager/core/constant/app_icon.dart';
+import 'package:easy_download_manager/core/utils/custom_toastification.dart';
 import 'package:easy_download_manager/l10n/app_localizations.dart';
 import 'package:easy_download_manager/presentation/downloads_page/blocs/add_download_bloc.dart';
 import 'package:easy_download_manager/presentation/downloads_page/pages/download_confirm_page/widgets/download_info.dart';
@@ -37,11 +38,24 @@ class DownloadConfirmPage extends StatelessWidget {
           children: [
             DownloadInfo(),
             DownloadParams(),
-            BigButton(
-              withGradient: true,
-              title: l10n.startDownloading,
-              icon: AppIcon.downloadIcon,
-              onTap: () => context.read<AddDownloadBloc>().add(AddDownloadBlocEvent_StartDownload()),
+            BlocListener<AddDownloadBloc, AddDownloadBlocState>(
+              listener: (context, state) {
+                if (state is AddDownloadBlocStateError) {
+                  showErrorToastification(error: state.error);
+                }
+
+                if (state is AddDownloadBlocStateSuccess) {
+                  showErrorToastification(error: state.success);
+                }
+              },
+              child: BigButton(
+                withGradient: true,
+                title: l10n.startDownloading,
+                icon: AppIcon.downloadIcon,
+                onTap: () => context.read<AddDownloadBloc>().add(
+                  AddDownloadBlocEvent_StartDownload(),
+                ),
+              ),
             ),
 
             BigButton(
@@ -51,7 +65,11 @@ class DownloadConfirmPage extends StatelessWidget {
               onTap: () => context.pop(),
             ),
 
-            AdviceCard(title: l10n.attention, subtitle: l10n.ensureThatAllDownloadSettingsAreConfiguredCorrectlyBeforeConfirming,),
+            AdviceCard(
+              title: l10n.attention,
+              subtitle: l10n
+                  .ensureThatAllDownloadSettingsAreConfiguredCorrectlyBeforeConfirming,
+            ),
           ],
         ),
       ),

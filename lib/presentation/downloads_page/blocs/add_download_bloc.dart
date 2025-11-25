@@ -132,9 +132,20 @@ class AddDownloadBlocStateLoaded extends AddDownloadBlocState {
   }
 }
 
-class AddDownloadBlocStateSucces extends AddDownloadBlocState {}
+class AddDownloadBlocStateSuccess extends AddDownloadBlocState {
+  final String success;
+  AddDownloadBlocStateSuccess({required this.success});
+  @override
+  List<Object?> get props => [success];
+}
 
-class AddDownloadBlocStateError extends AddDownloadBlocState {}
+class AddDownloadBlocStateError extends AddDownloadBlocState {
+  final String error;
+  AddDownloadBlocStateError({required this.error});
+
+  @override
+  List<Object?> get props => [error];
+}
 
 ///
 /// BLOC
@@ -231,7 +242,7 @@ class AddDownloadBloc extends Bloc<AddDownloadBlocEvent, AddDownloadBlocState> {
       if (currentState is AddDownloadBlocStateLoaded) {
         logger.i('ADD DOWNLOAD BLOC - CHANGE SAVE PLACE ');
         final savePath = await getFullSavingPath(place: event.savePlace);
-          logger.i( savePath);
+        logger.i(savePath);
         emit(
           currentState.copyWith(savePlace: event.savePlace, savePath: savePath),
         );
@@ -257,9 +268,6 @@ class AddDownloadBloc extends Bloc<AddDownloadBlocEvent, AddDownloadBlocState> {
       // get currentState
       final currentState = state;
 
-   
-      
-
       if (currentState is AddDownloadBlocStateLoaded) {
         // downloadtask model
         final DownloadTask downloadTaskModel = DownloadTask(
@@ -277,7 +285,17 @@ class AddDownloadBloc extends Bloc<AddDownloadBlocEvent, AddDownloadBlocState> {
           updatedAt: DateTime.now(),
         );
 
-        await flutterDownloader.createNewTask(task: downloadTaskModel);
+        try {
+          await flutterDownloader.createNewTask(task: downloadTaskModel).then((
+            value,
+          ) {
+            emit(AddDownloadBlocStateSuccess(success: 'Start Downloading'));
+          });
+        } catch (e) {
+          emit(AddDownloadBlocStateError(error: e.toString()));
+        } finally {
+          emit(currentState);
+        }
       }
     });
   }
