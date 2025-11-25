@@ -1,5 +1,3 @@
-import 'dart:nativewrappers/_internal/vm/lib/ffi_native_type_patch.dart';
-
 import 'package:easy_download_manager/domain/models/download_task.dart'
     as DownloadTaskModel;
 import 'package:easy_download_manager/main.dart';
@@ -29,7 +27,7 @@ class FlutterDownloaderRepositoryImpl {
           await FlutterDownloader.enqueue(
             url: task.url,
             savedDir: task.directory,
-            fileName: task.fileName,
+            //fileName: task.fileName,
             showNotification: true,
             openFileFromNotification: true,
           ).then((value) {
@@ -40,6 +38,7 @@ class FlutterDownloaderRepositoryImpl {
       }
       return taskId;
     } catch (e) {
+      logger.e(e.toString());
       rethrow;
     }
   }

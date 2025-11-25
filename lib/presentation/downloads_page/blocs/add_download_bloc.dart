@@ -2,13 +2,17 @@
 
 import 'dart:io';
 
+import 'package:easy_download_manager/core/enum/download_status.dart';
 import 'package:easy_download_manager/core/enum/save_place.dart';
+import 'package:easy_download_manager/data/repository/flutter_downloader_repository_impl.dart';
+import 'package:easy_download_manager/domain/models/download_task.dart';
 import 'package:easy_download_manager/main.dart';
 import 'package:equatable/equatable.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:easy_download_manager/core/enum/download_method.dart';
+import 'package:path_provider/path_provider.dart';
 
 ///
 /// EVENT
@@ -58,13 +62,16 @@ class AddDownloadBlocEvent_ChangeSavePlace extends AddDownloadBlocEvent {
   List<Object?> get props => [savePlace];
 }
 
-
 class AddDownloadBlocEvent_ChangeFileName extends AddDownloadBlocEvent {
   final String value;
   AddDownloadBlocEvent_ChangeFileName({required this.value});
 
   @override
   List<Object?> get props => [value];
+}
+
+class AddDownloadBlocEvent_StartDownload extends AddDownloadBlocEvent {
+  AddDownloadBlocEvent_StartDownload();
 }
 
 ///
@@ -133,7 +140,10 @@ class AddDownloadBlocStateError extends AddDownloadBlocState {}
 /// BLOC
 ///
 class AddDownloadBloc extends Bloc<AddDownloadBlocEvent, AddDownloadBlocState> {
-  AddDownloadBloc() : super(AddDownloadBlocStateInitial()) {
+  final FlutterDownloaderRepositoryImpl flutterDownloader;
+
+  AddDownloadBloc({required this.flutterDownloader})
+    : super(AddDownloadBlocStateInitial()) {
     ///
     /// INIT
     ///
@@ -216,25 +226,58 @@ class AddDownloadBloc extends Bloc<AddDownloadBlocEvent, AddDownloadBlocState> {
     ///
     /// CHANGE SAVE PLACE
     ///
-    on<AddDownloadBlocEvent_ChangeSavePlace>((event, emit) async{
+    on<AddDownloadBlocEvent_ChangeSavePlace>((event, emit) async {
       final currentState = state;
       if (currentState is AddDownloadBlocStateLoaded) {
         logger.i('ADD DOWNLOAD BLOC - CHANGE SAVE PLACE ');
         final savePath = await getFullSavingPath(place: event.savePlace);
-        emit(currentState.copyWith(savePlace: event.savePlace, savePath: savePath));
+          logger.i( savePath);
+        emit(
+          currentState.copyWith(savePlace: event.savePlace, savePath: savePath),
+        );
       }
     });
-
 
     ///
     /// CHANGE FILE NAME
     ///
-      on<AddDownloadBlocEvent_ChangeFileName>((event, emit) {
+    on<AddDownloadBlocEvent_ChangeFileName>((event, emit) {
       final currentState = state;
 
       if (currentState is AddDownloadBlocStateLoaded) {
         logger.i('ADD DOWNLOAD BLOC - CHANGE FILE NAME ${event.value}');
         emit(currentState.copyWith(fileName: event.value));
+      }
+    });
+
+    ///
+    ///  START DOWN LOAD
+    ///
+    on<AddDownloadBlocEvent_StartDownload>((event, emit) async {
+      // get currentState
+      final currentState = state;
+
+   
+      
+
+      if (currentState is AddDownloadBlocStateLoaded) {
+        // downloadtask model
+        final DownloadTask downloadTaskModel = DownloadTask(
+          id: '',
+          url: currentState.downloadUrl,
+          fileName: currentState.fileName,
+          directory: currentState.savePath,
+          method: currentState.downloadMethod,
+          status: DOWNLOAD_STATUS.QUEUED,
+          downloadedBytes: 0,
+          totalBytes: 0,
+          speedBytesPerSecond: 0,
+          isResumable: true,
+          createdAt: DateTime.now(),
+          updatedAt: DateTime.now(),
+        );
+
+        await flutterDownloader.createNewTask(task: downloadTaskModel);
       }
     });
   }

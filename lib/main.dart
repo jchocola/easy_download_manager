@@ -1,5 +1,6 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:easy_download_manager/core/constant/router.dart';
+import 'package:easy_download_manager/core/di/DI.dart';
 import 'package:easy_download_manager/core/providers/global_providers.dart';
 import 'package:easy_download_manager/core/theme/dark_theme.dart';
 import 'package:easy_download_manager/core/theme/light_theme.dart';
@@ -15,9 +16,11 @@ import 'package:logger/logger.dart';
 var logger = Logger();
 
 Future<void> main() async {
-
   WidgetsFlutterBinding.ensureInitialized();
-  await FlutterDownloaderRepositoryImpl.instance.initPlugin(); // init downloader plugin
+  await FlutterDownloaderRepositoryImpl.instance
+      .initPlugin(); // init downloader plugin
+
+  await DI(); // DI
 
   runApp(const MyApp());
 }
@@ -31,8 +34,9 @@ class MyApp extends StatelessWidget {
       // USE FOR GLOBAL PROVIDERS
       providers: [
         BlocProvider(
-          create: (context) =>
-              AddDownloadBloc()..add(AddDownloadBlocEvent_Init()),
+          create: (context) => AddDownloadBloc(
+            flutterDownloader: getIt<FlutterDownloaderRepositoryImpl>(),
+          )..add(AddDownloadBlocEvent_Init()),
         ),
       ],
       child: AdaptiveTheme(
