@@ -3,6 +3,7 @@ import 'package:easy_download_manager/core/constant/router.dart';
 import 'package:easy_download_manager/core/providers/global_providers.dart';
 import 'package:easy_download_manager/core/theme/dark_theme.dart';
 import 'package:easy_download_manager/core/theme/light_theme.dart';
+import 'package:easy_download_manager/data/repository/flutter_downloader_repository_impl.dart';
 import 'package:easy_download_manager/l10n/app_localizations.dart';
 import 'package:easy_download_manager/main_page.dart';
 import 'package:easy_download_manager/presentation/downloads_page/blocs/add_download_bloc.dart';
@@ -13,7 +14,11 @@ import 'package:logger/logger.dart';
 
 var logger = Logger();
 
-void main() {
+Future<void> main() async {
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await FlutterDownloaderRepositoryImpl.instance.initPlugin(); // init downloader plugin
+
   runApp(const MyApp());
 }
 
@@ -22,13 +27,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return MultiBlocProvider(
-
       // USE FOR GLOBAL PROVIDERS
       providers: [
-          BlocProvider(create: (context)=> AddDownloadBloc()..add(AddDownloadBlocEvent_Init()))
-
+        BlocProvider(
+          create: (context) =>
+              AddDownloadBloc()..add(AddDownloadBlocEvent_Init()),
+        ),
       ],
       child: AdaptiveTheme(
         light: appLightTheme,
