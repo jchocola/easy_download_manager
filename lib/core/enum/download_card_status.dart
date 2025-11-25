@@ -1,8 +1,11 @@
 // ignore_for_file: constant_identifier_names
 
 enum DOWNLOAD_CARD_STATUS {
-  DOWNLOADING,
-  COMPLETED,
+  UNDEFINED,
+  ENQUEUED,
+  RUNNING,
+  COMPLETE,
+  FAILED,
+  CANCELED,
   PAUSED,
-  ERROR
 }

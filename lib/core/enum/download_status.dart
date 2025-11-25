@@ -25,3 +25,4 @@ DOWNLOAD_STATUS downloadStatusFromValue({required String value}) {
        return DOWNLOAD_STATUS.CANCELED;
   }
 }
+

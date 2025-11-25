@@ -13,7 +13,7 @@ class CompletedDownloadsList extends StatelessWidget {
       itemCount: 5,
       physics: NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
-        return DownloadCard(status: DOWNLOAD_CARD_STATUS.COMPLETED,  onTap: () => context.push('/downloads/download_detail_page'),);
+        return DownloadCard(status: DOWNLOAD_CARD_STATUS.COMPLETE,  onTap: () => context.push('/downloads/download_detail_page'),);
       },
     );
   }

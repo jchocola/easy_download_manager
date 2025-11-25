@@ -33,7 +33,7 @@ class OthersDownloadsList extends StatelessWidget {
       itemCount: 5,
       physics: NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
-        return DownloadCard(status: DOWNLOAD_CARD_STATUS.ERROR);
+        return DownloadCard(status: DOWNLOAD_CARD_STATUS.FAILED);
       },
     );
   }

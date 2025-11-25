@@ -10,7 +10,7 @@ import 'package:step_progress_indicator/step_progress_indicator.dart';
 class DownloadCard extends StatelessWidget {
    DownloadCard({
     super.key,
-    this.status = DOWNLOAD_CARD_STATUS.DOWNLOADING,
+    this.status = DOWNLOAD_CARD_STATUS.RUNNING,
     this.onTap
   });
   final DOWNLOAD_CARD_STATUS status;
@@ -40,26 +40,26 @@ class DownloadCard extends StatelessWidget {
                   children: [
                     Text('Presentation.pdf', style: theme.textTheme.titleMedium),
                     buildProgress(context),
-                    if (status == DOWNLOAD_CARD_STATUS.DOWNLOADING)
+                    if (status == DOWNLOAD_CARD_STATUS.RUNNING)
                       buildSpeedDuration(context),
-                    if (status == DOWNLOAD_CARD_STATUS.DOWNLOADING)
+                    if (status == DOWNLOAD_CARD_STATUS.RUNNING)
                       SizedBox(width: size.width * 0.7, child: Divider()),
       
-                     if (status == DOWNLOAD_CARD_STATUS.COMPLETED) Text('Completed', style: theme.textTheme.bodyMedium!.copyWith(color: theme.colorScheme.scrim),) ,
-                      if (status == DOWNLOAD_CARD_STATUS.ERROR) Text('Ошибка загрузки', style: theme.textTheme.bodyMedium!.copyWith(color: theme.colorScheme.error),) , 
+                     if (status == DOWNLOAD_CARD_STATUS.COMPLETE) Text('Completed', style: theme.textTheme.bodyMedium!.copyWith(color: theme.colorScheme.scrim),) ,
+                      if (status == DOWNLOAD_CARD_STATUS.FAILED) Text('Ошибка загрузки', style: theme.textTheme.bodyMedium!.copyWith(color: theme.colorScheme.error),) , 
                   ],
                 ),
               ],
             ),
       
       
-            if (status == DOWNLOAD_CARD_STATUS.ERROR) ButtonWithIcon(
+            if (status == DOWNLOAD_CARD_STATUS.FAILED) ButtonWithIcon(
               label: 'Cancel',
               icon: AppIcon.cancelIcon,
                     color: theme.colorScheme.error, 
             ),
       
-            if (status == DOWNLOAD_CARD_STATUS.DOWNLOADING)
+            if (status == DOWNLOAD_CARD_STATUS.RUNNING)
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [

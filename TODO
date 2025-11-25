@@ -1,0 +1,11 @@
+Problems :
+    1. flutter_downloader chỉ lưu đc vào directory có sãn , nêú không có thì sẽ báo lỗi
+    2. custom tên file thì phải đi kèm với extension , không là khi tải xuống file không đọc đc ,
+    phải chỉnh tay thủ công mới đọc được
+
+
+todo:
+    1. connect with worker isolate + take process + pass to main isolate , show progress
+    2. logic with hive (download_task_custom)
+    3. logic with hive(download_task_custom) and flutter_downloader (download_task)
+    4.
