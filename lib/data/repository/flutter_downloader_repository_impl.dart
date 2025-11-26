@@ -1,3 +1,4 @@
+import 'package:easy_download_manager/core/enum/download_card_status.dart';
 import 'package:easy_download_manager/domain/models/download_task.dart'
     as DownloadTaskModel;
 import 'package:easy_download_manager/main.dart';
@@ -140,6 +141,63 @@ class FlutterDownloaderRepositoryImpl {
       return res;
     } catch (e) {
       rethrow;
+    }
+  }
+
+  Future<int> getActiveTasksCount() async {
+    try {
+      final allTasks = await FlutterDownloader.loadTasks();
+
+      final activeTasks = allTasks?.where((e) {
+        return e.status == DownloadTaskStatus.running ||
+            e.status == DownloadTaskStatus.enqueued;
+      }).toList();
+
+      return activeTasks?.length ?? 0;
+    } catch (e) {
+      return 0;
+    }
+  }
+
+  Future<int> getCompleteTasksCount() async {
+    try {
+      final allTasks = await FlutterDownloader.loadTasks();
+
+      final completeTask = allTasks?.where((e) {
+        return e.status == DownloadTaskStatus.complete;
+      }).toList();
+
+      return completeTask?.length ?? 0;
+    } catch (e) {
+      return 0;
+    }
+  }
+
+  Future<int> getErrorTasksCount() async {
+    try {
+      final allTasks = await FlutterDownloader.loadTasks();
+
+      final faileds = allTasks?.where((e) {
+        return e.status == DownloadTaskStatus.failed;
+      }).toList();
+
+      return faileds?.length ?? 0;
+    } catch (e) {
+      return 0;
+    }
+  }
+
+  Future<int> getPausedTasksCount() async {
+    try {
+      final allTasks = await FlutterDownloader.loadTasks();
+
+      final paused = allTasks?.where((e) {
+        return e.status == DownloadTaskStatus.paused;
+      }).toList();
+
+      return paused?.length ?? 0;
+    } catch (e) {
+      return 0;
     }
   }
 

@@ -5,7 +5,8 @@ Problems :
 
 
 todo:
-    1. connect with worker isolate + take process + pass to main isolate , show progress
+    1. connect with worker isolate + take process + pass to main isolate , show progress ✅
+    
     2. logic with hive (download_task_custom)
     3. logic with hive(download_task_custom) and flutter_downloader (download_task)
     4.

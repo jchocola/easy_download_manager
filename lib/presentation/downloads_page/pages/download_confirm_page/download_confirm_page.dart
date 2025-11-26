@@ -42,10 +42,12 @@ class DownloadConfirmPage extends StatelessWidget {
               listener: (context, state) {
                 if (state is AddDownloadBlocStateError) {
                   showErrorToastification(error: state.error);
+                  context.go('/downloads');
                 }
 
                 if (state is AddDownloadBlocStateSuccess) {
                   showErrorToastification(error: state.success);
+                   context.go('/downloads');
                 }
               },
               child: BigButton(
