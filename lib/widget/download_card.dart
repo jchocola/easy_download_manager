@@ -145,7 +145,7 @@ class DownloadCard extends StatelessWidget {
           StepProgressIndicator(
             fallbackLength: size.width * 0.7,
             totalSteps: 100,
-            currentStep: 32,
+            currentStep: task?.progress ?? 0,
             size: AppConstant.loadingHeight,
             padding: 0,
             selectedColor: AppColor.activeProgressColor,
