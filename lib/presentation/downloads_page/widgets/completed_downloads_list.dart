@@ -1,5 +1,6 @@
 import 'package:easy_download_manager/core/enum/download_card_status.dart';
 import 'package:easy_download_manager/presentation/downloads_page/blocs/complete_tasks_bloc.dart';
+import 'package:easy_download_manager/presentation/downloads_page/blocs/picked_task_bloc.dart';
 import 'package:easy_download_manager/widget/download_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,7 +22,14 @@ class CompletedDownloadsList extends StatelessWidget {
               return DownloadCard(
                 task: state.completedTasks[index],
                 status: DOWNLOAD_CARD_STATUS.COMPLETE,
-                onTap: () => context.push('/downloads/download_detail_page'),
+                onTap: () {
+                  context.read<PickedTaskBloc>().add(
+                    PickedTaskBlocEvent_pickTask(
+                      task: state.completedTasks[index],
+                    ),
+                  );
+                  context.push('/downloads/download_detail_page');
+                },
               );
             },
           );

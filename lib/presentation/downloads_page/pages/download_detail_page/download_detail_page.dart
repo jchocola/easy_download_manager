@@ -2,6 +2,7 @@
 
 import 'package:easy_download_manager/core/constant/app_constant.dart';
 import 'package:easy_download_manager/core/constant/app_icon.dart';
+import 'package:easy_download_manager/presentation/downloads_page/blocs/picked_task_bloc.dart';
 import 'package:easy_download_manager/presentation/downloads_page/pages/download_detail_page/widgets/action_buttons.dart';
 import 'package:easy_download_manager/presentation/downloads_page/pages/download_detail_page/widgets/additional_info.dart';
 import 'package:easy_download_manager/presentation/downloads_page/pages/download_detail_page/widgets/file_info.dart';
@@ -12,6 +13,8 @@ import 'package:easy_download_manager/presentation/downloads_page/pages/download
 import 'package:easy_download_manager/widget/appbar.dart';
 import 'package:easy_download_manager/widget/big_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
 
 class DownloadDetailPage extends StatelessWidget {
   const DownloadDetailPage({super.key});
@@ -20,7 +23,19 @@ class DownloadDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppAppBar(title: 'Детали загрузки', showLeading: true),
-      body: buildBody_when_completed(context),
+      body: BlocBuilder<PickedTaskBloc, PickedTaskBlocState>(
+        builder: (context, state) {
+          if (state is PickedTaskBlocState_loaded) {
+            if (state.task.status == DownloadTaskStatus.running) {
+              return buildBody_when_downloading(context);
+            } else {
+              return buildBody_when_completed(context);
+            }
+          } else {
+            return CircularProgressIndicator();
+          }
+        },
+      ),
     );
   }
 

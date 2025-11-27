@@ -60,6 +60,11 @@ final appDarkTheme = ThemeData.dark(
   ),
 
 
+
+  dialogTheme: DialogThemeData(
+    backgroundColor:  AppColor.backgroundColor,
+  ),
+
   expansionTileTheme: ExpansionTileThemeData(
     iconColor: AppColor.activeProgressColor,
     shape: Border.all(color: AppColor.activeProgressColor),

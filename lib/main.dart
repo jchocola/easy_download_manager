@@ -9,6 +9,7 @@ import 'package:easy_download_manager/data/repository/permission_handler_reposit
 import 'package:easy_download_manager/l10n/app_localizations.dart';
 import 'package:easy_download_manager/main_page.dart';
 import 'package:easy_download_manager/presentation/downloads_page/blocs/add_download_bloc.dart';
+import 'package:easy_download_manager/presentation/downloads_page/blocs/picked_task_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -42,6 +43,8 @@ class MyApp extends StatelessWidget {
             flutterDownloader: getIt<FlutterDownloaderRepositoryImpl>(),
           )..add(AddDownloadBlocEvent_Init()),
         ),
+        BlocProvider(create: (context)=> PickedTaskBloc()),
+        
       ],
       child: AdaptiveTheme(
         light: appLightTheme,
