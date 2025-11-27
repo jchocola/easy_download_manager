@@ -61,6 +61,18 @@ class FlutterDownloaderRepositoryImpl {
     }
   }
 
+
+   Future<List<DownloadTask>> getAllTasks() async {
+    try {
+      final List<DownloadTask>? tasks = await FlutterDownloader.loadTasks();
+  
+
+      return tasks ?? [];
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   ///
   /// CANCEL A TASK
   ///
