@@ -78,4 +78,10 @@ class AppIcon {
   static final ascSortIcon = Icons.sort;
 
   static final pickIcon = Icons.task_rounded;
+
+  static final imageIcon = Icons.image_outlined;
+
+  static final documentIcon = Icons.edit_document;
+
+  static final audioIcon = Icons.audio_file_outlined;
 }

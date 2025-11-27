@@ -2,6 +2,8 @@ import 'package:easy_download_manager/core/constant/app_color.dart';
 import 'package:easy_download_manager/core/constant/app_constant.dart';
 import 'package:easy_download_manager/core/constant/app_icon.dart';
 import 'package:easy_download_manager/core/enum/download_card_status.dart';
+import 'package:easy_download_manager/core/utils/icon_coverter_from_filename.dart';
+import 'package:easy_download_manager/core/utils/task_status_color.dart';
 import 'package:easy_download_manager/widget/button_with_icon.dart';
 import 'package:easy_download_manager/widget/container_with_border_color.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +41,10 @@ class DownloadCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                ContainerWithBorderColor(),
+                ContainerWithBorderColor(
+                  icon: IconConverterFromFileName(filename: task?.filename ?? ''),
+                  color: TaskStattusColorConverter(task: task!),
+                ),
 
                 SizedBox(width: AppConstant.containerPadding),
                 Column(
@@ -92,7 +97,7 @@ class DownloadCard extends StatelessWidget {
                       Text(
                         'Paused',
                         style: theme.textTheme.bodyMedium!.copyWith(
-                          color: theme.colorScheme.error,
+                          color: theme.colorScheme.onTertiary,
                         ),
                       ),
                   ],

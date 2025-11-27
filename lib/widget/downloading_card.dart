@@ -5,6 +5,7 @@ import 'package:easy_download_manager/core/constant/app_color.dart';
 import 'package:easy_download_manager/core/constant/app_constant.dart';
 import 'package:easy_download_manager/core/constant/app_icon.dart';
 import 'package:easy_download_manager/core/enum/download_card_status.dart';
+import 'package:easy_download_manager/core/utils/icon_coverter_from_filename.dart';
 import 'package:easy_download_manager/data/repository/flutter_downloader_repository_impl.dart';
 import 'package:easy_download_manager/widget/button_with_icon.dart';
 import 'package:easy_download_manager/widget/container_with_border_color.dart';
@@ -118,7 +119,10 @@ class _DownloadingCardState extends State<DownloadingCard> {
           children: [
             Row(
               children: [
-                ContainerWithBorderColor(),
+                ContainerWithBorderColor(
+                  withGradient: true,
+                  icon: IconConverterFromFileName(filename: widget.task.filename!),
+                ),
                 SizedBox(width: AppConstant.containerPadding),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
