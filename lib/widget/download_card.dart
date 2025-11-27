@@ -83,6 +83,14 @@ class DownloadCard extends StatelessWidget {
                           color: theme.colorScheme.error,
                         ),
                       ),
+
+                        if (task?.status == DownloadTaskStatus.paused)
+                      Text(
+                        'Paused',
+                        style: theme.textTheme.bodyMedium!.copyWith(
+                          color: theme.colorScheme.error,
+                        ),
+                      ),
                   ],
                 ),
               ],

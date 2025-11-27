@@ -29,6 +29,8 @@ class ActiveDownloadsList extends StatelessWidget {
               itemBuilder: (context, index) {
                 final task = state.tasks[index];
                 return DownloadingCard(
+                  onCancelTapped: () => context.read<ActiveDownloadingTasksBloc>().add(ActiveDownloadingTasksEvent_CancelTask(task: task)),
+                  onPauseTapped: () => context.read<ActiveDownloadingTasksBloc>().add(ActiveDownloadingTasksEvent_PauseTask(task: task)),
                   task: task,
                   onTap: () => context.push('/downloads/download_detail_page'),
                 );

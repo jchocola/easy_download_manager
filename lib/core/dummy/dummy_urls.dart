@@ -8,6 +8,21 @@ class DummyUrls {
 
   static final String image1 = 'https://picsum.photos/2000/2000';
 
+  static final String test500MB = 'https://link.testfile.org/500MB';
+  static final String test1Gb = 'https://testfile.org/file-1GB';
+  static final String test5Gb = 'https://testfile.org/files-5GB-zip';
+
+  static final String audio1 =
+      'https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_1MB_WAV.wav';
+  static final String audio2 =
+      'https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_10MB_WAV.wav';
+
+  static final String audio3 =
+      'https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_5MB_WAV.wav';
+
+  static final String video =
+      'https://freetestdata.com/wp-content/uploads/2022/02/Free_Test_Data_15MB_MP4.mp4';
+
   static final String pdf1 =
       'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
 

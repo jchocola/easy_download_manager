@@ -13,10 +13,11 @@ import 'package:flutter_downloader/flutter_downloader.dart' as fl_dl;
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class DownloadingCard extends StatefulWidget {
-  DownloadingCard({super.key, required this.task, this.onTap});
+  DownloadingCard({super.key, required this.task, this.onTap, this.onCancelTapped,this.onPauseTapped});
   final fl_dl.DownloadTask task;
   void Function()? onTap;
-
+  void Function()? onCancelTapped;
+ void Function()? onPauseTapped; 
   @override
   State<DownloadingCard> createState() => _DownloadingCardState();
 }
@@ -87,22 +88,22 @@ class _DownloadingCardState extends State<DownloadingCard> {
 
     // Determine the status based on the download task status
     // Determine the status based on the download task status
-    DOWNLOAD_CARD_STATUS displayStatus = DOWNLOAD_CARD_STATUS.UNDEFINED;
-    if (widget.task.status == fl_dl.DownloadTaskStatus.undefined) {
-      displayStatus = DOWNLOAD_CARD_STATUS.UNDEFINED;
-    } else if (widget.task.status == fl_dl.DownloadTaskStatus.enqueued) {
-      displayStatus = DOWNLOAD_CARD_STATUS.ENQUEUED;
-    } else if (widget.task.status == fl_dl.DownloadTaskStatus.running) {
-      displayStatus = DOWNLOAD_CARD_STATUS.RUNNING;
-    } else if (widget.task.status == fl_dl.DownloadTaskStatus.complete) {
-      displayStatus = DOWNLOAD_CARD_STATUS.COMPLETE;
-    } else if (widget.task.status == fl_dl.DownloadTaskStatus.failed) {
-      displayStatus = DOWNLOAD_CARD_STATUS.FAILED;
-    } else if (widget.task.status == fl_dl.DownloadTaskStatus.canceled) {
-      displayStatus = DOWNLOAD_CARD_STATUS.CANCELED;
-    } else if (widget.task.status == fl_dl.DownloadTaskStatus.paused) {
-      displayStatus = DOWNLOAD_CARD_STATUS.PAUSED;
-    }
+    // DOWNLOAD_CARD_STATUS displayStatus = DOWNLOAD_CARD_STATUS.UNDEFINED;
+    // if (widget.task.status == fl_dl.DownloadTaskStatus.undefined) {
+    //   displayStatus = DOWNLOAD_CARD_STATUS.UNDEFINED;
+    // } else if (widget.task.status == fl_dl.DownloadTaskStatus.enqueued) {
+    //   displayStatus = DOWNLOAD_CARD_STATUS.ENQUEUED;
+    // } else if (widget.task.status == fl_dl.DownloadTaskStatus.running) {
+    //   displayStatus = DOWNLOAD_CARD_STATUS.RUNNING;
+    // } else if (widget.task.status == fl_dl.DownloadTaskStatus.complete) {
+    //   displayStatus = DOWNLOAD_CARD_STATUS.COMPLETE;
+    // } else if (widget.task.status == fl_dl.DownloadTaskStatus.failed) {
+    //   displayStatus = DOWNLOAD_CARD_STATUS.FAILED;
+    // } else if (widget.task.status == fl_dl.DownloadTaskStatus.canceled) {
+    //   displayStatus = DOWNLOAD_CARD_STATUS.CANCELED;
+    // } else if (widget.task.status == fl_dl.DownloadTaskStatus.paused) {
+    //   displayStatus = DOWNLOAD_CARD_STATUS.PAUSED;
+    // }
 
     return GestureDetector(
       onTap: widget.onTap,
@@ -127,18 +128,18 @@ class _DownloadingCardState extends State<DownloadingCard> {
                       style: theme.textTheme.titleMedium,
                     ),
                     _buildProgress(context),
-                    if (displayStatus == DOWNLOAD_CARD_STATUS.RUNNING)
+                    if (widget.task.status == fl_dl.DownloadTaskStatus.running)
                       _buildSpeedDuration(context),
-                    if (displayStatus == DOWNLOAD_CARD_STATUS.RUNNING)
+                    if (widget.task.status == fl_dl.DownloadTaskStatus.running)
                       SizedBox(width: size.width * 0.7, child: Divider()),
-                    if (displayStatus == DOWNLOAD_CARD_STATUS.COMPLETE)
+                    if (widget.task.status == fl_dl.DownloadTaskStatus.complete)
                       Text(
                         'Completed',
                         style: theme.textTheme.bodyMedium!.copyWith(
                           color: theme.colorScheme.scrim,
                         ),
                       ),
-                    if (displayStatus == DOWNLOAD_CARD_STATUS.FAILED)
+                    if (widget.task.status == fl_dl.DownloadTaskStatus.failed)
                       Text(
                         'Ошибка загрузки',
                         style: theme.textTheme.bodyMedium!.copyWith(
@@ -149,13 +150,14 @@ class _DownloadingCardState extends State<DownloadingCard> {
                 ),
               ],
             ),
-            if (displayStatus == DOWNLOAD_CARD_STATUS.FAILED)
+            if (widget.task.status == fl_dl.DownloadTaskStatus.failed)
               ButtonWithIcon(
                 label: 'Cancel',
                 icon: AppIcon.cancelIcon,
                 color: theme.colorScheme.error,
+                onPressed: widget.onCancelTapped,
               ),
-            if (displayStatus == DOWNLOAD_CARD_STATUS.RUNNING)
+            if (widget.task.status == fl_dl.DownloadTaskStatus.running)
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -163,15 +165,17 @@ class _DownloadingCardState extends State<DownloadingCard> {
                     label: 'Pause',
                     icon: AppIcon.pauseIcon,
                     color: theme.colorScheme.tertiary,
+                     onPressed: widget.onPauseTapped,
                   ),
                   ButtonWithIcon(
                     label: 'Cancel',
                     icon: AppIcon.cancelIcon,
                     color: theme.colorScheme.error,
+                      onPressed: widget.onCancelTapped,
                   ),
                 ],
               ),
-            if (displayStatus == DOWNLOAD_CARD_STATUS.PAUSED)
+            if (widget.task.status == fl_dl.DownloadTaskStatus.paused)
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -184,6 +188,7 @@ class _DownloadingCardState extends State<DownloadingCard> {
                     label: 'Cancel',
                     icon: AppIcon.cancelIcon,
                     color: theme.colorScheme.error,
+                      onPressed: widget.onCancelTapped,
                   ),
                 ],
               ),

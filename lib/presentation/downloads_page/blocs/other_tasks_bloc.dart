@@ -27,12 +27,13 @@ abstract class OtherTasksBlocState extends Equatable {
 }
 
 class OtherTasksBlocState_loaded extends OtherTasksBlocState {
-  final List<fl_dl.DownloadTask> otherTasks;
+  final List<fl_dl.DownloadTask> pausedTasks;
+    final List<fl_dl.DownloadTask> failedTasks;
 
-  OtherTasksBlocState_loaded({required this.otherTasks});
+  OtherTasksBlocState_loaded({required this.pausedTasks , required this.failedTasks});
 
   @override
-  List<Object?> get props => [otherTasks];
+  List<Object?> get props => [pausedTasks , failedTasks];
 }
 
 ///
@@ -41,24 +42,26 @@ class OtherTasksBlocState_loaded extends OtherTasksBlocState {
 class OtherTasksBloc extends Bloc<OtherTasksBlocEvent, OtherTasksBlocState> {
   final FlutterDownloaderRepositoryImpl flutter_downloader;
   OtherTasksBloc({required this.flutter_downloader})
-    : super(OtherTasksBlocState_loaded(otherTasks: [])) {
+    : super(OtherTasksBlocState_loaded(pausedTasks: [], failedTasks: [])) {
     on<OtherTaskBlocEvent_load>((event, emit) async {
-      final list = await flutter_downloader.getOtherTasks();
-      Future.delayed(Duration(seconds: 10), () {
+      final paused = await flutter_downloader.getPausedTasks();
+        final failed = await flutter_downloader.getFailedTasks();
+      Future.delayed(Duration(seconds: 3), () {
         add(OtherTaskBlocEvent_reload());
       });
 
-      logger.i('OtherTaskBlocEvent_load : ${list.length}');
-      emit(OtherTasksBlocState_loaded(otherTasks: list));
+      logger.i('OtherTaskBlocEvent_load : ${paused.length}');
+      emit(OtherTasksBlocState_loaded(pausedTasks: paused , failedTasks: failed));
     });
 
     on<OtherTaskBlocEvent_reload>((event, emit) async {
-      final list = await flutter_downloader.getOtherTasks();
-      Future.delayed(Duration(seconds: 10), () {
+    final paused = await flutter_downloader.getPausedTasks();
+        final failed = await flutter_downloader.getFailedTasks();
+      Future.delayed(Duration(seconds: 3), () {
         add(OtherTaskBlocEvent_load());
       });
-      logger.i('OtherTaskBlocEvent_reload : ${list.length}');
-      emit(OtherTasksBlocState_loaded(otherTasks: list));
+      logger.i('OtherTaskBlocEvent_reload : ${paused.length}');
+      emit(OtherTasksBlocState_loaded(pausedTasks: paused, failedTasks: failed));
     });
   }
 }

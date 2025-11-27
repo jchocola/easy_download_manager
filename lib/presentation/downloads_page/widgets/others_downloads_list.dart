@@ -10,22 +10,21 @@ class OthersDownloadsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [_buildOtherList(context)],
-    );
+    return Column(children: [_buildOtherList(context)]);
   }
 
   Widget _buildOtherList(context) {
     return BlocBuilder<OtherTasksBloc, OtherTasksBlocState>(
       builder: (context, state) {
         if (state is OtherTasksBlocState_loaded) {
+          final otherTasks = state.pausedTasks + state.failedTasks;
           return ListView.builder(
             shrinkWrap: true,
-            itemCount: 5,
+            itemCount: otherTasks.length,
             physics: NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
               return DownloadCard(
-                task: state.otherTasks[index],
+                task: otherTasks[index],
                 onTap: () => context.push('/downloads/download_detail_page'),
               );
             },

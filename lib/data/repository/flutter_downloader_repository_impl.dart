@@ -51,11 +51,11 @@ class FlutterDownloaderRepositoryImpl {
   Future<List<DownloadTask>> getAllDownloadingTasks() async {
     try {
       final List<DownloadTask>? tasks = await FlutterDownloader.loadTasks();
+      final activeTasks = tasks?.where((e) {
+        return e.status == DownloadTaskStatus.running;
+      }).toList();
 
-      if (tasks == null) {
-        return [];
-      }
-      return tasks;
+      return activeTasks ?? [];
     } catch (e) {
       rethrow;
     }
@@ -65,9 +65,9 @@ class FlutterDownloaderRepositoryImpl {
   /// CANCEL A TASK
   ///
 
-  void cancelTask({required String taskId}) {
+  Future<void> cancelTask({required String taskId}) async {
     logger.i('Canceled task : $taskId');
-    FlutterDownloader.cancel(taskId: taskId);
+    await FlutterDownloader.cancel(taskId: taskId);
   }
 
   ///
@@ -187,16 +187,29 @@ class FlutterDownloaderRepositoryImpl {
     }
   }
 
-
-    Future<List<DownloadTask>> getOtherTasks() async {
+  Future<List<DownloadTask>> getPausedTasks() async {
     try {
       final allTasks = await FlutterDownloader.loadTasks();
 
-      final completeTask = allTasks?.where((e) {
-        return e.status != DownloadTaskStatus.running || e.status != DownloadTaskStatus.complete;
+      final pausedTask = allTasks?.where((e) {
+        return e.status == DownloadTaskStatus.paused;
       }).toList();
 
-      return completeTask ?? [];
+      return pausedTask ?? [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+    Future<List<DownloadTask>> getFailedTasks() async {
+    try {
+      final allTasks = await FlutterDownloader.loadTasks();
+
+      final failedTask = allTasks?.where((e) {
+        return e.status == DownloadTaskStatus.failed;
+      }).toList();
+
+      return failedTask ?? [];
     } catch (e) {
       return [];
     }
