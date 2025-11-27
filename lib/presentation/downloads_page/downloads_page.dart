@@ -4,6 +4,7 @@ import 'package:easy_download_manager/core/di/DI.dart';
 import 'package:easy_download_manager/data/repository/flutter_downloader_repository_impl.dart';
 import 'package:easy_download_manager/l10n/app_localizations.dart';
 import 'package:easy_download_manager/presentation/downloads_page/blocs/add_download_bloc.dart';
+import 'package:easy_download_manager/presentation/downloads_page/blocs/complete_tasks_bloc.dart';
 import 'package:easy_download_manager/presentation/downloads_page/blocs/download_tab_bloc.dart';
 import 'package:easy_download_manager/presentation/downloads_page/blocs/f4_statistic_bloc.dart';
 import 'package:easy_download_manager/presentation/downloads_page/widgets/4_status_category.dart';
@@ -23,7 +24,10 @@ class DownloadsPage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context)=>  DownloadTabBloc()..add(DownloadTabBlocEvent_SetInitValue())),
-        BlocProvider(create: (context)=> F4StatisticBloc(flutter_dl: getIt<FlutterDownloaderRepositoryImpl>())..add(F4StatisticBlocEvent_Load()))
+        BlocProvider(create: (context)=> F4StatisticBloc(flutter_dl: getIt<FlutterDownloaderRepositoryImpl>())..add(F4StatisticBlocEvent_Load())),
+        BlocProvider(create: (context)=> CompleteTasksBloc(flutter_downloader: getIt<FlutterDownloaderRepositoryImpl>())..add(CompleteTaskBlocEvent_load())),
+        
+
       ],
       child: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),

@@ -173,6 +173,20 @@ class FlutterDownloaderRepositoryImpl {
     }
   }
 
+  Future<List<DownloadTask>> getCompleteTasks() async {
+    try {
+      final allTasks = await FlutterDownloader.loadTasks();
+
+      final completeTask = allTasks?.where((e) {
+        return e.status == DownloadTaskStatus.complete;
+      }).toList();
+
+      return completeTask ?? [];
+    } catch (e) {
+      return [];
+    }
+  }
+
   Future<int> getErrorTasksCount() async {
     try {
       final allTasks = await FlutterDownloader.loadTasks();

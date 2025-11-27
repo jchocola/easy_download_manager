@@ -5,16 +5,19 @@ import 'package:easy_download_manager/core/enum/download_card_status.dart';
 import 'package:easy_download_manager/widget/button_with_icon.dart';
 import 'package:easy_download_manager/widget/container_with_border_color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class DownloadCard extends StatelessWidget {
-   DownloadCard({
+  DownloadCard({
     super.key,
     this.status = DOWNLOAD_CARD_STATUS.RUNNING,
-    this.onTap
+    this.onTap,
+     this.task,
   });
   final DOWNLOAD_CARD_STATUS status;
   void Function()? onTap;
+  final DownloadTask? task;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -33,33 +36,66 @@ class DownloadCard extends StatelessWidget {
             Row(
               children: [
                 ContainerWithBorderColor(),
-      
+
                 SizedBox(width: AppConstant.containerPadding),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Presentation.pdf', style: theme.textTheme.titleMedium),
-                    buildProgress(context),
-                    if (status == DOWNLOAD_CARD_STATUS.RUNNING)
+
+                    ///
+                    /// file name
+                    ///
+                    Text(
+                      task?.filename ?? 'Unknown',
+                      style: theme.textTheme.titleMedium,
+                    ),
+
+                    ///
+                    /// progress
+                    ///
+                    if (task?.status != DownloadTaskStatus.complete) buildProgress(context),
+
+
+                    ///
+                    /// speed duration
+                    ///
+                    if (task?.status == DownloadTaskStatus.running)
                       buildSpeedDuration(context),
+
+
+
                     if (status == DOWNLOAD_CARD_STATUS.RUNNING)
                       SizedBox(width: size.width * 0.7, child: Divider()),
-      
-                     if (status == DOWNLOAD_CARD_STATUS.COMPLETE) Text('Completed', style: theme.textTheme.bodyMedium!.copyWith(color: theme.colorScheme.scrim),) ,
-                      if (status == DOWNLOAD_CARD_STATUS.FAILED) Text('Ошибка загрузки', style: theme.textTheme.bodyMedium!.copyWith(color: theme.colorScheme.error),) , 
+
+                    if (task?.status == DownloadTaskStatus.complete)
+                      Text(
+                        'Completed',
+                        style: theme.textTheme.bodyMedium!.copyWith(
+                          color: theme.colorScheme.scrim,
+                        ),
+                      ),
+
+
+                    if (task?.status == DownloadTaskStatus.failed)
+                      Text(
+                        'Ошибка загрузки',
+                        style: theme.textTheme.bodyMedium!.copyWith(
+                          color: theme.colorScheme.error,
+                        ),
+                      ),
                   ],
                 ),
               ],
             ),
-      
-      
-            if (status == DOWNLOAD_CARD_STATUS.FAILED) ButtonWithIcon(
-              label: 'Cancel',
-              icon: AppIcon.cancelIcon,
-                    color: theme.colorScheme.error, 
-            ),
-      
-            if (status == DOWNLOAD_CARD_STATUS.RUNNING)
+
+            if (task?.status == DownloadTaskStatus.failed)
+              ButtonWithIcon(
+                label: 'Cancel',
+                icon: AppIcon.cancelIcon,
+                color: theme.colorScheme.error,
+              ),
+
+            if (task?.status == DownloadTaskStatus.running)
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -75,9 +111,8 @@ class DownloadCard extends StatelessWidget {
                   ),
                 ],
               ),
-      
-      
-                if (status == DOWNLOAD_CARD_STATUS.PAUSED)
+
+            if (task?.status == DownloadTaskStatus.paused)
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -123,7 +158,7 @@ class DownloadCard extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('32%', style: theme.textTheme.bodySmall),
+                Text('${task?.progress} %', style: theme.textTheme.bodySmall),
                 Text('43.3 MB', style: theme.textTheme.bodySmall),
               ],
             ),
