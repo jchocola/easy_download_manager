@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.example.easy_download_manager"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 36
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
