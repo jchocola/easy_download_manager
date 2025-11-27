@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:go_router/go_router.dart';
+import 'package:share_plus/share_plus.dart';
 
 class OpenShareDelete extends StatelessWidget {
   const OpenShareDelete({super.key});
@@ -78,6 +79,20 @@ class OpenShareDelete extends StatelessWidget {
             );
           }
 
+          void shareTapped() async {
+            final fullpath = state.task.savedDir + '/' + state.task.filename!;
+
+            final File file = File(fullpath);
+            logger.i(fullpath);
+            if (await file.exists()) {
+             await SharePlus.instance.share(ShareParams(
+                files: [XFile(fullpath)]
+              ));
+            } else {
+              showErrorToastification(error: 'File not exists');
+            }
+          }
+
           return Column(
             spacing: AppConstant.containerPadding,
             children: [
@@ -91,7 +106,7 @@ class OpenShareDelete extends StatelessWidget {
                         showErrorToastification(error: 'Cannot open file');
                     }),
               ),
-              // BigButton(icon: AppIcon.shareIcon, title: 'Share'),
+              BigButton(icon: AppIcon.shareIcon, title: 'Share' , onTap: shareTapped,),
               BigButtonDelete(
                 icon: AppIcon.deleteIcon,
                 title: 'Delete',
