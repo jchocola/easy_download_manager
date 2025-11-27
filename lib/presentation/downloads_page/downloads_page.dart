@@ -3,6 +3,7 @@ import 'package:easy_download_manager/core/constant/app_icon.dart';
 import 'package:easy_download_manager/core/di/DI.dart';
 import 'package:easy_download_manager/data/repository/flutter_downloader_repository_impl.dart';
 import 'package:easy_download_manager/l10n/app_localizations.dart';
+import 'package:easy_download_manager/presentation/downloads_page/blocs/active_downloading_tasks_bloc.dart';
 import 'package:easy_download_manager/presentation/downloads_page/blocs/add_download_bloc.dart';
 import 'package:easy_download_manager/presentation/downloads_page/blocs/complete_tasks_bloc.dart';
 import 'package:easy_download_manager/presentation/downloads_page/blocs/download_tab_bloc.dart';
@@ -28,7 +29,7 @@ class DownloadsPage extends StatelessWidget {
         BlocProvider(create: (context)=> F4StatisticBloc(flutter_dl: getIt<FlutterDownloaderRepositoryImpl>())..add(F4StatisticBlocEvent_Load())),
         BlocProvider(create: (context)=> CompleteTasksBloc(flutter_downloader: getIt<FlutterDownloaderRepositoryImpl>())..add(CompleteTaskBlocEvent_load())),
          BlocProvider(create: (context)=> OtherTasksBloc(flutter_downloader: getIt<FlutterDownloaderRepositoryImpl>())..add(OtherTaskBlocEvent_load())),
-
+        BlocProvider(create: (context)=> ActiveDownloadingTasksBloc()..add(ActiveDownloadingTasksEvent_Load())),
       ],
       child: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),

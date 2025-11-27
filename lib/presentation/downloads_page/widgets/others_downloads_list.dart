@@ -1,4 +1,5 @@
 import 'package:easy_download_manager/core/enum/download_card_status.dart';
+import 'package:easy_download_manager/presentation/downloads_page/blocs/active_downloading_tasks_bloc.dart';
 import 'package:easy_download_manager/presentation/downloads_page/blocs/other_tasks_bloc.dart';
 import 'package:easy_download_manager/widget/download_card.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +26,18 @@ class OthersDownloadsList extends StatelessWidget {
             itemBuilder: (context, index) {
               return DownloadCard(
                 task: otherTasks[index],
+                onCancelTapped: () =>
+                    context.read<ActiveDownloadingTasksBloc>().add(
+                      ActiveDownloadingTasksEvent_CancelTask(
+                        task: otherTasks[index],
+                      ),
+                    ),
+                onContinueTapped: () =>
+                    context.read<ActiveDownloadingTasksBloc>().add(
+                      ActiveDownloadingTasksEvent_ResumeTask(
+                        task: otherTasks[index],
+                      ),
+                    ),
                 onTap: () => context.push('/downloads/download_detail_page'),
               );
             },

@@ -13,11 +13,15 @@ class DownloadCard extends StatelessWidget {
     super.key,
     this.status = DOWNLOAD_CARD_STATUS.RUNNING,
     this.onTap,
+    this.onCancelTapped,
+    this.onContinueTapped,
      this.task,
   });
   final DOWNLOAD_CARD_STATUS status;
   void Function()? onTap;
   final DownloadTask? task;
+  void Function()? onCancelTapped;
+  void Function()? onContinueTapped;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -101,6 +105,7 @@ class DownloadCard extends StatelessWidget {
                 label: 'Cancel',
                 icon: AppIcon.cancelIcon,
                 color: theme.colorScheme.error,
+                onPressed: onCancelTapped,
               ),
 
             if (task?.status == DownloadTaskStatus.running)
@@ -128,11 +133,13 @@ class DownloadCard extends StatelessWidget {
                     label: 'Continue',
                     icon: AppIcon.continueIcon,
                     color: theme.colorScheme.tertiary,
+                    onPressed: onContinueTapped,
                   ),
                   ButtonWithIcon(
                     label: 'Cancel',
                     icon: AppIcon.cancelIcon,
                     color: theme.colorScheme.error,
+                    onPressed: onCancelTapped,
                   ),
                 ],
               ),

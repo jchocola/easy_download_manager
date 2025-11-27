@@ -68,6 +68,7 @@ class FlutterDownloaderRepositoryImpl {
   Future<void> cancelTask({required String taskId}) async {
     logger.i('Canceled task : $taskId');
     await FlutterDownloader.cancel(taskId: taskId);
+    await FlutterDownloader.remove(taskId: taskId);
   }
 
   ///
@@ -201,7 +202,7 @@ class FlutterDownloaderRepositoryImpl {
     }
   }
 
-    Future<List<DownloadTask>> getFailedTasks() async {
+  Future<List<DownloadTask>> getFailedTasks() async {
     try {
       final allTasks = await FlutterDownloader.loadTasks();
 

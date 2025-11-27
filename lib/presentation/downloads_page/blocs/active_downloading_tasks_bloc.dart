@@ -24,6 +24,12 @@ class ActiveDownloadingTasksEvent_CancelTask
   ActiveDownloadingTasksEvent_CancelTask({required this.task});
 }
 
+class ActiveDownloadingTasksEvent_ResumeTask
+    extends ActiveDownloadingTasksEvent {
+  final DownloadTask task;
+  ActiveDownloadingTasksEvent_ResumeTask({required this.task});
+}
+
 // States
 abstract class ActiveDownloadingTasksState {}
 
@@ -62,7 +68,16 @@ class ActiveDownloadingTasksBloc
     on<ActiveDownloadingTasksEvent_CancelTask>((event, emit) async {
       try {
         await _repository.cancelTask(taskId: event.task.taskId);
-         logger.i('Canceled task ${event.task.taskId}');
+        logger.i('Canceled task ${event.task.taskId}');
+      } catch (e) {
+        rethrow;
+      }
+    });
+
+    on<ActiveDownloadingTasksEvent_ResumeTask>((event, emit) async {
+      try {
+        await _repository.resumeTask(taskId: event.task.taskId);
+        logger.i('Resumed task ${event.task.taskId}');
       } catch (e) {
         rethrow;
       }

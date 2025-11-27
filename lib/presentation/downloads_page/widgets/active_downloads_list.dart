@@ -9,54 +9,50 @@ class ActiveDownloadsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ActiveDownloadingTasksBloc()
-        ..add(ActiveDownloadingTasksEvent_Load()),
-      child: BlocBuilder<ActiveDownloadingTasksBloc, ActiveDownloadingTasksState>(
-        builder: (context, state) {
-          if (state is ActiveDownloadingTasksState_Loading) {
-            return Center(child: CircularProgressIndicator());
-          } else if (state is ActiveDownloadingTasksState_Loaded) {
-            if (state.tasks.isEmpty) {
-              return Center(
-                child: Text('No active downloads'),
-              );
-            }
-            return ListView.builder(
-              shrinkWrap: true,
-              itemCount: state.tasks.length,
-              physics: NeverScrollableScrollPhysics(),
-              itemBuilder: (context, index) {
-                final task = state.tasks[index];
-                return DownloadingCard(
-                  onCancelTapped: () => context.read<ActiveDownloadingTasksBloc>().add(ActiveDownloadingTasksEvent_CancelTask(task: task)),
-                  onPauseTapped: () => context.read<ActiveDownloadingTasksBloc>().add(ActiveDownloadingTasksEvent_PauseTask(task: task)),
-                  task: task,
-                  onTap: () => context.push('/downloads/download_detail_page'),
-                );
-              },
-            );
-          } else if (state is ActiveDownloadingTasksState_Error) {
+    return BlocBuilder<ActiveDownloadingTasksBloc, ActiveDownloadingTasksState>(
+      builder: (context, state) {
+        if (state is ActiveDownloadingTasksState_Loading) {
+          return Center(child: CircularProgressIndicator());
+        } else if (state is ActiveDownloadingTasksState_Loaded) {
+          if (state.tasks.isEmpty) {
             return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Error: ${state.message}'),
-                  ElevatedButton(
-                    onPressed: () {
-                      context
-                          .read<ActiveDownloadingTasksBloc>()
-                          .add(ActiveDownloadingTasksEvent_Refresh());
-                    },
-                    child: Text('Retry'),
-                  ),
-                ],
-              ),
+              child: Text('No active downloads'),
             );
           }
-          return Container(); // Fallback
-        },
-      ),
+          return ListView.builder(
+            shrinkWrap: true,
+            itemCount: state.tasks.length,
+            physics: NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index) {
+              final task = state.tasks[index];
+              return DownloadingCard(
+                onCancelTapped: () => context.read<ActiveDownloadingTasksBloc>().add(ActiveDownloadingTasksEvent_CancelTask(task: task)),
+                onPauseTapped: () => context.read<ActiveDownloadingTasksBloc>().add(ActiveDownloadingTasksEvent_PauseTask(task: task)),
+                task: task,
+                onTap: () => context.push('/downloads/download_detail_page'),
+              );
+            },
+          );
+        } else if (state is ActiveDownloadingTasksState_Error) {
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('Error: ${state.message}'),
+                ElevatedButton(
+                  onPressed: () {
+                    context
+                        .read<ActiveDownloadingTasksBloc>()
+                        .add(ActiveDownloadingTasksEvent_Refresh());
+                  },
+                  child: Text('Retry'),
+                ),
+              ],
+            ),
+          );
+        }
+        return Container(); // Fallback
+      },
     );
   }
 }
