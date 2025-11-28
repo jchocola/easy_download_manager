@@ -2,9 +2,11 @@
 
 import 'dart:io';
 
+import 'package:dtorrent_parser/dtorrent_parser.dart';
 import 'package:easy_download_manager/core/enum/download_status.dart';
 import 'package:easy_download_manager/core/enum/save_place.dart';
 import 'package:easy_download_manager/data/repository/flutter_downloader_repository_impl.dart';
+import 'package:easy_download_manager/data/repository/flutter_torrent_downloader_impl.dart';
 import 'package:easy_download_manager/domain/models/download_task.dart';
 import 'package:easy_download_manager/main.dart';
 import 'package:equatable/equatable.dart';
@@ -93,6 +95,7 @@ class AddDownloadBlocStateLoaded extends AddDownloadBlocState {
   final String savePath;
   final File? torrentFile;
   final SAVE_PLACE savePlace;
+  final Torrent? torrent;
 
   AddDownloadBlocStateLoaded({
     required this.downloadUrl,
@@ -101,6 +104,7 @@ class AddDownloadBlocStateLoaded extends AddDownloadBlocState {
     required this.savePath,
     this.torrentFile,
     required this.savePlace,
+    this.torrent,
   });
 
   @override
@@ -111,6 +115,7 @@ class AddDownloadBlocStateLoaded extends AddDownloadBlocState {
     savePath,
     torrentFile,
     savePlace,
+    torrent,
   ];
 
   AddDownloadBlocStateLoaded copyWith({
@@ -120,6 +125,7 @@ class AddDownloadBlocStateLoaded extends AddDownloadBlocState {
     String? savePath,
     File? torrentFile,
     SAVE_PLACE? savePlace,
+    Torrent? torrent,
   }) {
     return AddDownloadBlocStateLoaded(
       downloadUrl: downloadUrl ?? this.downloadUrl,
@@ -128,6 +134,7 @@ class AddDownloadBlocStateLoaded extends AddDownloadBlocState {
       savePath: savePath ?? this.savePath,
       torrentFile: torrentFile,
       savePlace: savePlace ?? this.savePlace,
+      torrent: torrent
     );
   }
 }
@@ -152,9 +159,11 @@ class AddDownloadBlocStateError extends AddDownloadBlocState {
 ///
 class AddDownloadBloc extends Bloc<AddDownloadBlocEvent, AddDownloadBlocState> {
   final FlutterDownloaderRepositoryImpl flutterDownloader;
-
-  AddDownloadBloc({required this.flutterDownloader})
-    : super(AddDownloadBlocStateInitial()) {
+  final FlutterTorrentDownloaderImpl torrentDownloader;
+  AddDownloadBloc({
+    required this.flutterDownloader,
+    required this.torrentDownloader,
+  }) : super(AddDownloadBlocStateInitial()) {
     ///
     /// INIT
     ///
@@ -213,7 +222,11 @@ class AddDownloadBloc extends Bloc<AddDownloadBlocEvent, AddDownloadBlocState> {
           final currentState = state;
           if (currentState is AddDownloadBlocStateLoaded) {
             logger.i('ADD DOWNLOAD BLOC - PICK TORRENT FILE ');
-            emit(currentState.copyWith(torrentFile: file));
+
+            final torrent = await torrentDownloader.createTorrentModel(
+              torrentFilePath: file.path,
+            );
+            emit(currentState.copyWith(torrentFile: file , torrent: torrent));
           }
         } else {
           // User canceled the picker
@@ -230,7 +243,7 @@ class AddDownloadBloc extends Bloc<AddDownloadBlocEvent, AddDownloadBlocState> {
       final currentState = state;
       if (currentState is AddDownloadBlocStateLoaded) {
         logger.i('ADD DOWNLOAD BLOC - REMOVE TORRENT FILE ');
-        emit(currentState.copyWith(torrentFile: null));
+        emit(currentState.copyWith(torrentFile: null , torrent: null));
       }
     });
 

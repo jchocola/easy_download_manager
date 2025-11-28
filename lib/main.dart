@@ -5,6 +5,7 @@ import 'package:easy_download_manager/core/providers/global_providers.dart';
 import 'package:easy_download_manager/core/theme/dark_theme.dart';
 import 'package:easy_download_manager/core/theme/light_theme.dart';
 import 'package:easy_download_manager/data/repository/flutter_downloader_repository_impl.dart';
+import 'package:easy_download_manager/data/repository/flutter_torrent_downloader_impl.dart';
 import 'package:easy_download_manager/data/repository/permission_handler_repository_impl.dart';
 import 'package:easy_download_manager/l10n/app_localizations.dart';
 import 'package:easy_download_manager/main_page.dart';
@@ -41,6 +42,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => AddDownloadBloc(
             flutterDownloader: getIt<FlutterDownloaderRepositoryImpl>(),
+            torrentDownloader: getIt<FlutterTorrentDownloaderImpl>(),
           )..add(AddDownloadBlocEvent_Init()),
         ),
         BlocProvider(create: (context)=> PickedTaskBloc()),
