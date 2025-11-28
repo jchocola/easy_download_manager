@@ -3,6 +3,7 @@
 import 'dart:io';
 
 import 'package:dtorrent_parser/dtorrent_parser.dart';
+import 'package:dtorrent_task/dtorrent_task.dart';
 import 'package:easy_download_manager/core/enum/download_status.dart';
 import 'package:easy_download_manager/core/enum/save_place.dart';
 import 'package:easy_download_manager/data/repository/flutter_downloader_repository_impl.dart';
@@ -134,7 +135,7 @@ class AddDownloadBlocStateLoaded extends AddDownloadBlocState {
       savePath: savePath ?? this.savePath,
       torrentFile: torrentFile,
       savePlace: savePlace ?? this.savePlace,
-      torrent: torrent
+      torrent: torrent,
     );
   }
 }
@@ -226,7 +227,7 @@ class AddDownloadBloc extends Bloc<AddDownloadBlocEvent, AddDownloadBlocState> {
             final torrent = await torrentDownloader.createTorrentModel(
               torrentFilePath: file.path,
             );
-            emit(currentState.copyWith(torrentFile: file , torrent: torrent));
+            emit(currentState.copyWith(torrentFile: file, torrent: torrent));
           }
         } else {
           // User canceled the picker
@@ -243,7 +244,7 @@ class AddDownloadBloc extends Bloc<AddDownloadBlocEvent, AddDownloadBlocState> {
       final currentState = state;
       if (currentState is AddDownloadBlocStateLoaded) {
         logger.i('ADD DOWNLOAD BLOC - REMOVE TORRENT FILE ');
-        emit(currentState.copyWith(torrentFile: null , torrent: null));
+        emit(currentState.copyWith(torrentFile: null, torrent: null));
       }
     });
 
@@ -282,32 +283,82 @@ class AddDownloadBloc extends Bloc<AddDownloadBlocEvent, AddDownloadBlocState> {
       final currentState = state;
 
       if (currentState is AddDownloadBlocStateLoaded) {
-        // downloadtask model
-        final DownloadTask downloadTaskModel = DownloadTask(
-          id: '',
-          url: currentState.downloadUrl,
-          fileName: currentState.fileName,
-          directory: currentState.savePath,
-          method: currentState.downloadMethod,
-          status: DOWNLOAD_STATUS.QUEUED,
-          downloadedBytes: 0,
-          totalBytes: 0,
-          speedBytesPerSecond: 0,
-          isResumable: true,
-          createdAt: DateTime.now(),
-          updatedAt: DateTime.now(),
-        );
+        ///
+        /// HTTP/HTTPS
+        ///
 
-        try {
-          await flutterDownloader.createNewTask(task: downloadTaskModel).then((
-            value,
-          ) {
+        if (currentState.downloadMethod == DOWNLOAD_METHOD.HTTP_HTTPS) {
+          // downloadtask model
+          final DownloadTask downloadTaskModel = DownloadTask(
+            id: '',
+            url: currentState.downloadUrl,
+            fileName: currentState.fileName,
+            directory: currentState.savePath,
+            method: currentState.downloadMethod,
+            status: DOWNLOAD_STATUS.QUEUED,
+            downloadedBytes: 0,
+            totalBytes: 0,
+            speedBytesPerSecond: 0,
+            isResumable: true,
+            createdAt: DateTime.now(),
+            updatedAt: DateTime.now(),
+          );
+
+          try {
+            await flutterDownloader.createNewTask(task: downloadTaskModel).then(
+              (value) {
+                emit(AddDownloadBlocStateSuccess(success: 'Start Downloading'));
+              },
+            );
+          } catch (e) {
+            emit(AddDownloadBlocStateError(error: e.toString()));
+            emit(currentState);
+          }
+        }
+
+        ///
+        /// TORRENT
+        ///
+        if (currentState.downloadMethod == DOWNLOAD_METHOD.TORRENT) {
+          final torrent = currentState.torrent;
+
+          try {
+            final torrentTask = await torrentDownloader.createTorrentTask(
+              model: torrent!,
+              saveDir: currentState.savePath,
+            );
+
+            logger.i('Created torrent task' + torrentTask.name);
+            torrentTask.start();
+
+            final listener = torrentTask.createListener();
+
+            // Обрабатываем события торрент задачи
+            listener.on<TaskCompleted>((event) {
+              // Используем Bloc для эмитации события завершения
+              // Это можно сделать через дополнительное событие или сохраняя ссылку на задачу
+              logger.i('Torrent download completed: ${torrentTask.name}');
+            });
+
+            listener.on<TaskStarted>((event) {
+              logger.e('Torrent download started ${torrentTask.name}');
+            });
+
+            listener.on<StateFileUpdated>((event) {
+              // Можно отправлять обновления прогресса
+              logger.v('Torrent progress updated: ${torrentTask.progress}');
+            });
+
+         listener.on<TaskStopped>((event) {
+              // Можно отправлять обновления прогресса
+              logger.v('Torrent Stopped: ${torrentTask.progress}');
+            });
+
             emit(AddDownloadBlocStateSuccess(success: 'Start Downloading'));
-          });
-        } catch (e) {
-          emit(AddDownloadBlocStateError(error: e.toString()));
-        } finally {
-          emit(currentState);
+          } catch (e) {
+            emit(AddDownloadBlocStateError(error: e.toString()));
+            emit(currentState);
+          }
         }
       }
     });
