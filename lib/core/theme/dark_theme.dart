@@ -51,6 +51,10 @@ final appDarkTheme = ThemeData.dark(
   ),
 
 
+  cardTheme: CardThemeData(
+    color: AppColor.onBackgroundColor
+  ),
+
 
   switchTheme: SwitchThemeData(
     thumbColor: WidgetStatePropertyAll(AppColor.inactiveProgressColor),
