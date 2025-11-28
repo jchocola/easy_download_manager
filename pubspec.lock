@@ -41,6 +41,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.13.0"
+  b_encode_decode:
+    dependency: transitive
+    description:
+      name: b_encode_decode
+      sha256: "2382dc245ee57c28264bf2d0cb63404d7053f032039df85366999b04353a7289"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.4"
+  bittorrent_dht:
+    dependency: transitive
+    description:
+      name: bittorrent_dht
+      sha256: "6be7710a9e48fc43a72a9e6311d98a1bb328d8d73b0eeac84e5c9d6665479d24"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.12"
   bloc:
     dependency: transitive
     description:
@@ -113,6 +129,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.8"
+  dart_ipify:
+    dependency: transitive
+    description:
+      name: dart_ipify
+      sha256: "3b70d589504126107e81ad0703d91394cc8e2039cb0a11ebd92b9b824a5e9561"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.1"
   dbus:
     dependency: transitive
     description:
@@ -121,6 +145,38 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.7.11"
+  dtorrent_common:
+    dependency: transitive
+    description:
+      name: dtorrent_common
+      sha256: a0fbcedfc65546415bab9260e110922456e76d1ca4c804e3682fc21e5a1b31aa
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.7"
+  dtorrent_parser:
+    dependency: "direct main"
+    description:
+      name: dtorrent_parser
+      sha256: "4b971c9b89733026dab8803c078d562f823d6ec8c73cd9222e603a16d4316a98"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.8"
+  dtorrent_task:
+    dependency: "direct main"
+    description:
+      name: dtorrent_task
+      sha256: a1410be4f655afd134151191ef1d0ac231ba79fa8331c1781e23d83680f30b05
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.4.0"
+  dtorrent_tracker:
+    dependency: transitive
+    description:
+      name: dtorrent_tracker
+      sha256: "0020c2714e6380dd90f086c1e9a33fb4fd8cd6d68ba4b3bd0f6560130bf54235"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.3.18"
   equatable:
     dependency: "direct main"
     description:
@@ -129,6 +185,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.7"
+  events_emitter2:
+    dependency: transitive
+    description:
+      name: events_emitter2
+      sha256: "1d2f7b249491e9a143a18992c9a500fc21ac5e271e59e157c12193553ccd3d57"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.4"
   fake_async:
     dependency: transitive
     description:
@@ -369,10 +433,10 @@ packages:
     dependency: transitive
     description:
       name: mime
-      sha256: "41a20518f0cb1256669420fdba0cd90d21561e560ac240f26ef8322e45bb7ed6"
+      sha256: "801fd0b26f14a4a58ccb09d5892c3fbdeff209594300a542492cf13fba9d247a"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.0"
+    version: "1.0.6"
   nested:
     dependency: transitive
     description:
@@ -674,6 +738,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.4.1"
+  synchronized:
+    dependency: transitive
+    description:
+      name: synchronized
+      sha256: c254ade258ec8282947a0acbbc90b9575b4f19673533ee46f2f6e9b3aeefd7c0
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.4.0"
   term_glyph:
     dependency: transitive
     description:
@@ -746,6 +818,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.5"
+  utp_protocol:
+    dependency: transitive
+    description:
+      name: utp_protocol
+      sha256: "8e29e2cebb80b4bf59852128c04079ebf33453542421be99b3c99534f2cc28fb"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.4"
   uuid:
     dependency: transitive
     description:
