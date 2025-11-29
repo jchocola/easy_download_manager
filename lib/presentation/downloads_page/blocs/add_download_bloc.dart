@@ -9,6 +9,7 @@ import 'package:easy_download_manager/core/enum/save_place.dart';
 import 'package:easy_download_manager/data/repository/flutter_downloader_repository_impl.dart';
 import 'package:easy_download_manager/data/repository/flutter_torrent_downloader_impl.dart';
 import 'package:easy_download_manager/domain/models/download_task.dart';
+import 'package:easy_download_manager/flutter_foreground_task.dart';
 import 'package:easy_download_manager/main.dart';
 import 'package:equatable/equatable.dart';
 import 'package:file_picker/file_picker.dart';
@@ -320,41 +321,56 @@ class AddDownloadBloc extends Bloc<AddDownloadBlocEvent, AddDownloadBlocState> {
         /// TORRENT
         ///
         if (currentState.downloadMethod == DOWNLOAD_METHOD.TORRENT) {
-          final torrent = currentState.torrent;
+          // final torrent = currentState.torrent;
 
           try {
-            final torrentTask = await torrentDownloader.createTorrentTask(
-              model: torrent!,
-              saveDir: currentState.savePath,
+            // final TorrentTask torrentTask = await torrentDownloader
+            //     .createTorrentTask(
+            //       model: torrent!,
+            //       saveDir: currentState.savePath,
+            //     );
+
+            // logger.i('Created torrent task' + torrentTask.name);
+
+            // // torrentTask.start();
+
+            // final listener = torrentTask.createListener();
+
+            // // Обрабатываем события торрент задачи
+            // listener.on<TaskCompleted>((event) {
+            //   // Используем Bloc для эмитации события завершения
+            //   // Это можно сделать через дополнительное событие или сохраняя ссылку на задачу
+            //   logger.i('Torrent download completed: ${torrentTask.name}');
+            // });
+
+            // listener.on<TaskStarted>((event) {
+            //   logger.e('Torrent download started ${torrentTask.name}');
+            // });
+
+            // listener.on<StateFileUpdated>((event) {
+            //   // Можно отправлять обновления прогресса
+            //   logger.v('Torrent progress updated: ${torrentTask.progress}');
+            // });
+
+            // listener.on<TaskStopped>((event) {
+            //   // Можно отправлять обновления прогресса
+            //   logger.v('Torrent Stopped: ${torrentTask.progress}');
+            // });
+
+            ///
+            /// START FOREGROUND SERVICE
+            ///
+            await startService();
+
+            ///
+            /// PASS DATA TO START DOWNLOAD
+            ///
+            await sendDataFromUI(
+              torrentFilePath: currentState.torrentFile!.path,
             );
 
-            logger.i('Created torrent task' + torrentTask.name);
-            torrentTask.start();
-
-            final listener = torrentTask.createListener();
-
-            // Обрабатываем события торрент задачи
-            listener.on<TaskCompleted>((event) {
-              // Используем Bloc для эмитации события завершения
-              // Это можно сделать через дополнительное событие или сохраняя ссылку на задачу
-              logger.i('Torrent download completed: ${torrentTask.name}');
-            });
-
-            listener.on<TaskStarted>((event) {
-              logger.e('Torrent download started ${torrentTask.name}');
-            });
-
-            listener.on<StateFileUpdated>((event) {
-              // Можно отправлять обновления прогресса
-              logger.v('Torrent progress updated: ${torrentTask.progress}');
-            });
-
-         listener.on<TaskStopped>((event) {
-              // Можно отправлять обновления прогресса
-              logger.v('Torrent Stopped: ${torrentTask.progress}');
-            });
-
             emit(AddDownloadBlocStateSuccess(success: 'Start Downloading'));
+            add(AddDownloadBlocEvent_Init());
           } catch (e) {
             emit(AddDownloadBlocStateError(error: e.toString()));
             emit(currentState);

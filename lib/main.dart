@@ -7,12 +7,14 @@ import 'package:easy_download_manager/core/theme/light_theme.dart';
 import 'package:easy_download_manager/data/repository/flutter_downloader_repository_impl.dart';
 import 'package:easy_download_manager/data/repository/flutter_torrent_downloader_impl.dart';
 import 'package:easy_download_manager/data/repository/permission_handler_repository_impl.dart';
+import 'package:easy_download_manager/flutter_foreground_task.dart';
 import 'package:easy_download_manager/l10n/app_localizations.dart';
 import 'package:easy_download_manager/main_page.dart';
 import 'package:easy_download_manager/presentation/downloads_page/blocs/add_download_bloc.dart';
 import 'package:easy_download_manager/presentation/downloads_page/blocs/picked_task_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_foreground_task/flutter_foreground_task.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:logger/logger.dart';
 import 'package:toastification/toastification.dart';
@@ -26,7 +28,13 @@ Future<void> main() async {
 
   await DI(); // DI
 
-  await PermissionHandlerRepositoryImpl.instance.notificationRequest();
+  await PermissionHandlerRepositoryImpl.instance
+      .requestNotificationForForegroundTask(); // notification request
+
+  // Initialize port for communication between TaskHandler and UI.
+  FlutterForegroundTask.initCommunicationPort();
+
+  initService(); // init flutter foreground service
 
   runApp(const MyApp());
 }
@@ -45,8 +53,7 @@ class MyApp extends StatelessWidget {
             torrentDownloader: getIt<FlutterTorrentDownloaderImpl>(),
           )..add(AddDownloadBlocEvent_Init()),
         ),
-        BlocProvider(create: (context)=> PickedTaskBloc()),
-        
+        BlocProvider(create: (context) => PickedTaskBloc()),
       ],
       child: AdaptiveTheme(
         light: appLightTheme,
