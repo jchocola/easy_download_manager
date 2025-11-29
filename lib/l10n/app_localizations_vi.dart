@@ -182,6 +182,9 @@ class AppLocalizationsVi extends AppLocalizations {
   String get next => 'Tiếp tục';
 
   @override
+  String get note => 'Note';
+
+  @override
   String get notification => 'Thông báo';
 
   @override

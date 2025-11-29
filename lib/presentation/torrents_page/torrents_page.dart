@@ -1,6 +1,7 @@
 import 'package:easy_download_manager/core/constant/app_constant.dart';
 import 'package:easy_download_manager/l10n/app_localizations.dart';
 import 'package:easy_download_manager/presentation/torrents_page/widgets/all_active_comple_torrent.dart';
+import 'package:easy_download_manager/widget/advice_card.dart';
 import 'package:easy_download_manager/widget/appbar.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +10,7 @@ class TorrentsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context);
     return Scaffold(
       appBar: AppAppBar(title: l10n.torrents),
       body: buildBody(context),
@@ -17,6 +18,7 @@ class TorrentsPage extends StatelessWidget {
   }
 
   Widget buildBody(context) {
+    final l10n = AppLocalizations.of(context);
     return Padding(
       padding: EdgeInsets.symmetric(
         vertical: AppConstant.containerPadding / 2,
@@ -26,7 +28,10 @@ class TorrentsPage extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           spacing: AppConstant.containerPadding,
-          children: [ActiveCompletedAllTorrent()],
+          children: [
+            AdviceCard(title: l10n.note , subtitle: "At the moment, you can download one torrent at a time. We're working on adding support for multiple simultaneous downloads coming soon!",),
+            ActiveCompletedAllTorrent(),
+          ],
         ),
       ),
     );

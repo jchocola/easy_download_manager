@@ -184,6 +184,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get next => 'Next';
 
   @override
+  String get note => 'Note';
+
+  @override
   String get notification => 'Notification';
 
   @override
