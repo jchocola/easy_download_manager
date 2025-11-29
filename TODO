@@ -2,6 +2,7 @@ Problems :
     1. flutter_downloader chỉ lưu đc vào directory có sãn , nêú không có thì sẽ báo lỗi
     2. custom tên file thì phải đi kèm với extension , không là khi tải xuống file không đọc đc ,
     phải chỉnh tay thủ công mới đọc được
+    
 
 
 todo:

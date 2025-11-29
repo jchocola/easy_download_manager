@@ -53,14 +53,14 @@ final GoRouter router = GoRouter(
         ),
 
         // --- ВЕТВЬ 2:  (Files) ---
-        StatefulShellBranch(
-          routes: [
-            GoRoute(
-              path: '/files',
-              builder: (context, state) => const FilesPage(),
-            ),
-          ],
-        ),
+        // StatefulShellBranch(
+        //   routes: [
+        //     GoRoute(
+        //       path: '/files',
+        //       builder: (context, state) => const FilesPage(),
+        //     ),
+        //   ],
+        // ),
 
         // --- ВЕТВЬ 3:  (Torrents) ---
         StatefulShellBranch(
