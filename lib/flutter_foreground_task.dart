@@ -43,28 +43,43 @@ class MyTaskHandler extends TaskHandler {
   void onReceiveData(Object data) async {
     logger.i('onReceiveData: ${data.toString()}');
 
-    logger.i('onReceiveData: ${data.toString()}');
-    logger.i('onReceiveData: ${data.toString()}');
+    late String torrentFilePath;
+    late String saveDir;
+    try {
+      final map = data as Map<String, dynamic>;
+
+      logger.d(map['torrentFilePath']);
+      logger.d(map['saveDir']);
+
+      torrentFilePath = map['torrentFilePath'];
+      saveDir = map['saveDir'];
+    } catch (e) {
+      logger.e('error');
+    }
 
     final Torrent torrent = await FlutterTorrentDownloaderImpl()
-        .createTorrentModel(torrentFilePath: data as String);
+        .createTorrentModel(torrentFilePath: torrentFilePath);
 
-    print('🔴 FOREGROUND SERVICE - Torrent model created: ${torrent.name}');
+    logger.e('🔴 FOREGROUND SERVICE - Torrent model created: ${torrent.name}');
 
-    final saveDir = await getDownloadsDirectory();
     torrentTask = await FlutterTorrentDownloaderImpl().createTorrentTask(
       model: torrent,
-      saveDir: saveDir!.path,
+      saveDir: saveDir,
     );
 
+    /// start torrent download
     torrentTask.start();
 
+    /// creating listener
     taskListener = torrentTask.createListener();
     // // Обрабатываем события торрент задачи
-    taskListener.on<TaskCompleted>((event) {
+    taskListener.on<TaskCompleted>((event)async {
       // Используем Bloc для эмитации события завершения
       // Это можно сделать через дополнительное событие или сохраняя ссылку на задачу
       logger.e('Torrent download completed: ${torrentTask.name}');
+
+      // stop foreground service
+      await stopService();
     });
 
     taskListener.on<TaskStarted>((event) {
@@ -80,12 +95,6 @@ class MyTaskHandler extends TaskHandler {
       // Можно отправлять обновления прогресса
       logger.e('Torrent Stopped: ${torrentTask.progress}');
     });
-
-    // torrentTask = TorrentTask.
-
-    // torrentTask.start()
-
-    // create listener
   }
 
   // Called when the notification button is pressed.
@@ -163,6 +172,14 @@ Future<ServiceRequestResult> stopService() async {
 /// SEND DATA FROM UI (MAIN ISOLATE)
 ///
 
-Future<void> sendDataFromUI({required String torrentFilePath}) async {
-  FlutterForegroundTask.sendDataToTask(torrentFilePath);
+Future<void> sendDataFromUI({
+  required String torrentFilePath,
+  required String saveDir,
+}) async {
+  final Map<String, dynamic> sendData = {
+    'torrentFilePath': torrentFilePath,
+    'saveDir': saveDir,
+  };
+
+  FlutterForegroundTask.sendDataToTask(sendData);
 }

@@ -367,6 +367,7 @@ class AddDownloadBloc extends Bloc<AddDownloadBlocEvent, AddDownloadBlocState> {
             ///
             await sendDataFromUI(
               torrentFilePath: currentState.torrentFile!.path,
+              saveDir: currentState.savePath
             );
 
             emit(AddDownloadBlocStateSuccess(success: 'Start Downloading'));

@@ -48,14 +48,14 @@ class SettingsPage extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 startService();
-                sendDataFromUI(torrentFilePath: 'hello/.torrenr');
+               
               },
               child: Text('Start Sevcie'),
             ),
 
              ElevatedButton(
               onPressed: () {
-                sendDataFromUI(torrentFilePath: 'hello/.torrenr');
+                sendDataFromUI(torrentFilePath: 'hello/.torrenr', saveDir: '');
               },
               child: Text('Send data'),
             ),
