@@ -85,9 +85,7 @@ class OpenShareDelete extends StatelessWidget {
             final File file = File(fullpath);
             logger.i(fullpath);
             if (await file.exists()) {
-             await SharePlus.instance.share(ShareParams(
-                files: [XFile(fullpath)]
-              ));
+              await Share.shareXFiles([XFile(fullpath)]);
             } else {
               showErrorToastification(error: 'File not exists');
             }
@@ -106,7 +104,11 @@ class OpenShareDelete extends StatelessWidget {
                         showErrorToastification(error: 'Cannot open file');
                     }),
               ),
-              BigButton(icon: AppIcon.shareIcon, title: 'Share' , onTap: shareTapped,),
+              BigButton(
+                icon: AppIcon.shareIcon,
+                title: 'Share',
+                onTap: shareTapped,
+              ),
               BigButtonDelete(
                 icon: AppIcon.deleteIcon,
                 title: 'Delete',
