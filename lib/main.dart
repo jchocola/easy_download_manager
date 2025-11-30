@@ -1,4 +1,5 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:easy_download_manager/app_config.bloc.dart';
 import 'package:easy_download_manager/core/constant/router.dart';
 import 'package:easy_download_manager/core/di/DI.dart';
 import 'package:easy_download_manager/core/theme/dark_theme.dart';
@@ -6,6 +7,7 @@ import 'package:easy_download_manager/core/theme/light_theme.dart';
 import 'package:easy_download_manager/data/repository/flutter_downloader_repository_impl.dart';
 import 'package:easy_download_manager/data/repository/flutter_torrent_downloader_impl.dart';
 import 'package:easy_download_manager/data/repository/permission_handler_repository_impl.dart';
+import 'package:easy_download_manager/data/repository/shared_prefs_impl.dart';
 import 'package:easy_download_manager/flutter_foreground_task.dart';
 import 'package:easy_download_manager/l10n/app_localizations.dart';
 import 'package:easy_download_manager/main_page.dart';
@@ -47,6 +49,12 @@ class MyApp extends StatelessWidget {
       // USE FOR GLOBAL PROVIDERS
       providers: [
         BlocProvider(
+          create: (context) =>
+              AppConfigBloc(sharedPrefs: getIt<SharedPrefsImpl>())
+                ..add(AppConfigBlocEvent_load()),
+        ),
+
+        BlocProvider(
           create: (context) => AddDownloadBloc(
             flutterDownloader: getIt<FlutterDownloaderRepositoryImpl>(),
             torrentDownloader: getIt<FlutterTorrentDownloaderImpl>(),
@@ -54,23 +62,32 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(create: (context) => PickedTaskBloc()),
       ],
-      child: AdaptiveTheme(
-        light: appLightTheme,
-        dark: appDarkTheme,
-        initial: AdaptiveThemeMode.dark,
-        builder: (theme, darkTheme) => ToastificationWrapper(
-          child: MaterialApp.router(
-            localizationsDelegates: AppLocalizations.localizationsDelegates,
-            supportedLocales: AppLocalizations.supportedLocales,
-            locale: Locale('vi'),
-            debugShowCheckedModeBanner: false,
-            title: 'EDM',
-            theme: theme,
-            darkTheme: darkTheme,
-            routerConfig: router,
-            // home: const MainPage(),
-          ),
-        ),
+      child: BlocBuilder<AppConfigBloc, AppConfigBlocState>(
+        builder: (context, state) {
+          if (state is AppConfigBloacState_Loaded) {
+            return AdaptiveTheme(
+              light: appLightTheme,
+              dark: appDarkTheme,
+              initial: AdaptiveThemeMode.dark,
+              builder: (theme, darkTheme) => ToastificationWrapper(
+                child: MaterialApp.router(
+                  localizationsDelegates:
+                      AppLocalizations.localizationsDelegates,
+                  supportedLocales: AppLocalizations.supportedLocales,
+                  locale: Locale(state.locale),
+                  debugShowCheckedModeBanner: false,
+                  title: 'EDM',
+                  theme: theme,
+                  darkTheme: darkTheme,
+                  routerConfig: router,
+                  // home: const MainPage(),
+                ),
+              ),
+            );
+          } else {
+            return Center(child: CircularProgressIndicator());
+          }
+        },
       ),
     );
   }
