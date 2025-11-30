@@ -12,7 +12,7 @@ todo:
     3. logic with hive(download_task_custom) and flutter_downloader (download_task)
     4.
 
-    5. create folder if not exists 
+    5. create folder if not exists ✅
     6. remove cloud file download option ✅
     7. notification title and description when torrent download 
     8. confirming when cancel foreground service
@@ -27,3 +27,4 @@ todo:
     17. fix ui
     18. history page ✅
     19 . empty state ui ✅
+    20. alert about app 

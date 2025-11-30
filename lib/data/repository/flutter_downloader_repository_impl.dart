@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:easy_download_manager/core/enum/download_card_status.dart';
 import 'package:easy_download_manager/domain/models/download_task.dart'
     as DownloadTaskModel;
@@ -17,6 +19,25 @@ class FlutterDownloaderRepositoryImpl {
     });
   }
 
+  Future<void> createFolder(String path) async {
+  try {
+    final directory = Directory(path);
+    
+    // Проверяем существует ли папка
+    if (await directory.exists()) {
+      logger.i('Папка уже существует: $path');
+      return;
+    }
+    
+    // Создаем папку (recursive: true создаст все вложенные папки)
+    await directory.create(recursive: true);
+    logger.i('Папка создана: $path');
+    
+  } catch (e) {
+    logger.e('Ошибка при создании папки: $e');
+  }
+}
+
   ///
   /// START DOWNLOADING AND RETURN TASK ID
   ///
@@ -24,6 +45,8 @@ class FlutterDownloaderRepositoryImpl {
     required DownloadTaskModel.DownloadTask task,
   }) async {
     try {
+      await createFolder(task.directory);
+
       final taskId =
           await FlutterDownloader.enqueue(
             url: task.url,
