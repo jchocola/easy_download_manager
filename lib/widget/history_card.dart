@@ -6,52 +6,56 @@ import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 
 class HistoryCard extends StatelessWidget {
-  const HistoryCard({super.key , this.task});
+  const HistoryCard({super.key , this.task , this.onTap});
   final DownloadTask? task;
+  final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return Container(
-      padding: EdgeInsets.all(AppConstant.containerPadding),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(AppConstant.borderRadius),
-        color: theme.colorScheme.onPrimary,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        spacing: AppConstant.containerPadding,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ContainerWithBorderColor(
-            icon: IconConverterFromFileName(filename:task?.filename ?? '' ),
-            color: TaskStattusColorConverter(task: task!),
-          ),
-
-          Expanded(
-            child: Column(
-              spacing: AppConstant.containerPadding,
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(task?.filename ?? 'Unknown', style: theme.textTheme.titleMedium),
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Text('${task?.progress}%', style: theme.textTheme.bodySmall),
-                    Text(
-                      '${DateTime.fromMillisecondsSinceEpoch(task!.timeCreated).toString().substring(0,16)}',
-                      style: theme.textTheme.bodySmall,
-                    ),
-                  ],
-                ),
-
-                _status(task: task,),
-              ],
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: EdgeInsets.all(AppConstant.containerPadding),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(AppConstant.borderRadius),
+          color: theme.colorScheme.onPrimary,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          spacing: AppConstant.containerPadding,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ContainerWithBorderColor(
+              icon: IconConverterFromFileName(filename:task?.filename ?? '' ),
+              color: TaskStattusColorConverter(task: task!),
             ),
-          ),
-        ],
+      
+            Expanded(
+              child: Column(
+                spacing: AppConstant.containerPadding,
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(task?.filename ?? 'Unknown', style: theme.textTheme.titleMedium),
+      
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Text('${task?.progress}%', style: theme.textTheme.bodySmall),
+                      Text(
+                        '${DateTime.fromMillisecondsSinceEpoch(task!.timeCreated).toString().substring(0,16)}',
+                        style: theme.textTheme.bodySmall,
+                      ),
+                    ],
+                  ),
+      
+                  _status(task: task,),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

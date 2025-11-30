@@ -60,7 +60,7 @@ class AddDownloadPage extends StatelessWidget {
             TorrentFileInfo(),
             DownloadType(),
             SavingPlace(),
-            AdditionalParameter(),
+            //AdditionalParameter(),
             SizedBox(height: AppConstant.containerPadding * 3),
             Row(
               spacing: AppConstant.containerPadding,
