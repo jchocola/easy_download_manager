@@ -117,11 +117,13 @@ class TorrentDownloadCard extends StatelessWidget {
                     label: 'Pause',
                     icon: AppIcon.pauseIcon,
                     color: theme.colorScheme.tertiary,
+                  //  onPressed: onPauseTapped,
                   ),
                   ButtonWithIcon(
                     label: 'Cancel',
                     icon: AppIcon.cancelIcon,
                     color: theme.colorScheme.error,
+                    onPressed: onCancelTapped,
                   ),
                 ],
               ),

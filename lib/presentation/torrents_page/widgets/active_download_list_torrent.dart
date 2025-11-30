@@ -25,6 +25,7 @@ class ActiveDownloadsListTorrent extends StatelessWidget {
                 onTap: () {
                  
                 },
+                onCancelTapped: () => context.read<TorrentTaskBloc>().add(TorrentTaskBlocEvent_cancelTask(id: state.runningTaskList[index].id)),
               );
             },
           );

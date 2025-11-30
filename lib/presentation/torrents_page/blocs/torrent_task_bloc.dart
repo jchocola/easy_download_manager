@@ -18,6 +18,16 @@ class TorrentTaskBlocEvent_load extends TorrentTaskBlocEvent {}
 
 class TorrentTaskBlocEvent_reload extends TorrentTaskBlocEvent {}
 
+class TorrentTaskBlocEvent_cancelTask extends TorrentTaskBlocEvent {
+  final String id;
+
+  TorrentTaskBlocEvent_cancelTask({required this.id});
+
+  @override
+  List<Object?> get props => [id];
+}
+
+
 ///
 /// STATE
 ///
@@ -117,6 +127,21 @@ class TorrentTaskBloc extends Bloc<TorrentTaskBlocEvent, TorrentTaskBlocState> {
         Future.delayed((Duration(seconds: 5)), () {
           add(TorrentTaskBlocEvent_load());
         });
+      } catch (e) {
+        emit(TorrentTaskBlocState_error(error: e.toString()));
+        add(TorrentTaskBlocEvent_load());
+      }
+    });
+
+
+    ///
+    /// CANCEL TASK
+    /// 
+    on<TorrentTaskBlocEvent_cancelTask>((event, emit) async {
+      try {
+        await localDb.deleteTorrentTask(id: event.id);
+        logger.i('TorrentTaskBlocEvent_cancelTask: ${event.id}');
+        add(TorrentTaskBlocEvent_load());
       } catch (e) {
         emit(TorrentTaskBlocState_error(error: e.toString()));
         add(TorrentTaskBlocEvent_load());
