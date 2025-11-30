@@ -2,6 +2,7 @@ import 'package:easy_download_manager/core/constant/app_constant.dart';
 import 'package:easy_download_manager/core/constant/app_icon.dart';
 import 'package:easy_download_manager/presentation/torrents_page/blocs/torrent_task_bloc.dart';
 import 'package:easy_download_manager/widget/download_card.dart';
+import 'package:easy_download_manager/widget/empty_card.dart';
 import 'package:easy_download_manager/widget/torrent_download.card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,6 +16,12 @@ class ActiveDownloadsListTorrent extends StatelessWidget {
     return BlocBuilder<TorrentTaskBloc, TorrentTaskBlocState>(
       builder: (context, state) {
         if (state is TorrentTaskBlocState_loaded) {
+          if (state.runningTaskList.isEmpty) {
+            return Center(
+              child: EmptyCard(),
+            );
+          }
+
           return ListView.builder(
             shrinkWrap: true,
             itemCount: state.runningTaskList.length,
@@ -22,10 +29,12 @@ class ActiveDownloadsListTorrent extends StatelessWidget {
             itemBuilder: (context, index) {
               return TorrentDownloadCard(
                 task: state.runningTaskList[index],
-                onTap: () {
-                 
-                },
-                onCancelTapped: () => context.read<TorrentTaskBloc>().add(TorrentTaskBlocEvent_cancelTask(id: state.runningTaskList[index].id)),
+                onTap: () {},
+                onCancelTapped: () => context.read<TorrentTaskBloc>().add(
+                  TorrentTaskBlocEvent_cancelTask(
+                    id: state.runningTaskList[index].id,
+                  ),
+                ),
               );
             },
           );

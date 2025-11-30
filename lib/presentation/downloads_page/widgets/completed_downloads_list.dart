@@ -2,6 +2,7 @@ import 'package:easy_download_manager/core/enum/download_card_status.dart';
 import 'package:easy_download_manager/presentation/downloads_page/blocs/complete_tasks_bloc.dart';
 import 'package:easy_download_manager/presentation/downloads_page/blocs/picked_task_bloc.dart';
 import 'package:easy_download_manager/widget/download_card.dart';
+import 'package:easy_download_manager/widget/empty_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -14,6 +15,11 @@ class CompletedDownloadsList extends StatelessWidget {
     return BlocBuilder<CompleteTasksBloc, CompleteTasksBlocState>(
       builder: (context, state) {
         if (state is CompleteTasksBlocState_loaded) {
+
+          if (state.completedTasks.isEmpty) {
+            return Center(child: EmptyCard());
+          }
+
           return ListView.builder(
             shrinkWrap: true,
             itemCount: state.completedTasks.length,

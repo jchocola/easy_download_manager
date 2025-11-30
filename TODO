@@ -11,3 +11,19 @@ todo:
     2. logic with hive (download_task_custom)
     3. logic with hive(download_task_custom) and flutter_downloader (download_task)
     4.
+
+    5. create folder if not exists 
+    6. remove cloud file download option
+    7. notification title and description when torrent download 
+    8. confirming when cancel foreground service
+    9. translate notification
+    10.remove speed limit option
+    11.remove internet setting option
+    12. notification when download completed
+    13. languages
+    14. sorting download list
+    15.remove other parameters in download option (only keep folder path and file name)
+    16. fix icons
+    17. fix ui
+    18. history page
+    19 . empty state ui

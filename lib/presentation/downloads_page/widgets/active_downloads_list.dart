@@ -1,5 +1,6 @@
 import 'package:easy_download_manager/presentation/downloads_page/blocs/active_downloading_tasks_bloc.dart';
 import 'package:easy_download_manager/widget/downloading_card.dart';
+import 'package:easy_download_manager/widget/empty_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -15,9 +16,7 @@ class ActiveDownloadsList extends StatelessWidget {
           return Center(child: CircularProgressIndicator());
         } else if (state is ActiveDownloadingTasksState_Loaded) {
           if (state.tasks.isEmpty) {
-            return Center(
-              child: Text('No active downloads'),
-            );
+            return EmptyCard();
           }
           return ListView.builder(
             shrinkWrap: true,
@@ -26,8 +25,12 @@ class ActiveDownloadsList extends StatelessWidget {
             itemBuilder: (context, index) {
               final task = state.tasks[index];
               return DownloadingCard(
-                onCancelTapped: () => context.read<ActiveDownloadingTasksBloc>().add(ActiveDownloadingTasksEvent_CancelTask(task: task)),
-                onPauseTapped: () => context.read<ActiveDownloadingTasksBloc>().add(ActiveDownloadingTasksEvent_PauseTask(task: task)),
+                onCancelTapped: () => context
+                    .read<ActiveDownloadingTasksBloc>()
+                    .add(ActiveDownloadingTasksEvent_CancelTask(task: task)),
+                onPauseTapped: () => context
+                    .read<ActiveDownloadingTasksBloc>()
+                    .add(ActiveDownloadingTasksEvent_PauseTask(task: task)),
                 task: task,
                 onTap: () => context.push('/downloads/download_detail_page'),
               );
@@ -41,9 +44,9 @@ class ActiveDownloadsList extends StatelessWidget {
                 Text('Error: ${state.message}'),
                 ElevatedButton(
                   onPressed: () {
-                    context
-                        .read<ActiveDownloadingTasksBloc>()
-                        .add(ActiveDownloadingTasksEvent_Refresh());
+                    context.read<ActiveDownloadingTasksBloc>().add(
+                      ActiveDownloadingTasksEvent_Refresh(),
+                    );
                   },
                   child: Text('Retry'),
                 ),
