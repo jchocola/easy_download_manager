@@ -49,8 +49,8 @@ class AddDownloadPage extends StatelessWidget {
                       return UrlInput();
                     case DOWNLOAD_METHOD.TORRENT:
                       return TorrentPickFile();
-                    case DOWNLOAD_METHOD.CLOUD:
-                      return UrlInput();
+                    // case DOWNLOAD_METHOD.CLOUD:
+                    //   return UrlInput();
                   }
                 } else {
                   return CircularProgressIndicator();
