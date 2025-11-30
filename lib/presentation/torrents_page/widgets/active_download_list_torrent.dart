@@ -2,6 +2,7 @@ import 'package:easy_download_manager/core/constant/app_constant.dart';
 import 'package:easy_download_manager/core/constant/app_icon.dart';
 import 'package:easy_download_manager/presentation/torrents_page/blocs/torrent_task_bloc.dart';
 import 'package:easy_download_manager/widget/download_card.dart';
+import 'package:easy_download_manager/widget/torrent_download.card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -19,7 +20,12 @@ class ActiveDownloadsListTorrent extends StatelessWidget {
             itemCount: state.runningTaskList.length,
             physics: NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
-              return Text(state.runningTaskList[index].name);
+              return TorrentDownloadCard(
+                task: state.runningTaskList[index],
+                onTap: () {
+                 
+                },
+              );
             },
           );
         } else {

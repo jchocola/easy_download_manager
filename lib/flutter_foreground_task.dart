@@ -3,22 +3,27 @@ import 'dart:convert';
 import 'package:dtorrent_parser/dtorrent_parser.dart';
 import 'package:dtorrent_task/dtorrent_task.dart';
 import 'package:easy_download_manager/data/repository/flutter_torrent_downloader_impl.dart';
+import 'package:easy_download_manager/data/repository/local_torrent_db_impl.dart';
+import 'package:easy_download_manager/domain/models/torrent_task_model.dart';
 import 'package:easy_download_manager/main.dart';
 import 'package:flutter_foreground_task/flutter_foreground_task.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:uuid/uuid.dart';
 
 // The callback function should always be a top-level or static function.
 @pragma('vm:entry-point')
 void startCallback() {
-  FlutterForegroundTask.setTaskHandler(MyTaskHandler());
+  FlutterForegroundTask.setTaskHandler(TorrentTaskHandler());
 }
 
 ///
 /// TASK HANDLER
 ///
-class MyTaskHandler extends TaskHandler {
+class TorrentTaskHandler extends TaskHandler {
+  final LocalTorrentDbImpl _localTorrentDb = LocalTorrentDbImpl();
   late TorrentTask torrentTask;
   late dynamic taskListener;
+  late TorrentTaskModel taskModel;
 
   // Called when the task is started.
   @override
@@ -36,6 +41,24 @@ class MyTaskHandler extends TaskHandler {
   @override
   Future<void> onDestroy(DateTime timestamp, bool isTimeout) async {
     logger.e('onDestroy  ${timestamp}');
+
+    if (torrentTask.progress < 1) {
+      final taskModelWithNewData = taskModel.copyWith(
+        status: TORRENT_TASK_STATUS.TaskPaused,
+        progress: torrentTask.progress,
+        currentDownloadSpeed: torrentTask.currentDownloadSpeed,
+        averageDownloadSpeed: torrentTask.averageDownloadSpeed,
+        allPeersNumber: torrentTask.allPeersNumber,
+        connectedPeersNumber: torrentTask.connectedPeersNumber,
+        seederNumber: torrentTask.seederNumber,
+        downloaded: torrentTask.downloaded,
+      );
+      torrentTask.pause(); 
+
+      await _localTorrentDb.updateTorrentTask(
+        torrentTask: taskModelWithNewData,
+      );
+    }
   }
 
   // Called when data is sent using `FlutterForegroundTask.sendDataToTask`.
@@ -67,33 +90,113 @@ class MyTaskHandler extends TaskHandler {
       saveDir: saveDir,
     );
 
+    /// create torrent task in db
+    taskModel = TorrentTaskModel(
+      id: Uuid().v4(),
+      name: torrentTask.name,
+      filePath: torrentFilePath,
+      saveDir: saveDir,
+      progress: torrentTask.progress,
+      status: TORRENT_TASK_STATUS.TaskStarted,
+      downloaded: 0,
+      speed: torrentTask.currentDownloadSpeed,
+      allPeersNumber: torrentTask.allPeersNumber,
+      total: torrent.length,
+      connectedPeersNumber: torrentTask.connectedPeersNumber,
+      seederNumber: torrentTask.seederNumber,
+      currentDownloadSpeed: torrentTask.currentDownloadSpeed,
+      averageDownloadSpeed: torrentTask.averageDownloadSpeed,
+    );
+    // save to db
+
+    await _localTorrentDb.saveNewTorrentTask(torrentTask: taskModel);
+    logger.e(
+      '🔴 FOREGROUND SERVICE - Torrent task saved to db: ${torrentTask.name}',
+    );
+
     /// start torrent download
     torrentTask.start();
 
     /// creating listener
     taskListener = torrentTask.createListener();
     // // Обрабатываем события торрент задачи
-    taskListener.on<TaskCompleted>((event)async {
+    taskListener.on<TaskCompleted>((event) async {
       // Используем Bloc для эмитации события завершения
       // Это можно сделать через дополнительное событие или сохраняя ссылку на задачу
       logger.e('Torrent download completed: ${torrentTask.name}');
+
+      final taskModelWithNewData = taskModel.copyWith(
+        status: TORRENT_TASK_STATUS.TaskCompleted,
+        progress: torrentTask.progress,
+        currentDownloadSpeed: torrentTask.currentDownloadSpeed,
+        averageDownloadSpeed: torrentTask.averageDownloadSpeed,
+        allPeersNumber: torrentTask.allPeersNumber,
+        connectedPeersNumber: torrentTask.connectedPeersNumber,
+        seederNumber: torrentTask.seederNumber,
+        downloaded: torrentTask.downloaded,
+      );
+      await _localTorrentDb.updateTorrentTask(
+        torrentTask: taskModelWithNewData,
+      );
 
       // stop foreground service
       await stopService();
     });
 
-    taskListener.on<TaskStarted>((event) {
+    taskListener.on<TaskStarted>((event) async {
       logger.e('Torrent download started ${torrentTask.name}');
+
+      final taskModelWithNewData = taskModel.copyWith(
+        status: TORRENT_TASK_STATUS.TaskStarted,
+        progress: torrentTask.progress,
+        currentDownloadSpeed: torrentTask.currentDownloadSpeed,
+        averageDownloadSpeed: torrentTask.averageDownloadSpeed,
+        allPeersNumber: torrentTask.allPeersNumber,
+        connectedPeersNumber: torrentTask.connectedPeersNumber,
+        seederNumber: torrentTask.seederNumber,
+        downloaded: torrentTask.downloaded,
+      );
+      await _localTorrentDb.updateTorrentTask(
+        torrentTask: taskModelWithNewData,
+      );
     });
 
-    taskListener.on<StateFileUpdated>((event) {
+    taskListener.on<StateFileUpdated>((event) async {
       // Можно отправлять обновления прогресса
       logger.e('Torrent progress updated: ${torrentTask.progress}');
+
+      final taskModelWithNewData = taskModel.copyWith(
+        status: TORRENT_TASK_STATUS.TaskStarted,
+        progress: torrentTask.progress,
+        currentDownloadSpeed: torrentTask.currentDownloadSpeed,
+        averageDownloadSpeed: torrentTask.averageDownloadSpeed,
+        allPeersNumber: torrentTask.allPeersNumber,
+        connectedPeersNumber: torrentTask.connectedPeersNumber,
+        seederNumber: torrentTask.seederNumber,
+        downloaded: torrentTask.downloaded,
+      );
+      await _localTorrentDb.updateTorrentTask(
+        torrentTask: taskModelWithNewData,
+      );
     });
 
-    taskListener.on<TaskStopped>((event) {
+    taskListener.on<TaskStopped>((event) async {
       // Можно отправлять обновления прогресса
       logger.e('Torrent Stopped: ${torrentTask.progress}');
+
+      final taskModelWithNewData = taskModel.copyWith(
+        status: TORRENT_TASK_STATUS.TaskStopped,
+        progress: torrentTask.progress,
+        currentDownloadSpeed: torrentTask.currentDownloadSpeed,
+        averageDownloadSpeed: torrentTask.averageDownloadSpeed,
+        allPeersNumber: torrentTask.allPeersNumber,
+        connectedPeersNumber: torrentTask.connectedPeersNumber,
+        seederNumber: torrentTask.seederNumber,
+        downloaded: torrentTask.downloaded,
+      );
+      await _localTorrentDb.updateTorrentTask(
+        torrentTask: taskModelWithNewData,
+      );
     });
   }
 

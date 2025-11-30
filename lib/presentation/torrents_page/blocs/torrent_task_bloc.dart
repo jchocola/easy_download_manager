@@ -76,7 +76,7 @@ class TorrentTaskBloc extends Bloc<TorrentTaskBlocEvent, TorrentTaskBlocState> {
       try {
         final runningTask = await localDb.getRunningTorrentTaskList();
         final completedTask = await localDb.getCompletedTorrentTaskList();
-        final othersTask = await localDb.getCompletedTorrentTaskList();
+        final othersTask = await localDb.getOthersTorrentTaskList();
 
         logger.i('TorrentTaskBlocEvent_load');
         emit(
@@ -103,7 +103,7 @@ class TorrentTaskBloc extends Bloc<TorrentTaskBlocEvent, TorrentTaskBlocState> {
         try {
         final runningTask = await localDb.getRunningTorrentTaskList();
         final completedTask = await localDb.getCompletedTorrentTaskList();
-        final othersTask = await localDb.getCompletedTorrentTaskList();
+        final othersTask = await localDb.getOthersTorrentTaskList();
 
         logger.i('TorrentTaskBlocEvent_reload');
         emit(

@@ -56,8 +56,8 @@ class LocalTorrentDbImpl implements LocalTorrentDB {
       }).toList();
 
       final filteredList = listTorrentTask.where((element) {
-        return element.status != TORRENT_TASK_STATUS.TaskCompleted &&
-            element.status != TORRENT_TASK_STATUS.TaskStarted;
+        return element.status == TORRENT_TASK_STATUS.TaskPaused ||
+            element.status == TORRENT_TASK_STATUS.TaskStopped;
       }).toList();
 
       return filteredList;
