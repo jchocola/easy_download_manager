@@ -6,6 +6,7 @@ import 'package:dtorrent_parser/dtorrent_parser.dart';
 import 'package:dtorrent_task/dtorrent_task.dart';
 import 'package:easy_download_manager/core/enum/download_status.dart';
 import 'package:easy_download_manager/core/enum/save_place.dart';
+import 'package:easy_download_manager/data/repository/direct_link_impl.dart';
 import 'package:easy_download_manager/data/repository/flutter_downloader_repository_impl.dart';
 import 'package:easy_download_manager/data/repository/flutter_torrent_downloader_impl.dart';
 import 'package:easy_download_manager/domain/models/download_task.dart';
@@ -162,9 +163,11 @@ class AddDownloadBlocStateError extends AddDownloadBlocState {
 class AddDownloadBloc extends Bloc<AddDownloadBlocEvent, AddDownloadBlocState> {
   final FlutterDownloaderRepositoryImpl flutterDownloader;
   final FlutterTorrentDownloaderImpl torrentDownloader;
+  final DirectLinkImpl directLinkRepository;
   AddDownloadBloc({
     required this.flutterDownloader,
     required this.torrentDownloader,
+    required this.directLinkRepository,
   }) : super(AddDownloadBlocStateInitial()) {
     ///
     /// INIT
@@ -367,11 +370,68 @@ class AddDownloadBloc extends Bloc<AddDownloadBlocEvent, AddDownloadBlocState> {
             ///
             await sendDataFromUI(
               torrentFilePath: currentState.torrentFile!.path,
-              saveDir: currentState.savePath
+              saveDir: currentState.savePath,
             );
 
             emit(AddDownloadBlocStateSuccess(success: 'Start Downloading'));
             add(AddDownloadBlocEvent_Init());
+          } catch (e) {
+            emit(AddDownloadBlocStateError(error: e.toString()));
+            emit(currentState);
+          }
+        }
+
+        ///
+        /// SOCIAL MEDIA DOWNLOAD
+        ///
+        if (currentState.downloadMethod == DOWNLOAD_METHOD.SOCIAL) {
+          try {
+            final siteModel = await directLinkRepository
+                .fetchDirectLink(url: currentState.downloadUrl);
+            logger.e('Fetched direct link: ${siteModel.toJson()}');
+
+            String? directLink;
+            if (siteModel.links != null && siteModel.links!.isNotEmpty) {
+              directLink = siteModel.links!.first.link;
+              logger.e('Direct link found: $directLink');
+            } else {
+              throw Exception('No direct links found');
+            }
+
+            // update downloadUrl with directLink
+            final updatedState = currentState.copyWith(
+              downloadUrl: directLink,
+              fileName: siteModel.title ?? currentState.fileName,
+            );
+            emit(updatedState);
+
+          } catch (e) {
+            emit(AddDownloadBlocStateError(error: e.toString()));
+            emit(currentState);
+          }
+
+          // downloadtask model
+          final DownloadTask downloadTaskModel = DownloadTask(
+            id: '',
+            url: currentState.downloadUrl,
+            fileName: currentState.fileName,
+            directory: currentState.savePath,
+            method: currentState.downloadMethod,
+            status: DOWNLOAD_STATUS.QUEUED,
+            downloadedBytes: 0,
+            totalBytes: 0,
+            speedBytesPerSecond: 0,
+            isResumable: true,
+            createdAt: DateTime.now(),
+            updatedAt: DateTime.now(),
+          );
+
+          try {
+            await flutterDownloader.createNewTask(task: downloadTaskModel).then(
+              (value) {
+                emit(AddDownloadBlocStateSuccess(success: 'Start Downloading'));
+              },
+            );
           } catch (e) {
             emit(AddDownloadBlocStateError(error: e.toString()));
             emit(currentState);

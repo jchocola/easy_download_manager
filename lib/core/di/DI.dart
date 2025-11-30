@@ -1,3 +1,4 @@
+import 'package:easy_download_manager/data/repository/direct_link_impl.dart';
 import 'package:easy_download_manager/data/repository/flutter_downloader_repository_impl.dart';
 import 'package:easy_download_manager/data/repository/flutter_torrent_downloader_impl.dart';
 import 'package:easy_download_manager/data/repository/local_torrent_db_impl.dart';
@@ -17,6 +18,8 @@ Future<void> DI() async {
   );
 
   getIt.registerSingleton<LocalTorrentDB>(LocalTorrentDbImpl());
+
+  getIt.registerSingleton<DirectLinkImpl>(DirectLinkImpl());
 
   logger.i('DI');
 }

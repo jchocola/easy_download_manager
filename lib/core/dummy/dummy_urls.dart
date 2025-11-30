@@ -43,4 +43,24 @@ class DummyUrls {
 
   static final String video5 =
       'https://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4';
+
+  static final String youtubreVideo1 =
+      'https://www.youtube.com/watch?v=CYsaRfgKoNk&list=RDGMEMYH9CUrFO7CfLJpaD7UR85wVMMU-kqztMG5M&index=4';
+  static final String youtubreVideo2 =
+      'https://www.youtube.com/watch?v=6rvv8bU3pKA&t=305s';
+
+  static final String fbVideo1 =
+      'https://www.facebook.com/reel/25215212228073434';
+  static final String fbVideo2 =
+      'https://www.facebook.com/reel/2221059371731888';
+
+  static final String instagramVideo1 =
+      'https://www.instagram.com/reel/DO3SwEbEovk/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ==';
+  static final String instagramVideo2 =
+      'https://www.instagram.com/reel/DRg8MPxDjFO/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ==';
+
+  static final String tiktokVideo1 =
+      'https://www.tiktok.com/@blogtamsu.xh/video/7576601349261888784?is_from_webapp=1&sender_device=pc';
+  static final String tiktokVideo2 =
+      'https://www.tiktok.com/@yanaaesth/video/7567762926979796280';
 }
