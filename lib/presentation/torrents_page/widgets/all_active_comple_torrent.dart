@@ -79,19 +79,42 @@ class StopServiceButtonOrSortButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    void stopTapped() async {
+      showDialog(context: context, builder: (context) {
+        return AlertDialog(
+          title: Text('Stop Foreground Service' , style: theme.textTheme.titleMedium,),
+          content: Text('Are you sure you want to stop the foreground service? This will pause all active downloads.' , style: theme.textTheme.bodyMedium,),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+              },
+              child: Text('Cancel'),
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                await stopService();
+                Navigator.of(context).pop(); // Close the dialog
+              },
+              child: Text('Stop'),
+            ),
+          ],
+        );
+      });
+    }
+
     return StreamBuilder(
       stream: isServiceRunning(),
       builder: (context, snapshot) {
         if (snapshot.hasData && snapshot.data == true) {
           return IconButton(
-            onPressed: () async {
-              await stopService();
-            },
+            onPressed: () => stopTapped(),
             icon: Icon(Icons.stop_circle_outlined),
             //label: Text('Stop Download'),
           );
         } else {
-          return IconButton(onPressed: () {}, icon: Icon(AppIcon.sortIcon));
+          return SizedBox();
         }
       },
     );

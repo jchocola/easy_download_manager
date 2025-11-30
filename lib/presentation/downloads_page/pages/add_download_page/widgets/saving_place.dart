@@ -33,10 +33,16 @@ class SavingPlace extends StatelessWidget {
           ),
 
           Text(l10n.selectWhereToSaveTheFile, style: theme.textTheme.bodySmall),
-
+        
           Text(l10n.fileName, style: theme.textTheme.bodyMedium),
+            Text('Please enter the file name with extension (ex: .pdf, .mp4, .mp3)\nIf don\'t know, leave it as default.',
+              style: theme.textTheme.bodySmall?.copyWith(
+                decoration: TextDecoration.underline,
+                fontStyle: FontStyle.italic,
+              )),
+
           Input(
-            hintText: 'example',
+            hintText: AppConstant.fileNameHintText,
             onChanged: (value) => context.read<AddDownloadBloc>().add(
               AddDownloadBlocEvent_ChangeFileName(value: value),
             ),

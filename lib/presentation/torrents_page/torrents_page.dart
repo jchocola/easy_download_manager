@@ -1,6 +1,7 @@
 import 'package:easy_download_manager/core/constant/app_constant.dart';
 import 'package:easy_download_manager/core/di/DI.dart';
 import 'package:easy_download_manager/domain/repository/local_torent_db.dart';
+import 'package:easy_download_manager/flutter_foreground_task.dart';
 import 'package:easy_download_manager/l10n/app_localizations.dart';
 import 'package:easy_download_manager/presentation/torrents_page/blocs/torrent_task_bloc.dart';
 import 'package:easy_download_manager/presentation/torrents_page/widgets/all_active_comple_torrent.dart';
@@ -48,10 +49,33 @@ class TorrentsPage extends StatelessWidget {
               subtitle:
                   "At the moment, you can download one torrent at a time. We're working on adding support for multiple simultaneous downloads coming soon!",
             ),
+            AdviceWhenForegroundTaskRunning(),
             ActiveCompletedAllTorrent(),
           ],
         ),
       ),
+    );
+  }
+}
+
+class AdviceWhenForegroundTaskRunning extends StatelessWidget {
+  const AdviceWhenForegroundTaskRunning({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder(
+      stream: isServiceRunning(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData && snapshot.data == true) {
+          return AdviceCard(
+            title: 'Notice',
+            subtitle:
+                'If downloads are not progressing, stop the foreground , delete a download, and restart it.',
+          );
+        } else {
+          return SizedBox();
+        }
+      },
     );
   }
 }
