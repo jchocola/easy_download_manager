@@ -39,11 +39,11 @@ class SettingsPage extends StatelessWidget {
         child: Column(
           spacing: AppConstant.containerPadding,
           children: [
-            ThreeInfo(),
+            //ThreeInfo(),
 
-            SizedBox(height: AppConstant.containerPadding * 2),
+           // SizedBox(height: AppConstant.containerPadding * 2),
             SettingCategories(),
-            QuickSetting(),
+            //QuickSetting(),
 
             // ElevatedButton(
             //   onPressed: () {
@@ -67,11 +67,11 @@ class SettingsPage extends StatelessWidget {
             //   child: Text('Stop Sevcie'),
             // ),
 
-            AdviceCard(
-              title: l10n.advice,
-              subtitle: l10n
-                  .useSpeedLimitsToSaveBandwidthAndPreventNetworkOverloadNetworkSettingsWillHelpOptimizeDownloadsDependingOnTheTypeOfConnection,
-            ),
+            // AdviceCard(
+            //   title: l10n.advice,
+            //   subtitle: l10n
+            //       .useSpeedLimitsToSaveBandwidthAndPreventNetworkOverloadNetworkSettingsWillHelpOptimizeDownloadsDependingOnTheTypeOfConnection,
+            // ),
           ],
         ),
       ),

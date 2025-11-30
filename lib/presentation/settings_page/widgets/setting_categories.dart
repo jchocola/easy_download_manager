@@ -25,18 +25,18 @@ class SettingCategories extends StatelessWidget {
         children: [
           Text(l10n.categoriesSettings),
 
-          FileInfoCard2(
-            title: l10n.speedLimit,
-            icon: AppIcon.speedIcon,
-            subtitle: l10n.setSpeedLimitsAndRulesForAutomaticEnforcement,
-            onTap: () => context.pushReplacement('/settings/network_speed'),
-          ),
-          FileInfoCard2(
-            title: l10n.networkManagement,
-            icon: AppIcon.networkIcon,
-            subtitle: l10n.configureBehaviorWhenNetworkConnectionChanges,
-            onTap: () => context.pushReplacement('/settings/network_setting'),
-          ),
+          // FileInfoCard2(
+          //   title: l10n.speedLimit,
+          //   icon: AppIcon.speedIcon,
+          //   subtitle: l10n.setSpeedLimitsAndRulesForAutomaticEnforcement,
+          //   onTap: () => context.pushReplacement('/settings/network_speed'),
+          // ),
+          // FileInfoCard2(
+          //   title: l10n.networkManagement,
+          //   icon: AppIcon.networkIcon,
+          //   subtitle: l10n.configureBehaviorWhenNetworkConnectionChanges,
+          //   onTap: () => context.pushReplacement('/settings/network_setting'),
+          // ),
           FileInfoCard2(
             title: l10n.notification,
             icon: AppIcon.notificationIcon,

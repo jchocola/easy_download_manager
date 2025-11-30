@@ -68,7 +68,7 @@ class NotificationPage extends StatelessWidget {
               ),
             ),
 
-            OtherSetting(),
+           // OtherSetting(),
             AdviceCard(
               title: l10n.advice,
               subtitle: l10n
