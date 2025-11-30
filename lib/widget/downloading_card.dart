@@ -1,6 +1,7 @@
 import 'dart:isolate';
 import 'dart:ui';
 
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:easy_download_manager/core/constant/app_color.dart';
 import 'package:easy_download_manager/core/constant/app_constant.dart';
 import 'package:easy_download_manager/core/constant/app_icon.dart';
@@ -14,11 +15,17 @@ import 'package:flutter_downloader/flutter_downloader.dart' as fl_dl;
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class DownloadingCard extends StatefulWidget {
-  DownloadingCard({super.key, required this.task, this.onTap, this.onCancelTapped,this.onPauseTapped});
+  DownloadingCard({
+    super.key,
+    required this.task,
+    this.onTap,
+    this.onCancelTapped,
+    this.onPauseTapped,
+  });
   final fl_dl.DownloadTask task;
   void Function()? onTap;
   void Function()? onCancelTapped;
- void Function()? onPauseTapped; 
+  void Function()? onPauseTapped;
   @override
   State<DownloadingCard> createState() => _DownloadingCardState();
 }
@@ -121,7 +128,9 @@ class _DownloadingCardState extends State<DownloadingCard> {
               children: [
                 ContainerWithBorderColor(
                   withGradient: true,
-                  icon: IconConverterFromFileName(filename: widget.task.filename!),
+                  icon: IconConverterFromFileName(
+                    filename: widget.task.filename!,
+                  ),
                 ),
                 SizedBox(width: AppConstant.containerPadding),
                 Column(
@@ -169,13 +178,13 @@ class _DownloadingCardState extends State<DownloadingCard> {
                     label: 'Pause',
                     icon: AppIcon.pauseIcon,
                     color: theme.colorScheme.tertiary,
-                     onPressed: widget.onPauseTapped,
+                    onPressed: widget.onPauseTapped,
                   ),
                   ButtonWithIcon(
                     label: 'Cancel',
                     icon: AppIcon.cancelIcon,
                     color: theme.colorScheme.error,
-                      onPressed: widget.onCancelTapped,
+                    onPressed: widget.onCancelTapped,
                   ),
                 ],
               ),
@@ -192,7 +201,7 @@ class _DownloadingCardState extends State<DownloadingCard> {
                     label: 'Cancel',
                     icon: AppIcon.cancelIcon,
                     color: theme.colorScheme.error,
-                      onPressed: widget.onCancelTapped,
+                    onPressed: widget.onCancelTapped,
                   ),
                 ],
               ),
@@ -205,7 +214,7 @@ class _DownloadingCardState extends State<DownloadingCard> {
   Widget _buildProgress(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final theme = Theme.of(context);
-
+    final isDarkMode = AdaptiveTheme.of(context).mode == AdaptiveThemeMode.dark;
     // Determine progress text based on status
     String progressText;
     if (widget.task.status == fl_dl.DownloadTaskStatus.complete) {
@@ -227,8 +236,8 @@ class _DownloadingCardState extends State<DownloadingCard> {
             currentStep: widget.task.progress,
             size: AppConstant.loadingHeight,
             padding: 0,
-            selectedColor: AppColor.activeProgressColor,
-            unselectedColor: AppColor.inactiveProgressColor,
+            selectedColor: isDarkMode ? AppDarkColor.activeProgressColor : AppLightColor.activeProgressColor,
+            unselectedColor: isDarkMode ? AppDarkColor.inactiveProgressColor : AppLightColor.inactiveProgressColor,
             roundedEdges: Radius.circular(10),
           ),
           SizedBox(

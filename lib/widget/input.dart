@@ -21,9 +21,11 @@ class Input extends StatelessWidget {
       onChanged: onChanged,
       readOnly: readOnly,
       cursorColor: theme.focusColor,
+      style: theme.textTheme.bodyMedium,
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: theme.textTheme.bodySmall,
+        
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: theme.unselectedWidgetColor),
           borderRadius: BorderRadius.circular(AppConstant.borderRadius),

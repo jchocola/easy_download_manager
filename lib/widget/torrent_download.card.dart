@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:easy_download_manager/core/constant/app_color.dart';
 import 'package:easy_download_manager/core/constant/app_constant.dart';
 import 'package:easy_download_manager/core/constant/app_icon.dart';
@@ -65,11 +66,10 @@ class TorrentDownloadCard extends StatelessWidget {
                     if (task?.status == TORRENT_TASK_STATUS.TaskStarted)
                       buildProgress(context),
 
-
                     ///
                     ///Peers and seeds
                     ///
-                       if (task?.status == TORRENT_TASK_STATUS.TaskStarted)
+                    if (task?.status == TORRENT_TASK_STATUS.TaskStarted)
                       buildPeersAndSeeds(context),
 
                     ///
@@ -117,7 +117,7 @@ class TorrentDownloadCard extends StatelessWidget {
                     label: 'Pause',
                     icon: AppIcon.pauseIcon,
                     color: theme.colorScheme.tertiary,
-                  //  onPressed: onPauseTapped,
+                    //  onPressed: onPauseTapped,
                   ),
                   ButtonWithIcon(
                     label: 'Cancel',
@@ -155,6 +155,7 @@ class TorrentDownloadCard extends StatelessWidget {
   Widget buildProgress(context) {
     final size = MediaQuery.of(context).size;
     final theme = Theme.of(context);
+    final isDarkMode = AdaptiveTheme.of(context).mode == AdaptiveThemeMode.dark;
     return Padding(
       padding: EdgeInsets.symmetric(vertical: AppConstant.containerPadding),
       child: Column(
@@ -163,11 +164,13 @@ class TorrentDownloadCard extends StatelessWidget {
           StepProgressIndicator(
             fallbackLength: size.width * 0.7,
             totalSteps: 100,
-            currentStep: (double.parse(task?.progress.toStringAsFixed(2) ?? '1') * 100).toInt(),
+            currentStep:
+                (double.parse(task?.progress.toStringAsFixed(2) ?? '1') * 100)
+                    .toInt(),
             size: AppConstant.loadingHeight,
             padding: 0,
-            selectedColor: AppColor.activeProgressColor,
-            unselectedColor: AppColor.inactiveProgressColor,
+           selectedColor: isDarkMode ? AppDarkColor.activeProgressColor : AppLightColor.activeProgressColor,
+            unselectedColor: isDarkMode ? AppDarkColor.inactiveProgressColor : AppLightColor.inactiveProgressColor,
             roundedEdges: Radius.circular(10),
           ),
 
@@ -176,8 +179,14 @@ class TorrentDownloadCard extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('${double.parse(task?.progress.toStringAsFixed(2) ?? '1') * 100} %', style: theme.textTheme.bodySmall),
-                Text(TotalSizeConverter(task?.total ?? 0), style: theme.textTheme.bodySmall),
+                Text(
+                  '${double.parse(task?.progress.toStringAsFixed(2) ?? '1') * 100} %',
+                  style: theme.textTheme.bodySmall,
+                ),
+                Text(
+                  TotalSizeConverter(task?.total ?? 0),
+                  style: theme.textTheme.bodySmall,
+                ),
               ],
             ),
           ),
@@ -200,13 +209,18 @@ class TorrentDownloadCard extends StatelessWidget {
               color: theme.colorScheme.secondary,
             ),
           ),
-          Text(remainTimeConverter(totalSizeInBytes:  task?.total ?? 0, currentSpeedInKiloBytes: task?.averageDownloadSpeed ?? 0, progress: task?.progress ?? 0), style: theme.textTheme.bodySmall),
+          Text(
+            remainTimeConverter(
+              totalSizeInBytes: task?.total ?? 0,
+              currentSpeedInKiloBytes: task?.averageDownloadSpeed ?? 0,
+              progress: task?.progress ?? 0,
+            ),
+            style: theme.textTheme.bodySmall,
+          ),
         ],
       ),
     );
   }
-
-
 
   Widget buildPeersAndSeeds(context) {
     final theme = Theme.of(context);
@@ -216,15 +230,29 @@ class TorrentDownloadCard extends StatelessWidget {
         Row(
           spacing: AppConstant.containerPadding / 2,
           children: [
-            Icon(AppIcon.seedIcon, color: theme.colorScheme.secondary, size: 14),
-            Text('${task?.seederNumber ?? 0}', style: theme.textTheme.bodySmall),
+            Icon(
+              AppIcon.seedIcon,
+              color: theme.colorScheme.secondary,
+              size: 14,
+            ),
+            Text(
+              '${task?.seederNumber ?? 0}',
+              style: theme.textTheme.bodySmall,
+            ),
           ],
         ),
         Row(
           spacing: AppConstant.containerPadding / 2,
           children: [
-            Icon(AppIcon.peersIcon, color: theme.colorScheme.secondary, size: 14),
-            Text('${task?.allPeersNumber ?? 0}', style: theme.textTheme.bodySmall),
+            Icon(
+              AppIcon.peersIcon,
+              color: theme.colorScheme.secondary,
+              size: 14,
+            ),
+            Text(
+              '${task?.allPeersNumber ?? 0}',
+              style: theme.textTheme.bodySmall,
+            ),
           ],
         ),
       ],

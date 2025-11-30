@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:easy_download_manager/core/constant/app_color.dart';
 import 'package:easy_download_manager/core/constant/app_constant.dart';
 import 'package:easy_download_manager/core/constant/app_icon.dart';
@@ -17,7 +18,7 @@ class DownloadCard extends StatelessWidget {
     this.onTap,
     this.onCancelTapped,
     this.onContinueTapped,
-     this.task,
+    this.task,
   });
   final DOWNLOAD_CARD_STATUS status;
   void Function()? onTap;
@@ -42,7 +43,9 @@ class DownloadCard extends StatelessWidget {
             Row(
               children: [
                 ContainerWithBorderColor(
-                  icon: IconConverterFromFileName(filename: task?.filename ?? ''),
+                  icon: IconConverterFromFileName(
+                    filename: task?.filename ?? '',
+                  ),
                   color: TaskStattusColorConverter(task: task!),
                 ),
 
@@ -50,7 +53,6 @@ class DownloadCard extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-
                     ///
                     /// file name
                     ///
@@ -62,16 +64,14 @@ class DownloadCard extends StatelessWidget {
                     ///
                     /// progress
                     ///
-                    if (task?.status != DownloadTaskStatus.complete) buildProgress(context),
-
+                    if (task?.status != DownloadTaskStatus.complete)
+                      buildProgress(context),
 
                     ///
                     /// speed duration
                     ///
                     if (task?.status == DownloadTaskStatus.running)
                       buildSpeedDuration(context),
-
-
 
                     if (status == DOWNLOAD_CARD_STATUS.RUNNING)
                       SizedBox(width: size.width * 0.7, child: Divider()),
@@ -84,7 +84,6 @@ class DownloadCard extends StatelessWidget {
                         ),
                       ),
 
-
                     if (task?.status == DownloadTaskStatus.failed)
                       Text(
                         'Ошибка загрузки',
@@ -93,7 +92,7 @@ class DownloadCard extends StatelessWidget {
                         ),
                       ),
 
-                        if (task?.status == DownloadTaskStatus.paused)
+                    if (task?.status == DownloadTaskStatus.paused)
                       Text(
                         'Paused',
                         style: theme.textTheme.bodyMedium!.copyWith(
@@ -157,6 +156,7 @@ class DownloadCard extends StatelessWidget {
   Widget buildProgress(context) {
     final size = MediaQuery.of(context).size;
     final theme = Theme.of(context);
+    final isDarkMode = AdaptiveTheme.of(context).mode == AdaptiveThemeMode.dark;
     return Padding(
       padding: EdgeInsets.symmetric(vertical: AppConstant.containerPadding),
       child: Column(
@@ -168,8 +168,8 @@ class DownloadCard extends StatelessWidget {
             currentStep: task?.progress ?? 0,
             size: AppConstant.loadingHeight,
             padding: 0,
-            selectedColor: AppColor.activeProgressColor,
-            unselectedColor: AppColor.inactiveProgressColor,
+            selectedColor: isDarkMode ? AppDarkColor.activeProgressColor : AppLightColor.activeProgressColor,
+            unselectedColor: isDarkMode ? AppDarkColor.inactiveProgressColor : AppLightColor.inactiveProgressColor,
             roundedEdges: Radius.circular(10),
           ),
 

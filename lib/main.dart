@@ -1,7 +1,6 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:easy_download_manager/core/constant/router.dart';
 import 'package:easy_download_manager/core/di/DI.dart';
-import 'package:easy_download_manager/core/providers/global_providers.dart';
 import 'package:easy_download_manager/core/theme/dark_theme.dart';
 import 'package:easy_download_manager/core/theme/light_theme.dart';
 import 'package:easy_download_manager/data/repository/flutter_downloader_repository_impl.dart';

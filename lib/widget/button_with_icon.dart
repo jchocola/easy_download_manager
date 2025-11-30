@@ -6,8 +6,8 @@ class ButtonWithIcon extends StatelessWidget {
     super.key,
     this.icon = Icons.abc,
     this.label = 'Label',
-    this.color = AppColor.navBarInActiveColor,
-    this.onPressed
+    this.color = AppDarkColor.navBarInActiveColor,
+    this.onPressed,
   });
   final String label;
   final IconData icon;
