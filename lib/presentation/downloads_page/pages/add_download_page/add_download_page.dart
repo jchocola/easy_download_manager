@@ -6,9 +6,10 @@ import 'package:easy_download_manager/presentation/downloads_page/blocs/add_down
 import 'package:easy_download_manager/presentation/downloads_page/pages/add_download_page/widgets/additional_parameter.dart';
 import 'package:easy_download_manager/presentation/downloads_page/pages/add_download_page/widgets/download_type.dart';
 import 'package:easy_download_manager/presentation/downloads_page/pages/add_download_page/widgets/saving_place.dart';
+import 'package:easy_download_manager/presentation/downloads_page/pages/add_download_page/widgets/social_download_url_input.dart';
 import 'package:easy_download_manager/presentation/downloads_page/pages/add_download_page/widgets/torrent_file_info.dart';
 import 'package:easy_download_manager/presentation/downloads_page/pages/add_download_page/widgets/torrent_pick_file.dart';
-import 'package:easy_download_manager/presentation/downloads_page/pages/add_download_page/widgets/url_input.dart';
+import 'package:easy_download_manager/presentation/downloads_page/pages/add_download_page/widgets/http_download_url_input.dart';
 import 'package:easy_download_manager/widget/appbar.dart';
 import 'package:easy_download_manager/widget/big_button.dart';
 import 'package:flutter/material.dart';
@@ -46,11 +47,11 @@ class AddDownloadPage extends StatelessWidget {
                 if (state is AddDownloadBlocStateLoaded) {
                   switch (state.downloadMethod) {
                     case DOWNLOAD_METHOD.HTTP_HTTPS:
-                      return UrlInput();
+                      return HttpDownloadUrlInput();
                     case DOWNLOAD_METHOD.TORRENT:
                       return TorrentPickFile();
-                    case DOWNLOAD_METHOD.CLOUD:
-                      return UrlInput();
+                    case DOWNLOAD_METHOD.SOCIAL:
+                      return SocialDownloadUrlInput();
                   }
                 } else {
                   return CircularProgressIndicator();

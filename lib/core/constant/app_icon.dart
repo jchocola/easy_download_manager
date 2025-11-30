@@ -87,4 +87,7 @@ class AppIcon {
 
   static final themeDarkIcon = Icons.brightness_2_outlined;
   static final themeLightIcon = Icons.brightness_5_outlined;
+
+
+  static final socialIcon = Icons.facebook;
 }

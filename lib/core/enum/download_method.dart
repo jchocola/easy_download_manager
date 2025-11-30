@@ -1,6 +1,6 @@
 // ignore_for_file: constant_identifier_names, camel_case_types
 
-enum DOWNLOAD_METHOD { HTTP_HTTPS, TORRENT, CLOUD }
+enum DOWNLOAD_METHOD { HTTP_HTTPS, TORRENT, SOCIAL }
 
 DOWNLOAD_METHOD downloadMethodFromValue({required String value}) {
   switch (value) {
@@ -8,8 +8,8 @@ DOWNLOAD_METHOD downloadMethodFromValue({required String value}) {
       return DOWNLOAD_METHOD.HTTP_HTTPS;
     case 'TORRENT':
       return DOWNLOAD_METHOD.TORRENT;
-    case 'CLOUD':
-      return DOWNLOAD_METHOD.CLOUD;
+    case 'SOCIAL':
+      return DOWNLOAD_METHOD.SOCIAL;
     default :
        return DOWNLOAD_METHOD.HTTP_HTTPS; 
   }

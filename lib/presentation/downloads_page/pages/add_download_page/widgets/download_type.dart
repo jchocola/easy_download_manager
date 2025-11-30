@@ -55,13 +55,21 @@ class DownloadType extends StatelessWidget {
                       value: state.downloadMethod == DOWNLOAD_METHOD.TORRENT,
                       onTap: () => context.read<AddDownloadBloc>().add(AddDownloadBlocEvent_ChangeDownloadMethod(method: DOWNLOAD_METHOD.TORRENT)),
                     ),
-                    DownloadTypeCard(
-                      title: l10n.cloud,
-                      subtitle: l10n.downloadingFromCloudServices,
+                    
+                      DownloadTypeCard(
+                      title: 'Social',
+                      subtitle: 'Downloading from social media platforms',
                       icon: AppIcon.downloadTypeCloudIcon,
-                      value: state.downloadMethod == DOWNLOAD_METHOD.CLOUD,
-                       onTap: () => context.read<AddDownloadBloc>().add(AddDownloadBlocEvent_ChangeDownloadMethod(method: DOWNLOAD_METHOD.CLOUD)),
+                      value: state.downloadMethod == DOWNLOAD_METHOD.SOCIAL,
+                       onTap: () => context.read<AddDownloadBloc>().add(AddDownloadBlocEvent_ChangeDownloadMethod(method: DOWNLOAD_METHOD.SOCIAL)),
                     ),
+                    // DownloadTypeCard(
+                    //   title: l10n.cloud,
+                    //   subtitle: l10n.downloadingFromCloudServices,
+                    //   icon: AppIcon.downloadTypeCloudIcon,
+                    //   value: state.downloadMethod == DOWNLOAD_METHOD.CLOUD,
+                    //    onTap: () => context.read<AddDownloadBloc>().add(AddDownloadBlocEvent_ChangeDownloadMethod(method: DOWNLOAD_METHOD.CLOUD)),
+                    // ),
                   ],
                 );
               } else {

@@ -6,14 +6,14 @@ import 'package:easy_download_manager/widget/input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class UrlInput extends StatefulWidget {
-  const UrlInput({super.key});
+class SocialDownloadUrlInput extends StatefulWidget {
+  const SocialDownloadUrlInput({super.key});
 
   @override
-  State<UrlInput> createState() => _UrlInputState();
+  State<SocialDownloadUrlInput> createState() => _SocialDownloadUrlInputState();
 }
 
-class _UrlInputState extends State<UrlInput> {
+class _SocialDownloadUrlInputState extends State<SocialDownloadUrlInput> {
   late final TextEditingController urlController;
 
   @override
@@ -45,10 +45,10 @@ class _UrlInputState extends State<UrlInput> {
             spacing: AppConstant.containerPadding,
             children: [
               Icon(
-                AppIcon.urlIcon,
+                AppIcon.socialIcon,
                 color: theme.colorScheme.secondaryContainer,
               ),
-              Text(l10n.urlDownloads, style: theme.textTheme.titleMedium),
+              Text('Social Downloads', style: theme.textTheme.titleMedium),
             ],
           ),
 
@@ -56,6 +56,11 @@ class _UrlInputState extends State<UrlInput> {
             l10n.enterTheLinkToTheFileForDownload,
             style: theme.textTheme.bodySmall,
           ),
+
+          SizedBox(height: AppConstant.containerPadding),
+          Text('Supported Social Platforms', style: theme.textTheme.titleSmall),
+          SizedBox(height: AppConstant.containerPadding),
+          SupportedSocials(),
 
           SizedBox(height: AppConstant.containerPadding * 2),
 
@@ -66,7 +71,7 @@ class _UrlInputState extends State<UrlInput> {
               if (state is AddDownloadBlocStateLoaded) {
                 urlController.text = state.downloadUrl;
                 return Input(
-                  hintText: AppConstant.urlHintText,
+                  hintText: AppConstant.socialUrlHintText,
                   controller: urlController,
                   onChanged: (value) => context.read<AddDownloadBloc>().add(
                     AddDownloadBlocEvent_ChangeDownloadUrl(value: value),
@@ -79,6 +84,62 @@ class _UrlInputState extends State<UrlInput> {
           ),
         ],
       ),
+    );
+  }
+}
+
+class SupportedSocials extends StatelessWidget {
+  const SupportedSocials({super.key});
+
+  final List<String> socials = const [
+    'Facebook',
+    'Instagram',
+    'YouTube',
+    'Twitter',
+    'Dailymotion',
+    'Vimeo',
+    'VK',
+    'SoundCloud',
+    'TikTok',
+    'Reddit',
+    'Threads',
+  ];
+
+  final List<Color> colors = const [
+    Colors.blue,
+    Colors.purple,
+    Colors.red,
+    Colors.lightBlue,
+    Colors.orange,
+    Colors.blueAccent,
+    Colors.blueGrey,
+    Colors.orangeAccent,
+    Colors.green,
+    Colors.deepOrange,
+    Colors.pink,
+  ];
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Wrap(
+      spacing: AppConstant.containerPadding / 2,
+      runSpacing: AppConstant.containerPadding / 2,
+      children: socials
+          .map(
+            (social) => Chip(
+              side: BorderSide(
+                color: colors[socials.indexOf(social)].withOpacity(0.5),
+              ),
+              backgroundColor: colors[socials.indexOf(social)].withOpacity(0.1),
+              label: Text(
+                social,
+                style: theme.textTheme.bodySmall!.copyWith(
+                  color: colors[socials.indexOf(social)],
+                ),
+              ),
+            ),
+          )
+          .toList(),
     );
   }
 }

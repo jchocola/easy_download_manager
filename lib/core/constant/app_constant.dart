@@ -5,7 +5,8 @@ class AppConstant {
 
   static final double loadingHeight = 10;
 
-  static final String urlHintText = 'https://example.com/book.pdf';
+  static final String httpUrlHintText = 'https://example.com/book.pdf';
+  static final String socialUrlHintText = 'https://facebook.com/examplevideo';
 
   static final String pathDefault = '0/EDM/Downloads/';
 
@@ -15,6 +16,6 @@ class AppConstant {
   static final String BacDev = '©2025 BacDev';
 
   static const String downloadTab_actived = 'actived';
-    static const String downloadTab_completed = 'completed'; 
-   static const String downloadTab_others = 'others';  
+  static const String downloadTab_completed = 'completed';
+  static const String downloadTab_others = 'others';
 }
