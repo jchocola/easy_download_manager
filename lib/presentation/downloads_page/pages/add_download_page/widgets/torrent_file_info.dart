@@ -61,7 +61,7 @@ class TorrentInfoWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Заголовок
-            _buildSectionTitle('Информация о торренте'),
+            _buildSectionTitle(context, title: 'Информация о торренте'),
             SizedBox(height: AppConstant.containerPadding),
 
             // Основная информация
@@ -93,35 +93,34 @@ class TorrentInfoWidget extends StatelessWidget {
             SizedBox(height: 16),
 
             // Трекеры
-            if (torrent.announces.isNotEmpty) _buildTrackersSection(),
+            if (torrent.announces.isNotEmpty) _buildTrackersSection(context),
 
             SizedBox(height: 8),
 
             // URL списки
-            if (torrent.urlList.isNotEmpty) _buildUrlListSection(),
+            if (torrent.urlList.isNotEmpty) _buildUrlListSection(context),
 
             SizedBox(height: 8),
 
             // Файлы
-            _buildFilesSection(),
+            _buildFilesSection(context),
 
             SizedBox(height: 8),
 
             // DHT узлы
-            if (torrent.nodes.isNotEmpty) _buildNodesSection(),
+            if (torrent.nodes.isNotEmpty) _buildNodesSection(context),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildSectionTitle(String title) {
+  Widget _buildSectionTitle(BuildContext context,{required String title}) {
+    final theme = Theme.of(context);
     return Text(
       title,
-      style: TextStyle(
-        fontSize: 18,
+      style: theme.textTheme.titleMedium?.copyWith(
         fontWeight: FontWeight.bold,
-        color: Colors.blue[700],
       ),
     );
   }
@@ -148,11 +147,11 @@ class TorrentInfoWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildTrackersSection() {
+  Widget _buildTrackersSection(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildSectionTitle('Трекеры (${torrent.announces.length})'),
+        _buildSectionTitle(context, title: 'Трекеры (${torrent.announces.length})'),
         SizedBox(height: 8),
         ...torrent.announces
             .take(5)
@@ -179,11 +178,11 @@ class TorrentInfoWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildUrlListSection() {
+  Widget _buildUrlListSection(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildSectionTitle('URL списки (${torrent.urlList.length})'),
+        _buildSectionTitle(context, title: 'URL списки (${torrent.urlList.length})'),
         SizedBox(height: 8),
         ...torrent.urlList
             .take(3)
@@ -210,7 +209,7 @@ class TorrentInfoWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildFilesSection() {
+  Widget _buildFilesSection(BuildContext context) {
     final totalSize = torrent.files.fold<int>(
       0,
       (sum, file) => sum + file.length,
@@ -219,7 +218,7 @@ class TorrentInfoWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildSectionTitle('Файлы (${torrent.files.length})'),
+        _buildSectionTitle(context, title: 'Файлы (${torrent.files.length})'),
         SizedBox(height: 8),
         Container(
           constraints: BoxConstraints(maxHeight: 200),
@@ -256,11 +255,11 @@ class TorrentInfoWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildNodesSection() {
+  Widget _buildNodesSection(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildSectionTitle('DHT узлы (${torrent.nodes.length})'),
+        _buildSectionTitle(context, title: 'DHT узлы (${torrent.nodes.length})'),
         SizedBox(height: 8),
         ...torrent.nodes
             .take(3)
