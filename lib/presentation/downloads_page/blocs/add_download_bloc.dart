@@ -134,9 +134,9 @@ class AddDownloadBlocStateLoaded extends AddDownloadBlocState {
       downloadMethod: downloadMethod ?? this.downloadMethod,
       fileName: fileName ?? this.fileName,
       savePath: savePath ?? this.savePath,
-      torrentFile: torrentFile,
+      torrentFile: torrentFile ?? this.torrentFile,
       savePlace: savePlace ?? this.savePlace,
-      torrent: torrent,
+      torrent: torrent ?? this.torrent,
     );
   }
 }
