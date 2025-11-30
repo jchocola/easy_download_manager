@@ -75,7 +75,9 @@ class AddDownloadBlocEvent_ChangeFileName extends AddDownloadBlocEvent {
 }
 
 class AddDownloadBlocEvent_StartDownload extends AddDownloadBlocEvent {
-  AddDownloadBlocEvent_StartDownload();
+  final String? notificationTitle;
+  final String? notificationContent;
+  AddDownloadBlocEvent_StartDownload({this.notificationTitle, this.notificationContent});
 }
 
 ///
@@ -360,7 +362,13 @@ class AddDownloadBloc extends Bloc<AddDownloadBlocEvent, AddDownloadBlocState> {
             ///
             /// START FOREGROUND SERVICE
             ///
-            await startService();
+            if (event.notificationTitle != null &&
+                event.notificationContent != null) {
+                await startService(notificationTitle: event.notificationTitle!, notificationText: event.notificationContent! );
+            } else {
+                await startService();
+            }
+          
 
             ///
             /// PASS DATA TO START DOWNLOAD

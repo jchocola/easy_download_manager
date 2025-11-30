@@ -55,7 +55,10 @@ class DownloadConfirmPage extends StatelessWidget {
                 title: l10n.startDownloading,
                 icon: AppIcon.downloadIcon,
                 onTap: () => context.read<AddDownloadBloc>().add(
-                  AddDownloadBlocEvent_StartDownload(),
+                  AddDownloadBlocEvent_StartDownload(
+                    notificationTitle: 'Bắt đầu tải xuống',
+                    notificationContent: 'Tệp của bạn đang được tải xuống',
+                  ),
                 ),
               ),
             ),
