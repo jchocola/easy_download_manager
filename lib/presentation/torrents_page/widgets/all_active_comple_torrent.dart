@@ -1,9 +1,8 @@
 import 'package:easy_download_manager/core/constant/app_icon.dart';
 import 'package:easy_download_manager/l10n/app_localizations.dart';
-import 'package:easy_download_manager/presentation/downloads_page/widgets/active_downloads_list.dart';
-import 'package:easy_download_manager/presentation/downloads_page/widgets/completed_downloads_list.dart';
-import 'package:easy_download_manager/presentation/downloads_page/widgets/others_downloads_list.dart';
 import 'package:easy_download_manager/presentation/torrents_page/widgets/active_download_list_torrent.dart';
+import 'package:easy_download_manager/presentation/torrents_page/widgets/completed_download_list_torrent.dart';
+import 'package:easy_download_manager/presentation/torrents_page/widgets/others_download_list_torrent.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -62,9 +61,9 @@ class _ActiveCompletedAllTorrentState extends State<ActiveCompletedAllTorrent> {
       case 'actived':
         return ActiveDownloadsListTorrent();
       case 'completed':
-        return CompletedDownloadsList();
+        return CompletedDownloadsListTorrent();
       case 'others':
-        return OthersDownloadsList();
+        return OthersDownloadsListTorrent();
 
       default:
         return Text('Error');

@@ -1,0 +1,27 @@
+import 'package:easy_download_manager/presentation/torrents_page/blocs/torrent_task_bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+class OthersDownloadsListTorrent extends StatelessWidget {
+  const OthersDownloadsListTorrent({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<TorrentTaskBloc, TorrentTaskBlocState>(
+      builder: (context, state) {
+        if (state is TorrentTaskBlocState_loaded) {
+          return ListView.builder(
+            shrinkWrap: true,
+            itemCount: state.othersTaskList.length,
+            physics: NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index) {
+              return Text(state.othersTaskList[index].name);
+            },
+          );
+        } else {
+          return CircularProgressIndicator();
+        }
+      },
+    );
+  }
+}
