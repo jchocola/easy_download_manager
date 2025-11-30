@@ -253,17 +253,27 @@ void initService() {
   logger.i('Inited foreground task');
 }
 
-Future<ServiceRequestResult> startService() async {
+Future<ServiceRequestResult> startService({String notificationTitle = 'Foreground Service is running', String notificationText = 'Tap to return to the app'}) async {
+
   if (await FlutterForegroundTask.isRunningService) {
     return FlutterForegroundTask.restartService();
   } else {
     return FlutterForegroundTask.startService(
       serviceTypes: [ForegroundServiceTypes.dataSync],
-      notificationTitle: 'Foreground Service is running',
-      notificationText: 'Tap to return to the app',
+      notificationTitle: notificationTitle,
+      notificationText: notificationText,
       notificationInitialRoute: '/torrents',
       callback: startCallback,
     );
+  }
+}
+
+Stream<bool> isServiceRunning() async* {
+
+  while (true) {
+    final isRunning = await FlutterForegroundTask.isRunningService;
+    yield isRunning;
+    await Future.delayed(Duration(seconds: 2));
   }
 }
 

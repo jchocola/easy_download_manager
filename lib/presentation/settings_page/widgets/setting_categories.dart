@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:easy_download_manager/core/constant/app_constant.dart';
 import 'package:easy_download_manager/core/constant/app_icon.dart';
 import 'package:easy_download_manager/l10n/app_localizations.dart';
@@ -44,6 +45,16 @@ class SettingCategories extends StatelessWidget {
             onTap: () =>
                 context.pushReplacement('/settings/notification_setting'),
           ),
+
+           FileInfoCard2(
+            title: 'Theme',
+            icon: AdaptiveTheme.of(context).mode == AdaptiveThemeMode.dark 
+                ? AppIcon.themeDarkIcon 
+                : AppIcon.themeLightIcon,
+            subtitle: 'dark - Dark Mode',
+            onTap: () {},
+          ),
+
           FileInfoCard2(
             title: l10n.language,
             icon: AppIcon.languageIcon,

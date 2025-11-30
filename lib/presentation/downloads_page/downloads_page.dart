@@ -42,6 +42,7 @@ class DownloadsPage extends StatelessWidget {
             title: l10n.downloads,
             showActions: true,
             actionIcon: AppIcon.historyIcon,
+            
             onActionTapped: () => context.push('/downloads/history'),
           ),
           body: _buildBody(context),

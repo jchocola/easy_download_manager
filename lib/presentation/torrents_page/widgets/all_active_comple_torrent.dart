@@ -1,4 +1,5 @@
 import 'package:easy_download_manager/core/constant/app_icon.dart';
+import 'package:easy_download_manager/flutter_foreground_task.dart';
 import 'package:easy_download_manager/l10n/app_localizations.dart';
 import 'package:easy_download_manager/presentation/torrents_page/widgets/active_download_list_torrent.dart';
 import 'package:easy_download_manager/presentation/torrents_page/widgets/completed_download_list_torrent.dart';
@@ -10,7 +11,8 @@ class ActiveCompletedAllTorrent extends StatefulWidget {
   const ActiveCompletedAllTorrent({super.key});
 
   @override
-  State<ActiveCompletedAllTorrent> createState() => _ActiveCompletedAllTorrentState();
+  State<ActiveCompletedAllTorrent> createState() =>
+      _ActiveCompletedAllTorrentState();
 }
 
 class _ActiveCompletedAllTorrentState extends State<ActiveCompletedAllTorrent> {
@@ -25,7 +27,7 @@ class _ActiveCompletedAllTorrentState extends State<ActiveCompletedAllTorrent> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-     final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context);
     return Column(
       children: [
         Row(
@@ -47,7 +49,8 @@ class _ActiveCompletedAllTorrentState extends State<ActiveCompletedAllTorrent> {
               },
             ),
 
-            IconButton(onPressed: () {}, icon: Icon(AppIcon.sortIcon)),
+            ///STOP SERVICE BUTTON or SORT BUTTON
+            StopServiceButtonOrSortButton(),
           ],
         ),
 
@@ -68,5 +71,29 @@ class _ActiveCompletedAllTorrentState extends State<ActiveCompletedAllTorrent> {
       default:
         return Text('Error');
     }
+  }
+}
+
+class StopServiceButtonOrSortButton extends StatelessWidget {
+  const StopServiceButtonOrSortButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder(
+      stream: isServiceRunning(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData && snapshot.data == true) {
+          return IconButton(
+            onPressed: () async {
+              await stopService();
+            },
+            icon: Icon(Icons.stop_circle_outlined),
+            //label: Text('Stop Download'),
+          );
+        } else {
+          return IconButton(onPressed: () {}, icon: Icon(AppIcon.sortIcon));
+        }
+      },
+    );
   }
 }

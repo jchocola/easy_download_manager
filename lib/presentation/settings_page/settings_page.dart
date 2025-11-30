@@ -45,27 +45,27 @@ class SettingsPage extends StatelessWidget {
             SettingCategories(),
             QuickSetting(),
 
-            ElevatedButton(
-              onPressed: () {
-                startService();
+            // ElevatedButton(
+            //   onPressed: () {
+            //     startService();
                
-              },
-              child: Text('Start Sevcie'),
-            ),
+            //   },
+            //   child: Text('Start Sevcie'),
+            // ),
 
-             ElevatedButton(
-              onPressed: () {
-                sendDataFromUI(torrentFilePath: 'hello/.torrenr', saveDir: '');
-              },
-              child: Text('Send data'),
-            ),
+            //  ElevatedButton(
+            //   onPressed: () {
+            //     sendDataFromUI(torrentFilePath: 'hello/.torrenr', saveDir: '');
+            //   },
+            //   child: Text('Send data'),
+            // ),
 
-            ElevatedButton(
-              onPressed: () {
-                stopService();
-              },
-              child: Text('Stop Sevcie'),
-            ),
+            // ElevatedButton(
+            //   onPressed: () {
+            //     stopService();
+            //   },
+            //   child: Text('Stop Sevcie'),
+            // ),
 
             AdviceCard(
               title: l10n.advice,
