@@ -3,7 +3,9 @@ import 'package:easy_download_manager/core/constant/app_constant.dart';
 import 'package:easy_download_manager/core/constant/app_icon.dart';
 import 'package:easy_download_manager/core/enum/download_card_status.dart';
 import 'package:easy_download_manager/core/utils/icon_coverter_from_filename.dart';
+import 'package:easy_download_manager/core/utils/remain_time_converter.dart';
 import 'package:easy_download_manager/core/utils/task_status_color.dart';
+import 'package:easy_download_manager/core/utils/total_size_converter.dart';
 import 'package:easy_download_manager/domain/models/torrent_task_model.dart';
 import 'package:easy_download_manager/widget/button_with_icon.dart';
 import 'package:easy_download_manager/widget/container_with_border_color.dart';
@@ -62,6 +64,13 @@ class TorrentDownloadCard extends StatelessWidget {
                     ///
                     if (task?.status == TORRENT_TASK_STATUS.TaskStarted)
                       buildProgress(context),
+
+
+                    ///
+                    ///Peers and seeds
+                    ///
+                       if (task?.status == TORRENT_TASK_STATUS.TaskStarted)
+                      buildPeersAndSeeds(context),
 
                     ///
                     /// speed duration
@@ -166,7 +175,7 @@ class TorrentDownloadCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text('${double.parse(task?.progress.toStringAsFixed(2) ?? '1') * 100} %', style: theme.textTheme.bodySmall),
-                Text('${task?.total ?? 0} Bytes', style: theme.textTheme.bodySmall),
+                Text(TotalSizeConverter(task?.total ?? 0), style: theme.textTheme.bodySmall),
               ],
             ),
           ),
@@ -189,9 +198,34 @@ class TorrentDownloadCard extends StatelessWidget {
               color: theme.colorScheme.secondary,
             ),
           ),
-          Text('2m', style: theme.textTheme.bodySmall),
+          Text(remainTimeConverter(totalSizeInBytes:  task?.total ?? 0, currentSpeedInKiloBytes: task?.averageDownloadSpeed ?? 0, progress: task?.progress ?? 0), style: theme.textTheme.bodySmall),
         ],
       ),
+    );
+  }
+
+
+
+  Widget buildPeersAndSeeds(context) {
+    final theme = Theme.of(context);
+    return Row(
+      spacing: AppConstant.containerPadding * 2,
+      children: [
+        Row(
+          spacing: AppConstant.containerPadding / 2,
+          children: [
+            Icon(AppIcon.seedIcon, color: theme.colorScheme.secondary, size: 14),
+            Text('${task?.seederNumber ?? 0}', style: theme.textTheme.bodySmall),
+          ],
+        ),
+        Row(
+          spacing: AppConstant.containerPadding / 2,
+          children: [
+            Icon(AppIcon.peersIcon, color: theme.colorScheme.secondary, size: 14),
+            Text('${task?.allPeersNumber ?? 0}', style: theme.textTheme.bodySmall),
+          ],
+        ),
+      ],
     );
   }
 }
