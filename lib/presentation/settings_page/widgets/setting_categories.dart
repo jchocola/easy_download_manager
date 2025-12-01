@@ -54,13 +54,13 @@ class SettingCategories extends StatelessWidget {
           //   subtitle: l10n.configureBehaviorWhenNetworkConnectionChanges,
           //   onTap: () => context.pushReplacement('/settings/network_setting'),
           // ),
-          FileInfoCard2(
-            title: l10n.notification,
-            icon: AppIcon.notificationIcon,
-            subtitle: l10n.manageDownloadNotificationsAndSoundAlerts,
-            onTap: () =>
-                context.pushReplacement('/settings/notification_setting'),
-          ),
+          // FileInfoCard2(
+          //   title: l10n.notification,
+          //   icon: AppIcon.notificationIcon,
+          //   subtitle: l10n.manageDownloadNotificationsAndSoundAlerts,
+          //   onTap: () =>
+          //       context.pushReplacement('/settings/notification_setting'),
+          // ),
 
           FileInfoCard2(
             title: 'Theme',
