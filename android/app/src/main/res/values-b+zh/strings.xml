@@ -1,8 +1,8 @@
 <resources>
-    <string name="flutter_downloader_notification_started">Download started</string>
-    <string name="flutter_downloader_notification_in_progress">Download in progress</string>
-    <string name="flutter_downloader_notification_canceled">Download canceled</string>
-    <string name="flutter_downloader_notification_failed">Download failed</string>
-    <string name="flutter_downloader_notification_complete">Download complete</string>
-    <string name="flutter_downloader_notification_paused">Download paused</string>
+    <string name="flutter_downloader_notification_started">下载已开始</string>
+    <string name="flutter_downloader_notification_in_progress">下载进行中</string>
+    <string name="flutter_downloader_notification_canceled">下载已取消</string>
+    <string name="flutter_downloader_notification_failed">下载失败</string>
+    <string name="flutter_downloader_notification_complete">下载完成</string>
+    <string name="flutter_downloader_notification_paused">下载已暂停</string>
 </resources>

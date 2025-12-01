@@ -1,8 +1,8 @@
 <resources>
-    <string name="flutter_downloader_notification_started">Download started</string>
-    <string name="flutter_downloader_notification_in_progress">Download in progress</string>
-    <string name="flutter_downloader_notification_canceled">Download canceled</string>
-    <string name="flutter_downloader_notification_failed">Download failed</string>
-    <string name="flutter_downloader_notification_complete">Download complete</string>
-    <string name="flutter_downloader_notification_paused">Download paused</string>
+    <string name="flutter_downloader_notification_started">Завантаження розпочато</string>
+    <string name="flutter_downloader_notification_in_progress">Завантаження триває</string>
+    <string name="flutter_downloader_notification_canceled">Завантаження скасовано</string>
+    <string name="flutter_downloader_notification_failed">Помилка завантаження</string>
+    <string name="flutter_downloader_notification_complete">Завантаження завершено</string>
+    <string name="flutter_downloader_notification_paused">Завантаження призупинено</string>
 </resources>
