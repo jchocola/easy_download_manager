@@ -27,7 +27,7 @@ class CompletedDownloadsList extends StatelessWidget {
             itemBuilder: (context, index) {
               return DownloadCard(
                 task: state.completedTasks[index],
-                status: DOWNLOAD_CARD_STATUS.COMPLETE,
+                //status: DOWNLOAD_CARD_STATUS.COMPLETE,
                 onTap: () {
                   context.read<PickedTaskBloc>().add(
                     PickedTaskBlocEvent_pickTask(

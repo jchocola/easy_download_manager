@@ -56,9 +56,14 @@ class DownloadCard extends StatelessWidget {
                     ///
                     /// file name
                     ///
-                    Text(
-                      task?.filename ?? 'Unknown',
-                      style: theme.textTheme.titleMedium,
+                    SizedBox(
+                      width: size.width * 0.7,
+                      child: Text(
+                        task?.filename ?? 'Unknown',
+                        style: theme.textTheme.titleMedium,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
 
                     ///

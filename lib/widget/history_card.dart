@@ -16,6 +16,7 @@ class HistoryCard extends StatelessWidget {
       onTap: onTap,
       child: Container(
         padding: EdgeInsets.all(AppConstant.containerPadding),
+        margin: EdgeInsets.only(bottom: AppConstant.containerPadding),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(AppConstant.borderRadius),
           color: theme.colorScheme.onPrimary,
@@ -36,7 +37,7 @@ class HistoryCard extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(task?.filename ?? 'Unknown', style: theme.textTheme.titleMedium),
+                  Text(task?.filename ?? 'Unknown', style: theme.textTheme.titleMedium , maxLines: 1, overflow: TextOverflow.ellipsis,),
       
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -73,7 +73,7 @@ class _ActiveCompletedAllState extends State<ActiveCompletedAll> {
               },
             ),
 
-            IconButton(onPressed: onSortTapped, icon: Icon(AppIcon.sortIcon)),
+            //IconButton(onPressed: onSortTapped, icon: Icon(AppIcon.sortIcon)),
           ],
         ),
 

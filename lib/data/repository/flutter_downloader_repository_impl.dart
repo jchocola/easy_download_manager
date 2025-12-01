@@ -20,23 +20,22 @@ class FlutterDownloaderRepositoryImpl {
   }
 
   Future<void> createFolder(String path) async {
-  try {
-    final directory = Directory(path);
-    
-    // Проверяем существует ли папка
-    if (await directory.exists()) {
-      logger.i('Папка уже существует: $path');
-      return;
+    try {
+      final directory = Directory(path);
+
+      // Проверяем существует ли папка
+      if (await directory.exists()) {
+        logger.i('Папка уже существует: $path');
+        return;
+      }
+
+      // Создаем папку (recursive: true создаст все вложенные папки)
+      await directory.create(recursive: true);
+      logger.i('Папка создана: $path');
+    } catch (e) {
+      logger.e('Ошибка при создании папки: $e');
     }
-    
-    // Создаем папку (recursive: true создаст все вложенные папки)
-    await directory.create(recursive: true);
-    logger.i('Папка создана: $path');
-    
-  } catch (e) {
-    logger.e('Ошибка при создании папки: $e');
   }
-}
 
   ///
   /// START DOWNLOADING AND RETURN TASK ID
@@ -84,13 +83,16 @@ class FlutterDownloaderRepositoryImpl {
     }
   }
 
-
-   Future<List<DownloadTask>> getAllTasks() async {
+  Future<List<DownloadTask>> getAllTasks() async {
     try {
       final List<DownloadTask>? tasks = await FlutterDownloader.loadTasks();
-  
 
-      return tasks ?? [];
+      if (tasks == null) {
+        return [];
+      } else {
+        return tasks.reversed.toList();
+      }
+
     } catch (e) {
       rethrow;
     }
@@ -217,7 +219,10 @@ class FlutterDownloaderRepositoryImpl {
         return e.status == DownloadTaskStatus.complete;
       }).toList();
 
-      return completeTask ?? [];
+      // reverse to show latest completed first
+      return completeTask!.reversed.toList();
+
+      // return completeTask ?? [];
     } catch (e) {
       return [];
     }
