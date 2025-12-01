@@ -30,6 +30,11 @@ class AppLocalizationsRu extends AppLocalizations {
   String get attention => 'Attention';
 
   @override
+  String
+  get atTheMomentYouCanDownloadOneTorrentAtATimeWeReWorkingOnAddingSupportForMultipleSimultaneousDownloadsComingSoon =>
+      'At the moment, you can download one torrent at a time. We\'re working on adding support for multiple simultaneous downloads coming soon!';
+
+  @override
   String get audibleAlerts => 'AUDIBLE ALERTS';
 
   @override
@@ -70,11 +75,26 @@ class AppLocalizationsRu extends AppLocalizations {
   String get cloud => 'Cloud';
 
   @override
+  String get comment => 'Comment';
+
+  @override
   String get completed => 'Completed';
 
   @override
   String get configureBehaviorWhenNetworkConnectionChanges =>
       'Configure behavior when network connection changes';
+
+  @override
+  String get continueText => 'Continue_text';
+
+  @override
+  String get createdBy => 'Created by';
+
+  @override
+  String get creationDate => 'Creation date';
+
+  @override
+  String get darkMode => 'Dark Mode';
 
   @override
   String get developer => 'Developer';
@@ -84,6 +104,9 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get downloadConfirmation => 'Download confirmation';
+
+  @override
+  String get downloadError => 'Download error';
 
   @override
   String get downloadHistory => 'Download history';
@@ -134,6 +157,9 @@ class AppLocalizationsRu extends AppLocalizations {
       'Enable sound notifications so you don\'t miss important downloads completing. The progress bar helps you track downloads without opening the app.';
 
   @override
+  String get encoding => 'Encoding';
+
+  @override
   String
   get ensureThatAllDownloadSettingsAreConfiguredCorrectlyBeforeConfirming =>
       'Ensure that all download settings are configured correctly before confirming.';
@@ -156,7 +182,15 @@ class AppLocalizationsRu extends AppLocalizations {
       'Get notified when the download is complete';
 
   @override
+  String get hash => 'Hash';
+
+  @override
   String get httpHttps => 'HTTP/HTTPS';
+
+  @override
+  String
+  get ifDownloadsAreNotProgressingStopTheForegroundDeleteADownloadAndRestartIt =>
+      'If downloads are not progressing, stop the foreground , delete a download, and restart it.';
 
   @override
   String get insertUrl => 'Insert URL ...';
@@ -166,6 +200,9 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get legalInformation => 'LEGAL INFORMATION';
+
+  @override
+  String get lightMode => 'Light Mode';
 
   @override
   String get manageDownloadNotificationsAndSoundAlerts =>
@@ -193,6 +230,12 @@ class AppLocalizationsRu extends AppLocalizations {
   String get notifyWhenCompleted => 'Notify when completed';
 
   @override
+  String get numberOfFiles => 'Number of files';
+
+  @override
+  String get numberOfPieces => 'Number of pieces';
+
+  @override
   String get onlyWiFi => 'Only Wi-Fi';
 
   @override
@@ -211,14 +254,34 @@ class AppLocalizationsRu extends AppLocalizations {
   String get otherSettings => 'OTHER SETTINGS';
 
   @override
+  String get pause => 'Pause';
+
+  @override
+  String get paused => 'Paused';
+
+  @override
+  String get pickTorrentFile => 'Pick torrent file';
+
+  @override
+  String get pieceSize => 'Piece size';
+
+  @override
   String get playSoundWhenDownloadIsComplete =>
       'Play sound when download is complete';
+
+  @override
+  String
+  get pleaseEnterTheFileNameWithExtensionExPdfMp4Mp3IfDonTKnowLeaveItAsDefault =>
+      'Please enter the file name with extension (ex: .pdf, .mp4, .mp3)\nIf don\'t know, leave it as default.';
 
   @override
   String get priority => 'Priority';
 
   @override
   String get privacyPolicy => 'Privacy Policy';
+
+  @override
+  String get private => 'Private';
 
   @override
   String get quickSelection => 'Quick selection';
@@ -238,6 +301,9 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get saveFolder => 'Save folder';
+
+  @override
+  String get selectFile => 'Select file';
 
   @override
   String get selectHowYouWantToDownloadTheFile =>
@@ -280,13 +346,34 @@ class AppLocalizationsRu extends AppLocalizations {
   String get termsOfService => 'Terms of Service';
 
   @override
+  String get theme => 'Theme';
+
+  @override
   String get tipsForSavingTraffic => 'Tips for saving traffic';
+
+  @override
+  String get title => 'Title';
 
   @override
   String get torrent => 'Torrent';
 
   @override
+  String get torrentInformation => 'Torrent information';
+
+  @override
+  String get torrentnotificationcontent => 'TorrentNotificationContent';
+
+  @override
+  String get torrentnotificationtitle => 'TorrentNotificationTitle';
+
+  @override
   String get torrents => 'Torrents';
+
+  @override
+  String get totalFileSize => 'Total file size';
+
+  @override
+  String get totalSize => 'Total size';
 
   @override
   String get url => 'URL';

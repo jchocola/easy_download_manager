@@ -1,29 +1,29 @@
 String LanguageConverter({required String languageCode}) {
   switch (languageCode) {
     case 'ar':
-      return 'Arabic';
+      return 'Arabic-العربية';
     case 'de':
-      return 'German';  
+      return 'German - Deutsch';  
     case 'en':
-      return 'English';
+      return 'English - American English';
     case 'fr':
-      return 'French';
+      return 'French - Français';
     case 'hi':
-      return 'Hindi';
+      return 'Hindi - हिंदी';
     case 'it':
-      return 'Italian';
+      return 'Italian - Italiano';
     case 'ja':
-      return 'Japanese';
+      return 'Japanese - 日本語';
     case 'ko':
-      return 'Korean';
+      return 'Korean - 한국어';
     case 'ru':
-      return 'Russian';
+      return 'Russian - Русский';
     case 'uk':
-      return 'Ukrainian';              
+      return 'Ukrainian - Українська';              
     case 'vi':
-      return 'Vietnamese';
+      return 'Vietnamese - Tiếng Việt';
     case 'zh':
-      return 'Chinese';
+      return 'Chinese - 中文';
     
     default:
       return 'Unknown';

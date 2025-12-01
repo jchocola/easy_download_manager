@@ -42,19 +42,19 @@ class DownloadParams extends StatelessWidget {
                   withSwitch: false,
                 ),
 
-                FileInfoCard(
-                  icon: AppIcon.priorityIcon,
-                  title: l10n.priority,
-                  subtitle: 'Высокий',
-                  withSwitch: false,
-                ),
+                // FileInfoCard(
+                //   icon: AppIcon.priorityIcon,
+                //   title: l10n.priority,
+                //   subtitle: 'Высокий',
+                //   withSwitch: false,
+                // ),
 
-                FileInfoCard(
-                  icon: AppIcon.speedIcon,
-                  title: l10n.speedLimit,
-                  subtitle: '5.0 МБ/с',
-                  withSwitch: false,
-                ),
+                // FileInfoCard(
+                //   icon: AppIcon.speedIcon,
+                //   title: l10n.speedLimit,
+                //   subtitle: '5.0 МБ/с',
+                //   withSwitch: false,
+                // ),
               ],
             ),
           );

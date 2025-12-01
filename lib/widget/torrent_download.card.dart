@@ -8,6 +8,7 @@ import 'package:easy_download_manager/core/utils/remain_time_converter.dart';
 import 'package:easy_download_manager/core/utils/task_status_color.dart';
 import 'package:easy_download_manager/core/utils/total_size_converter.dart';
 import 'package:easy_download_manager/domain/models/torrent_task_model.dart';
+import 'package:easy_download_manager/l10n/app_localizations.dart';
 import 'package:easy_download_manager/widget/button_with_icon.dart';
 import 'package:easy_download_manager/widget/container_with_border_color.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +31,7 @@ class TorrentDownloadCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final size = MediaQuery.of(context).size;
+    final l10n = AppLocalizations.of(context);
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -83,7 +85,7 @@ class TorrentDownloadCard extends StatelessWidget {
 
                     if (task?.status == TORRENT_TASK_STATUS.TaskCompleted)
                       Text(
-                        'Completed',
+                        l10n.completed,
                         style: theme.textTheme.bodyMedium!.copyWith(
                           color: theme.colorScheme.scrim,
                         ),
@@ -91,7 +93,7 @@ class TorrentDownloadCard extends StatelessWidget {
 
                     if (task?.status == TORRENT_TASK_STATUS.TaskPaused)
                       Text(
-                        'Paused',
+                        l10n.paused,
                         style: theme.textTheme.bodyMedium!.copyWith(
                           color: theme.colorScheme.onTertiary,
                         ),
@@ -103,7 +105,7 @@ class TorrentDownloadCard extends StatelessWidget {
 
             if (task?.status == TORRENT_TASK_STATUS.TaskPaused)
               ButtonWithIcon(
-                label: 'Cancel',
+                label: l10n.cancel,
                 icon: AppIcon.cancelIcon,
                 color: theme.colorScheme.error,
                 onPressed: onCancelTapped,
@@ -114,13 +116,13 @@ class TorrentDownloadCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   ButtonWithIcon(
-                    label: 'Pause',
+                    label: l10n.pause,
                     icon: AppIcon.pauseIcon,
                     color: theme.colorScheme.tertiary,
                     //  onPressed: onPauseTapped,
                   ),
                   ButtonWithIcon(
-                    label: 'Cancel',
+                    label: l10n.cancel,
                     icon: AppIcon.cancelIcon,
                     color: theme.colorScheme.error,
                     onPressed: onCancelTapped,

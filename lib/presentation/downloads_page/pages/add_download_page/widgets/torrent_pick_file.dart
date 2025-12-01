@@ -34,14 +34,14 @@ class TorrentPickFile extends StatelessWidget {
             ],
           ),
 
-          Text('Pick torrent file', style: theme.textTheme.bodySmall),
+          Text(l10n.pickTorrentFile, style: theme.textTheme.bodySmall),
 
           pickedTorrentFile(context),
 
           BigButton(
             withGradient: true,
             icon: AppIcon.pickIcon,
-            title: 'Select file',
+            title: l10n.selectFile,
             onTap: () => context.read<AddDownloadBloc>().add(
               AddDownloadBlocEvent_PickTorrentFile(),
             ),
@@ -62,7 +62,12 @@ class TorrentPickFile extends StatelessWidget {
                 state.torrentFile!.path,
                 style: theme.textTheme.bodySmall,
               ),
-              trailing: IconButton(onPressed: ()=> context.read<AddDownloadBloc>().add(AddDownloadBlocEvent_RemoveTorrentFile()), icon:Icon( AppIcon.deleteIcon)),
+              trailing: IconButton(
+                onPressed: () => context.read<AddDownloadBloc>().add(
+                  AddDownloadBlocEvent_RemoveTorrentFile(),
+                ),
+                icon: Icon(AppIcon.deleteIcon),
+              ),
             );
           } else {
             return Container();

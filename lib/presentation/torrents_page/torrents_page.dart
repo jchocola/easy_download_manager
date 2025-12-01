@@ -46,8 +46,8 @@ class TorrentsPage extends StatelessWidget {
           children: [
             AdviceCard(
               title: l10n.note,
-              subtitle:
-                  "At the moment, you can download one torrent at a time. We're working on adding support for multiple simultaneous downloads coming soon!",
+              subtitle: l10n
+                  .atTheMomentYouCanDownloadOneTorrentAtATimeWeReWorkingOnAddingSupportForMultipleSimultaneousDownloadsComingSoon,
             ),
             AdviceWhenForegroundTaskRunning(),
             ActiveCompletedAllTorrent(),
@@ -63,14 +63,15 @@ class AdviceWhenForegroundTaskRunning extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return StreamBuilder(
       stream: isServiceRunning(),
       builder: (context, snapshot) {
         if (snapshot.hasData && snapshot.data == true) {
           return AdviceCard(
-            title: 'Notice',
-            subtitle:
-                'If downloads are not progressing, stop the foreground , delete a download, and restart it.',
+            title: l10n.note,
+            subtitle: l10n
+                .ifDownloadsAreNotProgressingStopTheForegroundDeleteADownloadAndRestartIt,
           );
         } else {
           return SizedBox();

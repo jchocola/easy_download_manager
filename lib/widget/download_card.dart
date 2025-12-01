@@ -5,6 +5,7 @@ import 'package:easy_download_manager/core/constant/app_icon.dart';
 import 'package:easy_download_manager/core/enum/download_card_status.dart';
 import 'package:easy_download_manager/core/utils/icon_coverter_from_filename.dart';
 import 'package:easy_download_manager/core/utils/task_status_color.dart';
+import 'package:easy_download_manager/l10n/app_localizations.dart';
 import 'package:easy_download_manager/widget/button_with_icon.dart';
 import 'package:easy_download_manager/widget/container_with_border_color.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +30,7 @@ class DownloadCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final size = MediaQuery.of(context).size;
+    final l10n = AppLocalizations.of(context);
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -75,15 +77,15 @@ class DownloadCard extends StatelessWidget {
                     ///
                     /// speed duration
                     ///
-                    if (task?.status == DownloadTaskStatus.running)
-                      buildSpeedDuration(context),
+                    // if (task?.status == DownloadTaskStatus.running)
+                    //   buildSpeedDuration(context),
 
                     if (status == DOWNLOAD_CARD_STATUS.RUNNING)
                       SizedBox(width: size.width * 0.7, child: Divider()),
 
                     if (task?.status == DownloadTaskStatus.complete)
                       Text(
-                        'Completed',
+                        l10n.completed,
                         style: theme.textTheme.bodyMedium!.copyWith(
                           color: theme.colorScheme.scrim,
                         ),
@@ -91,7 +93,7 @@ class DownloadCard extends StatelessWidget {
 
                     if (task?.status == DownloadTaskStatus.failed)
                       Text(
-                        'Ошибка загрузки',
+                        l10n.downloadError,
                         style: theme.textTheme.bodyMedium!.copyWith(
                           color: theme.colorScheme.error,
                         ),
@@ -99,7 +101,7 @@ class DownloadCard extends StatelessWidget {
 
                     if (task?.status == DownloadTaskStatus.paused)
                       Text(
-                        'Paused',
+                        l10n.paused,
                         style: theme.textTheme.bodyMedium!.copyWith(
                           color: theme.colorScheme.onTertiary,
                         ),
@@ -111,7 +113,7 @@ class DownloadCard extends StatelessWidget {
 
             if (task?.status == DownloadTaskStatus.failed)
               ButtonWithIcon(
-                label: 'Cancel',
+                label: l10n.cancel,
                 icon: AppIcon.cancelIcon,
                 color: theme.colorScheme.error,
                 onPressed: onCancelTapped,
@@ -122,12 +124,12 @@ class DownloadCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   ButtonWithIcon(
-                    label: 'Pause',
+                    label: l10n.pause,
                     icon: AppIcon.pauseIcon,
                     color: theme.colorScheme.tertiary,
                   ),
                   ButtonWithIcon(
-                    label: 'Cancel',
+                    label: l10n.cancel,
                     icon: AppIcon.cancelIcon,
                     color: theme.colorScheme.error,
                   ),
@@ -139,13 +141,13 @@ class DownloadCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   ButtonWithIcon(
-                    label: 'Continue',
+                    label: l10n.continueText,
                     icon: AppIcon.continueIcon,
                     color: theme.colorScheme.tertiary,
                     onPressed: onContinueTapped,
                   ),
                   ButtonWithIcon(
-                    label: 'Cancel',
+                    label: l10n.cancel,
                     icon: AppIcon.cancelIcon,
                     color: theme.colorScheme.error,
                     onPressed: onCancelTapped,
@@ -173,8 +175,12 @@ class DownloadCard extends StatelessWidget {
             currentStep: task?.progress ?? 0,
             size: AppConstant.loadingHeight,
             padding: 0,
-            selectedColor: isDarkMode ? AppDarkColor.activeProgressColor : AppLightColor.activeProgressColor,
-            unselectedColor: isDarkMode ? AppDarkColor.inactiveProgressColor : AppLightColor.inactiveProgressColor,
+            selectedColor: isDarkMode
+                ? AppDarkColor.activeProgressColor
+                : AppLightColor.activeProgressColor,
+            unselectedColor: isDarkMode
+                ? AppDarkColor.inactiveProgressColor
+                : AppLightColor.inactiveProgressColor,
             roundedEdges: Radius.circular(10),
           ),
 
@@ -184,7 +190,7 @@ class DownloadCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text('${task?.progress} %', style: theme.textTheme.bodySmall),
-                Text('43.3 MB', style: theme.textTheme.bodySmall),
+                Text('...', style: theme.textTheme.bodySmall),
               ],
             ),
           ),

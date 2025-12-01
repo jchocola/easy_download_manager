@@ -47,7 +47,7 @@ class DownloadConfirmPage extends StatelessWidget {
 
                 if (state is AddDownloadBlocStateSuccess) {
                   showErrorToastification(error: state.success);
-                   context.go('/downloads');
+                  context.go('/downloads');
                 }
               },
               child: BigButton(
@@ -56,8 +56,8 @@ class DownloadConfirmPage extends StatelessWidget {
                 icon: AppIcon.downloadIcon,
                 onTap: () => context.read<AddDownloadBloc>().add(
                   AddDownloadBlocEvent_StartDownload(
-                    notificationTitle: 'Bắt đầu tải xuống',
-                    notificationContent: 'Tệp của bạn đang được tải xuống',
+                    notificationTitle: l10n.torrentnotificationtitle,
+                    notificationContent: l10n.torrentnotificationcontent,
                   ),
                 ),
               ),
