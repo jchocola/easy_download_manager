@@ -9,205 +9,202 @@ class AppLocalizationsJa extends AppLocalizations {
   AppLocalizationsJa([String locale = 'ja']) : super(locale);
 
   @override
-  String get aboutTheApp => 'About the app';
+  String get aboutTheApp => 'アプリについて';
 
   @override
-  String get active => 'Active';
+  String get active => 'アクティブ';
 
   @override
-  String get addDownload => 'Add download';
+  String get addDownload => 'ダウンロードを追加';
 
   @override
-  String get additionalInformation => 'Additional information';
+  String get additionalInformation => '追加情報';
 
   @override
-  String get additionalParameters => 'Additional parameters';
+  String get additionalParameters => '追加パラメータ';
 
   @override
-  String get advice => 'Advice';
+  String get advice => 'アドバイス';
 
   @override
-  String get allRightsReserved => 'All rights reserved';
+  String get allRightsReserved => '全著作権所有';
 
   @override
-  String get attention => 'Attention';
+  String get attention => '注意';
 
   @override
   String
   get atTheMomentYouCanDownloadOneTorrentAtATimeWeReWorkingOnAddingSupportForMultipleSimultaneousDownloadsComingSoon =>
-      'At the moment, you can download one torrent at a time. We\'re working on adding support for multiple simultaneous downloads coming soon!';
+      '現在、一度にダウンロードできるトレントは1つだけです。複数の同時ダウンロードのサポートをまもなく追加する予定です！';
 
   @override
-  String get audibleAlerts => 'AUDIBLE ALERTS';
+  String get audibleAlerts => '音声アラート';
 
   @override
   String get automaticallyPauseDownloadsWhenRoamingInternationally =>
-      'Automatically pause downloads when roaming internationally';
+      '国際ローミング中にダウンロードを自動的に一時停止する';
 
   @override
-  String get automaticRenewal => 'AUTOMATIC RENEWAL';
+  String get automaticRenewal => '自動更新';
 
   @override
-  String get basicSettings => 'BASIC SETTINGS';
+  String get basicSettings => '基本設定';
 
   @override
-  String get buildDate => 'Build date';
+  String get buildDate => 'ビルド日';
 
   @override
-  String get byAscending => 'By ascending';
+  String get byAscending => '昇順で';
 
   @override
-  String get byDate => 'By date';
+  String get byDate => '日付順';
 
   @override
-  String get byDescending => 'By descending';
+  String get byDescending => '降順で';
 
   @override
-  String get byName => 'By name';
+  String get byName => '名前順';
 
   @override
-  String get bySize => 'By size';
+  String get bySize => 'サイズ順';
 
   @override
-  String get cancel => 'Cancel';
+  String get cancel => 'キャンセル';
 
   @override
   String get cannotOpenFileMaybeFileNotExists =>
-      'Cannot open file. Maybe file not exists';
+      'ファイルを開けません。ファイルが存在しない可能性があります';
 
   @override
-  String get categoriesSettings => 'CATEGORIES SETTINGS';
+  String get categoriesSettings => 'カテゴリ設定';
 
   @override
-  String get cloud => 'Cloud';
+  String get cloud => 'クラウド';
 
   @override
-  String get comment => 'Comment';
+  String get comment => 'コメント';
 
   @override
-  String get completed => 'Completed';
+  String get completed => '完了';
 
   @override
   String get configureBehaviorWhenNetworkConnectionChanges =>
-      'Configure behavior when network connection changes';
+      'ネットワーク接続が変更されたときの動作を設定する';
 
   @override
-  String get confirm => 'Confirm';
+  String get confirm => '確認';
 
   @override
-  String get continueText => 'Continue_text';
+  String get continueText => '続行_テキスト';
 
   @override
-  String get createdBy => 'Created by';
+  String get createdBy => '作成者';
 
   @override
-  String get creationDate => 'Creation date';
+  String get creationDate => '作成日';
 
   @override
-  String get darkMode => 'Dark Mode';
+  String get darkMode => 'ダークモード';
 
   @override
-  String get delete => 'Delete';
+  String get delete => '削除';
 
   @override
-  String get deleteFile => 'Delete file';
+  String get deleteFile => 'ファイルを削除';
 
   @override
-  String get developer => 'Developer';
+  String get developer => '開発者';
 
   @override
-  String get directDownloadFromWebServer => 'Direct download from web server';
+  String get directDownloadFromWebServer => 'Webサーバーからの直接ダウンロード';
 
   @override
-  String get downloadConfirmation => 'Download confirmation';
+  String get downloadConfirmation => 'ダウンロード確認';
 
   @override
-  String get downloadDetails => 'Download details';
+  String get downloadDetails => 'ダウンロード詳細';
 
   @override
-  String get downloadError => 'Download error';
+  String get downloadError => 'ダウンロードエラー';
 
   @override
-  String get downloadHistory => 'Download history';
+  String get downloadHistory => 'ダウンロード履歴';
 
   @override
-  String get downloadingFromCloudServices => 'Downloading from cloud services';
+  String get downloadingFromCloudServices => 'クラウドサービスからのダウンロード中';
 
   @override
-  String get downloadingViaTorrentProtocol =>
-      'Downloading via Torrent Protocol';
+  String get downloadingViaTorrentProtocol => 'トレントプロトコル経由でのダウンロード中';
 
   @override
-  String get downloadOnlyViaWiFi => 'Download only via Wi-Fi';
+  String get downloadOnlyViaWiFi => 'Wi-Fi経由でのみダウンロード';
 
   @override
-  String get downloads => 'Downloads';
+  String get downloads => 'ダウンロード';
 
   @override
   String get downloadsWillOnlyBeAvailableWhenConnectedToAWiFiNetwork =>
-      'Downloads will only be available when connected to a Wi-Fi network.';
+      'ダウンロードはWi-Fiネットワークに接続されている場合にのみ利用可能です。';
 
   @override
-  String get downloadType => 'Download type';
+  String get downloadType => 'ダウンロードの種類';
 
   @override
-  String get downloadViaWiFi => 'Download via Wi-Fi';
+  String get downloadViaWiFi => 'Wi-Fi経由でダウンロード';
 
   @override
-  String get editSettings => 'Edit settings';
+  String get editSettings => '設定を編集';
 
   @override
-  String get edmEasyDownloadManager => 'EDM- Easy Download Manager';
+  String get edmEasyDownloadManager => 'EDM - 簡単ダウンロードマネージャー';
 
   @override
   String
   get enableDownloadOnlyViaWiFiAndPauseWhenRoamingToSaveMobileDataAndReduceCosts =>
-      'Enable “Download only via Wi-Fi” and “Pause when roaming” to save mobile data and reduce costs.';
+      'モバイルデータを節約し、費用を削減するために、「Wi-Fi経由でのみダウンロード」と「ローミング時に一時停止」を有効にしてください。';
 
   @override
-  String get enableDownloadSpeedLimit => 'Enable download speed limit';
+  String get enableDownloadSpeedLimit => 'ダウンロード速度制限を有効にする';
 
   @override
-  String get enableGeneralSpeedLimit => 'Enable general speed limit';
+  String get enableGeneralSpeedLimit => '一般速度制限を有効にする';
 
   @override
   String
   get enableSoundNotificationsSoYouDonTMissImportantDownloadsCompletingTheProgressBarHelpsYouTrackDownloadsWithoutOpeningTheApp =>
-      'Enable sound notifications so you don\'t miss important downloads completing. The progress bar helps you track downloads without opening the app.';
+      '重要なダウンロードの完了を見逃さないように、サウンド通知を有効にしてください。進行状況バーは、アプリを開かずにダウンロードを追跡するのに役立ちます。';
 
   @override
-  String get encoding => 'Encoding';
+  String get encoding => 'エンコーディング';
 
   @override
   String
   get ensureThatAllDownloadSettingsAreConfiguredCorrectlyBeforeConfirming =>
-      'Ensure that all download settings are configured correctly before confirming.';
+      '確認する前に、すべてのダウンロード設定が正しく構成されていることを確認してください。';
 
   @override
-  String get enterTheLinkToTheFileForDownload =>
-      'Enter the link to the file for download';
+  String get enterTheLinkToTheFileForDownload => 'ダウンロードするファイルへのリンクを入力してください';
 
   @override
-  String get errors => 'Errors';
+  String get errors => 'エラー';
 
   @override
-  String get fileDeleted => 'File deleted';
+  String get fileDeleted => 'ファイルが削除されました';
 
   @override
-  String get fileName => 'File name';
+  String get fileName => 'ファイル名';
 
   @override
-  String get fileNotExists => 'File not exists';
+  String get fileNotExists => 'ファイルが存在しません';
 
   @override
-  String get files => 'Files';
+  String get files => 'ファイル';
 
   @override
-  String get getNotifiedWhenTheDownloadIsComplete =>
-      'Get notified when the download is complete';
+  String get getNotifiedWhenTheDownloadIsComplete => 'ダウンロード完了時に通知を受け取る';
 
   @override
-  String get hash => 'Hash';
+  String get hash => 'ハッシュ';
 
   @override
   String get httpHttps => 'HTTP/HTTPS';
@@ -215,211 +212,210 @@ class AppLocalizationsJa extends AppLocalizations {
   @override
   String
   get ifDownloadsAreNotProgressingStopTheForegroundDeleteADownloadAndRestartIt =>
-      'If downloads are not progressing, stop the foreground , delete a download, and restart it.';
+      'ダウンロードが進まない場合は、フォアグラウンドを停止し、ダウンロードを削除してから再起動してください。';
 
   @override
-  String get insertUrl => 'Insert URL ...';
+  String get insertUrl => 'URLを挿入...';
 
   @override
-  String get language => 'Language';
+  String get language => '言語';
 
   @override
-  String get legalInformation => 'LEGAL INFORMATION';
+  String get legalInformation => '法的情報';
 
   @override
-  String get lightMode => 'Light Mode';
+  String get lightMode => 'ライトモード';
 
   @override
   String get manageDownloadNotificationsAndSoundAlerts =>
-      'Manage download notifications and sound alerts';
+      'ダウンロード通知とサウンドアラートを管理する';
 
   @override
-  String get maximumSpeed => 'Maximum speed';
+  String get maximumSpeed => '最大速度';
 
   @override
-  String get network => 'Network';
+  String get network => 'ネットワーク';
 
   @override
-  String get networkManagement => 'Network management';
+  String get networkManagement => 'ネットワーク管理';
 
   @override
-  String get next => 'Next';
+  String get next => '次へ';
 
   @override
-  String get note => 'Note';
+  String get note => '注意';
 
   @override
-  String get notification => 'Notification';
+  String get notification => '通知';
 
   @override
-  String get notifyWhenCompleted => 'Notify when completed';
+  String get notifyWhenCompleted => '完了時に通知する';
 
   @override
-  String get numberOfFiles => 'Number of files';
+  String get numberOfFiles => 'ファイル数';
 
   @override
-  String get numberOfPieces => 'Number of pieces';
+  String get numberOfPieces => 'ピース数';
 
   @override
-  String get onlyWiFi => 'Only Wi-Fi';
+  String get onlyWiFi => 'Wi-Fiのみ';
 
   @override
-  String get onPause => 'On pause';
+  String get onPause => '一時停止中';
 
   @override
-  String get openFile => 'Open file';
+  String get openFile => 'ファイルを開く';
 
   @override
-  String get optimizationAdvice => 'Optimization advice';
+  String get optimizationAdvice => '最適化のアドバイス';
 
   @override
-  String get optionalDownloadSettings => 'Optional download settings';
+  String get optionalDownloadSettings => 'オプションのダウンロード設定';
 
   @override
-  String get others => 'Others';
+  String get others => 'その他';
 
   @override
-  String get otherSettings => 'OTHER SETTINGS';
+  String get otherSettings => 'その他の設定';
 
   @override
-  String get pause => 'Pause';
+  String get pause => '一時停止';
 
   @override
-  String get paused => 'Paused';
+  String get paused => '一時停止済み';
 
   @override
-  String get pickTorrentFile => 'Pick torrent file';
+  String get pickTorrentFile => 'トレントファイルを選択';
 
   @override
-  String get pieceSize => 'Piece size';
+  String get pieceSize => 'ピースサイズ';
 
   @override
-  String get playSoundWhenDownloadIsComplete =>
-      'Play sound when download is complete';
+  String get playSoundWhenDownloadIsComplete => 'ダウンロード完了時にサウンドを再生する';
 
   @override
   String
   get pleaseEnterTheFileNameWithExtensionExPdfMp4Mp3IfDonTKnowLeaveItAsDefault =>
-      'Please enter the file name with extension (ex: .pdf, .mp4, .mp3)\nIf don\'t know, leave it as default.';
+      '拡張子を含むファイル名を入力してください（例：.pdf、.mp4、.mp3）\n不明な場合は、デフォルトのままにしてください。';
 
   @override
-  String get priority => 'Priority';
+  String get priority => '優先度';
 
   @override
-  String get privacyPolicy => 'Privacy Policy';
+  String get privacyPolicy => 'プライバシーポリシー';
 
   @override
-  String get private => 'Private';
+  String get private => 'プライベート';
 
   @override
-  String get progress => 'Progress';
+  String get progress => '進行状況';
 
   @override
-  String get quickSelection => 'Quick selection';
+  String get quickSelection => 'クイック選択';
 
   @override
-  String get quickSwitches => 'QUICK SWITCHES';
+  String get quickSwitches => 'クイック切り替え';
 
   @override
   String get resumeDownloadsWhenNetworkConnectionIsRestored =>
-      'Resume downloads when network connection is restored';
+      'ネットワーク接続が復元されたときにダウンロードを再開する';
 
   @override
-  String get roaming => 'ROAMING';
+  String get roaming => 'ローミング';
 
   @override
-  String get roamingPause => 'Roaming pause';
+  String get roamingPause => 'ローミング一時停止';
 
   @override
-  String get saveFolder => 'Save folder';
+  String get saveFolder => '保存フォルダ';
 
   @override
-  String get selectFile => 'Select file';
+  String get selectFile => 'ファイルを選択';
 
   @override
   String get selectHowYouWantToDownloadTheFile =>
-      'Select how you want to download the file';
+      'ファイルをどのようにダウンロードするかを選択してください';
 
   @override
-  String get selectWhereToSaveTheFile => 'Select where to save the file';
+  String get selectWhereToSaveTheFile => 'ファイルを保存する場所を選択してください';
 
   @override
   String
   get setASpeedLimitToReserveBandwidthForOtherApplicationsAndEnsureAStableConnection =>
-      'Set a speed limit to reserve bandwidth for other applications and ensure a stable connection.';
+      '他のアプリケーションのために帯域幅を確保し、安定した接続を確保するために、速度制限を設定してください。';
 
   @override
   String get setSpeedLimitsAndRulesForAutomaticEnforcement =>
-      'Set speed limits and rules for automatic enforcement';
+      '速度制限と自動適用のルールを設定する';
 
   @override
-  String get settings => 'Settings';
+  String get settings => '設定';
 
   @override
-  String get share => 'Share';
+  String get share => '共有';
 
   @override
-  String get size => 'Size';
+  String get size => 'サイズ';
 
   @override
-  String get sorting => 'Sorting';
+  String get sorting => 'ソート';
 
   @override
-  String get speed => 'Speed';
+  String get speed => '速度';
 
   @override
-  String get speedLimit => 'Speed limit';
+  String get speedLimit => '速度制限';
 
   @override
-  String get startDownloading => 'Start downloading';
+  String get startDownloading => 'ダウンロードを開始';
 
   @override
-  String get storageLocation => 'Storage location';
+  String get storageLocation => '保存場所';
 
   @override
-  String get suspendWhileRoaming => 'Suspend while roaming';
+  String get suspendWhileRoaming => 'ローミング中に中断する';
 
   @override
-  String get termsOfService => 'Terms of Service';
+  String get termsOfService => '利用規約';
 
   @override
-  String get theme => 'Theme';
+  String get theme => 'テーマ';
 
   @override
-  String get tipsForSavingTraffic => 'Tips for saving traffic';
+  String get tipsForSavingTraffic => 'トラフィック節約のヒント';
 
   @override
-  String get title => 'Title';
+  String get title => 'タイトル';
 
   @override
-  String get torrent => 'Torrent';
+  String get torrent => 'トレント';
 
   @override
-  String get torrentInformation => 'Torrent information';
+  String get torrentInformation => 'トレント情報';
 
   @override
-  String get torrentnotificationcontent => 'TorrentNotificationContent';
+  String get torrentnotificationcontent => 'トレント通知内容';
 
   @override
-  String get torrentnotificationtitle => 'TorrentNotificationTitle';
+  String get torrentnotificationtitle => 'トレント通知タイトル';
 
   @override
-  String get torrents => 'Torrents';
+  String get torrents => 'トレント';
 
   @override
-  String get totalFileSize => 'Total file size';
+  String get totalFileSize => '合計ファイルサイズ';
 
   @override
-  String get totalSize => 'Total size';
+  String get totalSize => '合計サイズ';
 
   @override
   String get url => 'URL';
 
   @override
-  String get urlDownloads => 'URL Downloads';
+  String get urlDownloads => 'URLダウンロード';
 
   @override
   String
   get useSpeedLimitsToSaveBandwidthAndPreventNetworkOverloadNetworkSettingsWillHelpOptimizeDownloadsDependingOnTheTypeOfConnection =>
-      'Use speed limits to save bandwidth and prevent network overload. Network settings will help optimize downloads depending on the type of connection.';
+      '速度制限を使用して帯域幅を節約し、ネットワークの過負荷を防いでください。ネットワーク設定は、接続の種類に応じてダウンロードを最適化するのに役立ちます。';
 }

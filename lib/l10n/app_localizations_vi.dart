@@ -396,10 +396,11 @@ class AppLocalizationsVi extends AppLocalizations {
   String get torrentInformation => 'Thông tin về torrent';
 
   @override
-  String get torrentnotificationcontent => 'TorrentNotificationContent';
+  String get torrentnotificationcontent => 'Đăng tải tệp torrent';
 
   @override
-  String get torrentnotificationtitle => 'TorrentNotificationTitle';
+  String get torrentnotificationtitle =>
+      'Thường xuyên đang nhập app để không bị dán đoạn (10 phút/lần)';
 
   @override
   String get torrents => 'Torrents';

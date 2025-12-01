@@ -9,205 +9,200 @@ class AppLocalizationsZh extends AppLocalizations {
   AppLocalizationsZh([String locale = 'zh']) : super(locale);
 
   @override
-  String get aboutTheApp => 'About the app';
+  String get aboutTheApp => '关于应用';
 
   @override
-  String get active => 'Active';
+  String get active => '活动中';
 
   @override
-  String get addDownload => 'Add download';
+  String get addDownload => '添加下载';
 
   @override
-  String get additionalInformation => 'Additional information';
+  String get additionalInformation => '附加信息';
 
   @override
-  String get additionalParameters => 'Additional parameters';
+  String get additionalParameters => '附加参数';
 
   @override
-  String get advice => 'Advice';
+  String get advice => '建议';
 
   @override
-  String get allRightsReserved => 'All rights reserved';
+  String get allRightsReserved => '保留所有权利';
 
   @override
-  String get attention => 'Attention';
+  String get attention => '注意';
 
   @override
   String
   get atTheMomentYouCanDownloadOneTorrentAtATimeWeReWorkingOnAddingSupportForMultipleSimultaneousDownloadsComingSoon =>
-      'At the moment, you can download one torrent at a time. We\'re working on adding support for multiple simultaneous downloads coming soon!';
+      '目前，您一次只能下载一个种子文件。我们正在努力添加支持多个同时下载的功能，敬请期待！';
 
   @override
-  String get audibleAlerts => 'AUDIBLE ALERTS';
+  String get audibleAlerts => '声音警报';
 
   @override
   String get automaticallyPauseDownloadsWhenRoamingInternationally =>
-      'Automatically pause downloads when roaming internationally';
+      '在国际漫游时自动暂停下载';
 
   @override
-  String get automaticRenewal => 'AUTOMATIC RENEWAL';
+  String get automaticRenewal => '自动续订';
 
   @override
-  String get basicSettings => 'BASIC SETTINGS';
+  String get basicSettings => '基本设置';
 
   @override
-  String get buildDate => 'Build date';
+  String get buildDate => '构建日期';
 
   @override
-  String get byAscending => 'By ascending';
+  String get byAscending => '按升序';
 
   @override
-  String get byDate => 'By date';
+  String get byDate => '按日期';
 
   @override
-  String get byDescending => 'By descending';
+  String get byDescending => '按降序';
 
   @override
-  String get byName => 'By name';
+  String get byName => '按名称';
 
   @override
-  String get bySize => 'By size';
+  String get bySize => '按大小';
 
   @override
-  String get cancel => 'Cancel';
+  String get cancel => '取消';
 
   @override
-  String get cannotOpenFileMaybeFileNotExists =>
-      'Cannot open file. Maybe file not exists';
+  String get cannotOpenFileMaybeFileNotExists => '无法打开文件。可能文件不存在';
 
   @override
-  String get categoriesSettings => 'CATEGORIES SETTINGS';
+  String get categoriesSettings => '分类设置';
 
   @override
-  String get cloud => 'Cloud';
+  String get cloud => '云';
 
   @override
-  String get comment => 'Comment';
+  String get comment => '评论';
 
   @override
-  String get completed => 'Completed';
+  String get completed => '已完成';
 
   @override
-  String get configureBehaviorWhenNetworkConnectionChanges =>
-      'Configure behavior when network connection changes';
+  String get configureBehaviorWhenNetworkConnectionChanges => '配置网络连接变化时的行为';
 
   @override
-  String get confirm => 'Confirm';
+  String get confirm => '确认';
 
   @override
-  String get continueText => 'Continue_text';
+  String get continueText => '继续_文本';
 
   @override
-  String get createdBy => 'Created by';
+  String get createdBy => '创建者';
 
   @override
-  String get creationDate => 'Creation date';
+  String get creationDate => '创建日期';
 
   @override
-  String get darkMode => 'Dark Mode';
+  String get darkMode => '深色模式';
 
   @override
-  String get delete => 'Delete';
+  String get delete => '删除';
 
   @override
-  String get deleteFile => 'Delete file';
+  String get deleteFile => '删除文件';
 
   @override
-  String get developer => 'Developer';
+  String get developer => '开发者';
 
   @override
-  String get directDownloadFromWebServer => 'Direct download from web server';
+  String get directDownloadFromWebServer => '从网络服务器直接下载';
 
   @override
-  String get downloadConfirmation => 'Download confirmation';
+  String get downloadConfirmation => '下载确认';
 
   @override
-  String get downloadDetails => 'Download details';
+  String get downloadDetails => '下载详情';
 
   @override
-  String get downloadError => 'Download error';
+  String get downloadError => '下载错误';
 
   @override
-  String get downloadHistory => 'Download history';
+  String get downloadHistory => '下载历史';
 
   @override
-  String get downloadingFromCloudServices => 'Downloading from cloud services';
+  String get downloadingFromCloudServices => '从云服务下载中';
 
   @override
-  String get downloadingViaTorrentProtocol =>
-      'Downloading via Torrent Protocol';
+  String get downloadingViaTorrentProtocol => '通过 Torrent 协议下载中';
 
   @override
-  String get downloadOnlyViaWiFi => 'Download only via Wi-Fi';
+  String get downloadOnlyViaWiFi => '仅通过 Wi-Fi 下载';
 
   @override
-  String get downloads => 'Downloads';
+  String get downloads => '下载';
 
   @override
   String get downloadsWillOnlyBeAvailableWhenConnectedToAWiFiNetwork =>
-      'Downloads will only be available when connected to a Wi-Fi network.';
+      '仅在连接到 Wi-Fi 网络时才能进行下载。';
 
   @override
-  String get downloadType => 'Download type';
+  String get downloadType => '下载类型';
 
   @override
-  String get downloadViaWiFi => 'Download via Wi-Fi';
+  String get downloadViaWiFi => '通过 Wi-Fi 下载';
 
   @override
-  String get editSettings => 'Edit settings';
+  String get editSettings => '编辑设置';
 
   @override
-  String get edmEasyDownloadManager => 'EDM- Easy Download Manager';
+  String get edmEasyDownloadManager => 'EDM - 简易下载管理器';
 
   @override
   String
   get enableDownloadOnlyViaWiFiAndPauseWhenRoamingToSaveMobileDataAndReduceCosts =>
-      'Enable “Download only via Wi-Fi” and “Pause when roaming” to save mobile data and reduce costs.';
+      '启用“仅通过 Wi-Fi 下载”和“漫游时暂停”以节省移动数据和降低费用。';
 
   @override
-  String get enableDownloadSpeedLimit => 'Enable download speed limit';
+  String get enableDownloadSpeedLimit => '启用下载速度限制';
 
   @override
-  String get enableGeneralSpeedLimit => 'Enable general speed limit';
+  String get enableGeneralSpeedLimit => '启用总速度限制';
 
   @override
   String
   get enableSoundNotificationsSoYouDonTMissImportantDownloadsCompletingTheProgressBarHelpsYouTrackDownloadsWithoutOpeningTheApp =>
-      'Enable sound notifications so you don\'t miss important downloads completing. The progress bar helps you track downloads without opening the app.';
+      '启用声音通知，这样您就不会错过重要下载的完成。进度条可帮助您在不打开应用的情况下跟踪下载。';
 
   @override
-  String get encoding => 'Encoding';
+  String get encoding => '编码';
 
   @override
   String
   get ensureThatAllDownloadSettingsAreConfiguredCorrectlyBeforeConfirming =>
-      'Ensure that all download settings are configured correctly before confirming.';
+      '在确认之前，请确保所有下载设置都已正确配置。';
 
   @override
-  String get enterTheLinkToTheFileForDownload =>
-      'Enter the link to the file for download';
+  String get enterTheLinkToTheFileForDownload => '输入文件下载链接';
 
   @override
-  String get errors => 'Errors';
+  String get errors => '错误';
 
   @override
-  String get fileDeleted => 'File deleted';
+  String get fileDeleted => '文件已删除';
 
   @override
-  String get fileName => 'File name';
+  String get fileName => '文件名';
 
   @override
-  String get fileNotExists => 'File not exists';
+  String get fileNotExists => '文件不存在';
 
   @override
-  String get files => 'Files';
+  String get files => '文件';
 
   @override
-  String get getNotifiedWhenTheDownloadIsComplete =>
-      'Get notified when the download is complete';
+  String get getNotifiedWhenTheDownloadIsComplete => '下载完成时接收通知';
 
   @override
-  String get hash => 'Hash';
+  String get hash => '哈希';
 
   @override
   String get httpHttps => 'HTTP/HTTPS';
@@ -215,211 +210,206 @@ class AppLocalizationsZh extends AppLocalizations {
   @override
   String
   get ifDownloadsAreNotProgressingStopTheForegroundDeleteADownloadAndRestartIt =>
-      'If downloads are not progressing, stop the foreground , delete a download, and restart it.';
+      '如果下载没有进展，请停止前台进程，删除一个下载并重新启动它。';
 
   @override
-  String get insertUrl => 'Insert URL ...';
+  String get insertUrl => '插入 URL ...';
 
   @override
-  String get language => 'Language';
+  String get language => '语言';
 
   @override
-  String get legalInformation => 'LEGAL INFORMATION';
+  String get legalInformation => '法律信息';
 
   @override
-  String get lightMode => 'Light Mode';
+  String get lightMode => '浅色模式';
 
   @override
-  String get manageDownloadNotificationsAndSoundAlerts =>
-      'Manage download notifications and sound alerts';
+  String get manageDownloadNotificationsAndSoundAlerts => '管理下载通知和声音警报';
 
   @override
-  String get maximumSpeed => 'Maximum speed';
+  String get maximumSpeed => '最大速度';
 
   @override
-  String get network => 'Network';
+  String get network => '网络';
 
   @override
-  String get networkManagement => 'Network management';
+  String get networkManagement => '网络管理';
 
   @override
-  String get next => 'Next';
+  String get next => '下一步';
 
   @override
-  String get note => 'Note';
+  String get note => '注意';
 
   @override
-  String get notification => 'Notification';
+  String get notification => '通知';
 
   @override
-  String get notifyWhenCompleted => 'Notify when completed';
+  String get notifyWhenCompleted => '完成时通知';
 
   @override
-  String get numberOfFiles => 'Number of files';
+  String get numberOfFiles => '文件数量';
 
   @override
-  String get numberOfPieces => 'Number of pieces';
+  String get numberOfPieces => '分块数量';
 
   @override
-  String get onlyWiFi => 'Only Wi-Fi';
+  String get onlyWiFi => '仅 Wi-Fi';
 
   @override
-  String get onPause => 'On pause';
+  String get onPause => '已暂停';
 
   @override
-  String get openFile => 'Open file';
+  String get openFile => '打开文件';
 
   @override
-  String get optimizationAdvice => 'Optimization advice';
+  String get optimizationAdvice => '优化建议';
 
   @override
-  String get optionalDownloadSettings => 'Optional download settings';
+  String get optionalDownloadSettings => '可选下载设置';
 
   @override
-  String get others => 'Others';
+  String get others => '其他';
 
   @override
-  String get otherSettings => 'OTHER SETTINGS';
+  String get otherSettings => '其他设置';
 
   @override
-  String get pause => 'Pause';
+  String get pause => '暂停';
 
   @override
-  String get paused => 'Paused';
+  String get paused => '已暂停';
 
   @override
-  String get pickTorrentFile => 'Pick torrent file';
+  String get pickTorrentFile => '选择种子文件';
 
   @override
-  String get pieceSize => 'Piece size';
+  String get pieceSize => '分块大小';
 
   @override
-  String get playSoundWhenDownloadIsComplete =>
-      'Play sound when download is complete';
+  String get playSoundWhenDownloadIsComplete => '下载完成时播放声音';
 
   @override
   String
   get pleaseEnterTheFileNameWithExtensionExPdfMp4Mp3IfDonTKnowLeaveItAsDefault =>
-      'Please enter the file name with extension (ex: .pdf, .mp4, .mp3)\nIf don\'t know, leave it as default.';
+      '请输入带扩展名的文件名（例如：.pdf, .mp4, .mp3）\n如果不知道，请保留为默认值。';
 
   @override
-  String get priority => 'Priority';
+  String get priority => '优先级';
 
   @override
-  String get privacyPolicy => 'Privacy Policy';
+  String get privacyPolicy => '隐私政策';
 
   @override
-  String get private => 'Private';
+  String get private => '私人';
 
   @override
-  String get progress => 'Progress';
+  String get progress => '进度';
 
   @override
-  String get quickSelection => 'Quick selection';
+  String get quickSelection => '快速选择';
 
   @override
-  String get quickSwitches => 'QUICK SWITCHES';
+  String get quickSwitches => '快速开关';
 
   @override
-  String get resumeDownloadsWhenNetworkConnectionIsRestored =>
-      'Resume downloads when network connection is restored';
+  String get resumeDownloadsWhenNetworkConnectionIsRestored => '网络连接恢复时恢复下载';
 
   @override
-  String get roaming => 'ROAMING';
+  String get roaming => '漫游';
 
   @override
-  String get roamingPause => 'Roaming pause';
+  String get roamingPause => '漫游暂停';
 
   @override
-  String get saveFolder => 'Save folder';
+  String get saveFolder => '保存文件夹';
 
   @override
-  String get selectFile => 'Select file';
+  String get selectFile => '选择文件';
 
   @override
-  String get selectHowYouWantToDownloadTheFile =>
-      'Select how you want to download the file';
+  String get selectHowYouWantToDownloadTheFile => '选择您希望如何下载文件';
 
   @override
-  String get selectWhereToSaveTheFile => 'Select where to save the file';
+  String get selectWhereToSaveTheFile => '选择文件的保存位置';
 
   @override
   String
   get setASpeedLimitToReserveBandwidthForOtherApplicationsAndEnsureAStableConnection =>
-      'Set a speed limit to reserve bandwidth for other applications and ensure a stable connection.';
+      '设置速度限制以保留带宽供其他应用程序使用，并确保连接稳定。';
 
   @override
-  String get setSpeedLimitsAndRulesForAutomaticEnforcement =>
-      'Set speed limits and rules for automatic enforcement';
+  String get setSpeedLimitsAndRulesForAutomaticEnforcement => '设置速度限制和自动执行规则';
 
   @override
-  String get settings => 'Settings';
+  String get settings => '设置';
 
   @override
-  String get share => 'Share';
+  String get share => '分享';
 
   @override
-  String get size => 'Size';
+  String get size => '大小';
 
   @override
-  String get sorting => 'Sorting';
+  String get sorting => '排序';
 
   @override
-  String get speed => 'Speed';
+  String get speed => '速度';
 
   @override
-  String get speedLimit => 'Speed limit';
+  String get speedLimit => '速度限制';
 
   @override
-  String get startDownloading => 'Start downloading';
+  String get startDownloading => '开始下载';
 
   @override
-  String get storageLocation => 'Storage location';
+  String get storageLocation => '存储位置';
 
   @override
-  String get suspendWhileRoaming => 'Suspend while roaming';
+  String get suspendWhileRoaming => '漫游时暂停';
 
   @override
-  String get termsOfService => 'Terms of Service';
+  String get termsOfService => '服务条款';
 
   @override
-  String get theme => 'Theme';
+  String get theme => '主题';
 
   @override
-  String get tipsForSavingTraffic => 'Tips for saving traffic';
+  String get tipsForSavingTraffic => '节省流量的提示';
 
   @override
-  String get title => 'Title';
+  String get title => '标题';
 
   @override
-  String get torrent => 'Torrent';
+  String get torrent => '种子';
 
   @override
-  String get torrentInformation => 'Torrent information';
+  String get torrentInformation => '种子信息';
 
   @override
-  String get torrentnotificationcontent => 'TorrentNotificationContent';
+  String get torrentnotificationcontent => '种子通知内容';
 
   @override
-  String get torrentnotificationtitle => 'TorrentNotificationTitle';
+  String get torrentnotificationtitle => '种子通知标题';
 
   @override
-  String get torrents => 'Torrents';
+  String get torrents => '种子';
 
   @override
-  String get totalFileSize => 'Total file size';
+  String get totalFileSize => '文件总大小';
 
   @override
-  String get totalSize => 'Total size';
+  String get totalSize => '总大小';
 
   @override
   String get url => 'URL';
 
   @override
-  String get urlDownloads => 'URL Downloads';
+  String get urlDownloads => 'URL 下载';
 
   @override
   String
   get useSpeedLimitsToSaveBandwidthAndPreventNetworkOverloadNetworkSettingsWillHelpOptimizeDownloadsDependingOnTheTypeOfConnection =>
-      'Use speed limits to save bandwidth and prevent network overload. Network settings will help optimize downloads depending on the type of connection.';
+      '使用速度限制来节省带宽并防止网络过载。网络设置将根据连接类型帮助优化下载。';
 }
