@@ -403,10 +403,12 @@ class AppLocalizationsFr extends AppLocalizations {
   String get torrentInformation => 'Informations sur le torrent';
 
   @override
-  String get torrentnotificationcontent => 'Contenu Notification Torrent';
+  String get torrentnotificationcontent =>
+      'Connectez-vous fréquemment à l\'application pour éviter les interruptions (toutes les 10 minutes)';
 
   @override
-  String get torrentnotificationtitle => 'Titre Notification Torrent';
+  String get torrentnotificationtitle =>
+      'Téléchargement du fichier torrent en cours';
 
   @override
   String get torrents => 'Torrents';

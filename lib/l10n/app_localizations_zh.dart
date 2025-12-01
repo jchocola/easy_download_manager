@@ -388,10 +388,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get torrentInformation => '种子信息';
 
   @override
-  String get torrentnotificationcontent => '种子通知内容';
+  String get torrentnotificationcontent => '请经常登录应用以避免中断（每 10 分钟一次）';
 
   @override
-  String get torrentnotificationtitle => '种子通知标题';
+  String get torrentnotificationtitle => '种子文件正在下载';
 
   @override
   String get torrents => '种子';

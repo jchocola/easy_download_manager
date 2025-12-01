@@ -402,10 +402,11 @@ class AppLocalizationsDe extends AppLocalizations {
   String get torrentInformation => 'Torrent-Informationen';
 
   @override
-  String get torrentnotificationcontent => 'Torrent-Benachrichtigungsinhalt';
+  String get torrentnotificationcontent =>
+      'Melden Sie sich häufig in der App an, um Unterbrechungen zu vermeiden (alle 10 Minuten)';
 
   @override
-  String get torrentnotificationtitle => 'Torrent-Benachrichtigungstitel';
+  String get torrentnotificationtitle => 'Torrent-Datei wird heruntergeladen';
 
   @override
   String get torrents => 'Torrents';

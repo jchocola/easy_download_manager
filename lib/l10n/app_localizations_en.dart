@@ -398,10 +398,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get torrentInformation => 'Torrent information';
 
   @override
-  String get torrentnotificationcontent => 'TorrentNotificationContent';
+  String get torrentnotificationcontent =>
+      'Frequently sign in to the app to avoid interruptions (every 10 minutes)';
 
   @override
-  String get torrentnotificationtitle => 'TorrentNotificationTitle';
+  String get torrentnotificationtitle => 'Downloading torrent file';
 
   @override
   String get torrents => 'Torrents';

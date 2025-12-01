@@ -392,10 +392,11 @@ class AppLocalizationsKo extends AppLocalizations {
   String get torrentInformation => '토렌트 정보';
 
   @override
-  String get torrentnotificationcontent => '토렌트 알림 내용';
+  String get torrentnotificationcontent =>
+      '잦은 끊김 현상을 방지하려면 앱에 자주 로그인하세요 (10분마다)';
 
   @override
-  String get torrentnotificationtitle => '토렌트 알림 제목';
+  String get torrentnotificationtitle => '토렌트 파일을 다운로드 중입니다';
 
   @override
   String get torrents => '토렌트';

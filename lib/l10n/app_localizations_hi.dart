@@ -399,10 +399,11 @@ class AppLocalizationsHi extends AppLocalizations {
   String get torrentInformation => 'टॉरेंट जानकारी';
 
   @override
-  String get torrentnotificationcontent => 'टॉरेंट अधिसूचना सामग्री';
+  String get torrentnotificationcontent =>
+      'बाधाओं से बचने के लिए ऐप में बार-बार साइन इन करें (हर 10 मिनट में)';
 
   @override
-  String get torrentnotificationtitle => 'टॉरेंट अधिसूचना शीर्षक';
+  String get torrentnotificationtitle => 'टॉरेंट फ़ाइल डाउनलोड हो रही है';
 
   @override
   String get torrents => 'टॉरेंट';

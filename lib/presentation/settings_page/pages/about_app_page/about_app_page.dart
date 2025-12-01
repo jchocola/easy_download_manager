@@ -7,6 +7,7 @@ import 'package:easy_download_manager/widget/file_info_card_2.dart';
 import 'package:easy_download_manager/widget/setting_tile.dart';
 import 'package:flutter/material.dart';
 
+
 class AboutAppPage extends StatelessWidget {
   const AboutAppPage({super.key});
 
@@ -23,6 +24,13 @@ class AboutAppPage extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     final l10n = AppLocalizations.of(context);
     final theme = Theme.of(context);
+
+    // Future<void> _launchUrl({required String url}) async {
+    //   if (!await launchUrl(Uri.parse(url))) {
+    //     throw Exception('Could not launch $url');
+    //   }
+    // }
+
     return Padding(
       padding: EdgeInsets.symmetric(
         vertical: AppConstant.containerPadding / 2,
@@ -64,11 +72,17 @@ class AboutAppPage extends StatelessWidget {
                 title: l10n.termsOfService,
                 subtitle: '',
                 icon: AppIcon.filesIcon,
+                onTap: () {
+                
+                },
               ),
               FileInfoCard2(
                 title: l10n.privacyPolicy,
                 subtitle: '',
                 icon: AppIcon.privacyPolicyIcon,
+                onTap: () {
+                
+                },
               ),
 
               Text(AppConstant.BacDev, style: theme.textTheme.bodySmall),

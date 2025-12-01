@@ -394,10 +394,11 @@ class AppLocalizationsAr extends AppLocalizations {
   String get torrentInformation => 'معلومات التورنت';
 
   @override
-  String get torrentnotificationcontent => 'محتوى إشعار التورنت';
+  String get torrentnotificationcontent =>
+      'سجل الدخول بشكل متكرر إلى التطبيق لتجنب الانقطاعات (كل 10 دقائق)';
 
   @override
-  String get torrentnotificationtitle => 'عنوان إشعار التورنت';
+  String get torrentnotificationtitle => 'جارٍ تنزيل ملف التورنت';
 
   @override
   String get torrents => 'التورنت';

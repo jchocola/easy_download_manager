@@ -854,13 +854,13 @@ abstract class AppLocalizations {
   /// No description provided for @torrentnotificationcontent.
   ///
   /// In en, this message translates to:
-  /// **'TorrentNotificationContent'**
+  /// **'Frequently sign in to the app to avoid interruptions (every 10 minutes)'**
   String get torrentnotificationcontent;
 
   /// No description provided for @torrentnotificationtitle.
   ///
   /// In en, this message translates to:
-  /// **'TorrentNotificationTitle'**
+  /// **'Downloading torrent file'**
   String get torrentnotificationtitle;
 
   /// No description provided for @torrents.

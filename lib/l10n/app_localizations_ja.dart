@@ -394,10 +394,11 @@ class AppLocalizationsJa extends AppLocalizations {
   String get torrentInformation => 'トレント情報';
 
   @override
-  String get torrentnotificationcontent => 'トレント通知内容';
+  String get torrentnotificationcontent =>
+      '中断を避けるため、定期的にアプリにサインインしてください（10分ごと）';
 
   @override
-  String get torrentnotificationtitle => 'トレント通知タイトル';
+  String get torrentnotificationtitle => 'トレントファイルをダウンロード中';
 
   @override
   String get torrents => 'トレント';
