@@ -18,6 +18,9 @@ class AppLocalizationsVi extends AppLocalizations {
   String get addDownload => 'Tải thêm';
 
   @override
+  String get additionalInformation => 'Thông tin bổ sung';
+
+  @override
   String get additionalParameters => 'Tham số khác';
 
   @override
@@ -69,6 +72,10 @@ class AppLocalizationsVi extends AppLocalizations {
   String get cancel => 'Huỷ';
 
   @override
+  String get cannotOpenFileMaybeFileNotExists =>
+      'Không thể mở tệp. Có thể tệp không tồn tại';
+
+  @override
   String get categoriesSettings => 'DANH MỤC CÀI ĐẶT';
 
   @override
@@ -85,6 +92,9 @@ class AppLocalizationsVi extends AppLocalizations {
       'Cấu hình hành vi khi kết nối mạng thay đổi';
 
   @override
+  String get confirm => 'Xác nhận';
+
+  @override
   String get continueText => 'Tiếp tục';
 
   @override
@@ -97,6 +107,12 @@ class AppLocalizationsVi extends AppLocalizations {
   String get darkMode => 'Chế độ tối';
 
   @override
+  String get delete => 'Xóa';
+
+  @override
+  String get deleteFile => 'Xóa tệp';
+
+  @override
   String get developer => 'Nhà phát triển';
 
   @override
@@ -104,6 +120,9 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get downloadConfirmation => 'Xác nhận tải xuống';
+
+  @override
+  String get downloadDetails => 'Chi tiết tải xuống';
 
   @override
   String get downloadError => 'Lỗi tải xuống';
@@ -118,7 +137,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get downloadingViaTorrentProtocol => 'Tải theo Torrent Protocol';
 
   @override
-  String get downloadOnlyViaWiFi => 'Download only via Wi-Fi';
+  String get downloadOnlyViaWiFi => 'Chỉ tải xuống qua Wi-Fi';
 
   @override
   String get downloads => 'Tải xuống';
@@ -170,7 +189,13 @@ class AppLocalizationsVi extends AppLocalizations {
   String get errors => 'Lỗi';
 
   @override
+  String get fileDeleted => 'Tệp đã bị xóa';
+
+  @override
   String get fileName => 'Tên file';
+
+  @override
+  String get fileNotExists => 'Tệp không tồn tại';
 
   @override
   String get files => 'Tệp';
@@ -240,6 +265,9 @@ class AppLocalizationsVi extends AppLocalizations {
   String get onPause => 'Ngừng';
 
   @override
+  String get openFile => 'Mở tệp';
+
+  @override
   String get optimizationAdvice => 'Lời khuyên tối ưu hóa';
 
   @override
@@ -282,6 +310,9 @@ class AppLocalizationsVi extends AppLocalizations {
   String get private => 'Riêng tư';
 
   @override
+  String get progress => 'Tiến trình';
+
+  @override
   String get quickSelection => 'Chọn nhanh';
 
   @override
@@ -321,6 +352,12 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get settings => 'Cài đặt';
+
+  @override
+  String get share => 'Chia sẻ';
+
+  @override
+  String get size => 'Kích thước';
 
   @override
   String get sorting => 'Xắp xếp';

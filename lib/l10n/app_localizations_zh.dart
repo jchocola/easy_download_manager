@@ -18,6 +18,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get addDownload => 'Add download';
 
   @override
+  String get additionalInformation => 'Additional information';
+
+  @override
   String get additionalParameters => 'Additional parameters';
 
   @override
@@ -69,6 +72,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get cancel => 'Cancel';
 
   @override
+  String get cannotOpenFileMaybeFileNotExists =>
+      'Cannot open file. Maybe file not exists';
+
+  @override
   String get categoriesSettings => 'CATEGORIES SETTINGS';
 
   @override
@@ -85,6 +92,9 @@ class AppLocalizationsZh extends AppLocalizations {
       'Configure behavior when network connection changes';
 
   @override
+  String get confirm => 'Confirm';
+
+  @override
   String get continueText => 'Continue_text';
 
   @override
@@ -97,6 +107,12 @@ class AppLocalizationsZh extends AppLocalizations {
   String get darkMode => 'Dark Mode';
 
   @override
+  String get delete => 'Delete';
+
+  @override
+  String get deleteFile => 'Delete file';
+
+  @override
   String get developer => 'Developer';
 
   @override
@@ -104,6 +120,9 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get downloadConfirmation => 'Download confirmation';
+
+  @override
+  String get downloadDetails => 'Download details';
 
   @override
   String get downloadError => 'Download error';
@@ -172,7 +191,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get errors => 'Errors';
 
   @override
+  String get fileDeleted => 'File deleted';
+
+  @override
   String get fileName => 'File name';
+
+  @override
+  String get fileNotExists => 'File not exists';
 
   @override
   String get files => 'Files';
@@ -242,6 +267,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get onPause => 'On pause';
 
   @override
+  String get openFile => 'Open file';
+
+  @override
   String get optimizationAdvice => 'Optimization advice';
 
   @override
@@ -284,6 +312,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get private => 'Private';
 
   @override
+  String get progress => 'Progress';
+
+  @override
   String get quickSelection => 'Quick selection';
 
   @override
@@ -323,6 +354,12 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get settings => 'Settings';
+
+  @override
+  String get share => 'Share';
+
+  @override
+  String get size => 'Size';
 
   @override
   String get sorting => 'Sorting';

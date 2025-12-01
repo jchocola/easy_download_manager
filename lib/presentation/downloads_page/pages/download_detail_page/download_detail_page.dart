@@ -2,6 +2,7 @@
 
 import 'package:easy_download_manager/core/constant/app_constant.dart';
 import 'package:easy_download_manager/core/constant/app_icon.dart';
+import 'package:easy_download_manager/l10n/app_localizations.dart';
 import 'package:easy_download_manager/presentation/downloads_page/blocs/picked_task_bloc.dart';
 import 'package:easy_download_manager/presentation/downloads_page/pages/download_detail_page/widgets/action_buttons.dart';
 import 'package:easy_download_manager/presentation/downloads_page/pages/download_detail_page/widgets/additional_info.dart';
@@ -10,6 +11,7 @@ import 'package:easy_download_manager/presentation/downloads_page/pages/download
 import 'package:easy_download_manager/presentation/downloads_page/pages/download_detail_page/widgets/main_info_downloading.dart';
 import 'package:easy_download_manager/presentation/downloads_page/pages/download_detail_page/widgets/open_share_delete.dart';
 import 'package:easy_download_manager/presentation/downloads_page/pages/download_detail_page/widgets/speed_remain.dart';
+import 'package:easy_download_manager/widget/advice_card.dart';
 import 'package:easy_download_manager/widget/appbar.dart';
 import 'package:easy_download_manager/widget/big_button.dart';
 import 'package:flutter/material.dart';
@@ -21,8 +23,9 @@ class DownloadDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Scaffold(
-      appBar: AppAppBar(title: 'Детали загрузки', showLeading: true),
+      appBar: AppAppBar(title: l10n.downloadDetails, showLeading: true),
       body: BlocBuilder<PickedTaskBloc, PickedTaskBlocState>(
         builder: (context, state) {
           if (state is PickedTaskBlocState_loaded) {
@@ -65,6 +68,7 @@ class DownloadDetailPage extends StatelessWidget {
   }
 
   Widget buildBody_when_completed(context) {
+    final l10n = AppLocalizations.of(context);
     return Padding(
       padding: EdgeInsetsGeometry.symmetric(
         vertical: AppConstant.containerPadding / 2,
@@ -76,7 +80,13 @@ class DownloadDetailPage extends StatelessWidget {
           children: [
             MainInfoCompleted(),
             OpenShareDelete(),
-            AdditionalInfo(),
+            AdviceCard(title: l10n.additionalInformation , subtitle: """
+  • The file is located in the device's local storage.
+  • You can open, share, or delete this file.
+  • Deleting the file is irreversible.
+""",),
+
+          //  AdditionalInfo(),
             // SpeedRemain(),
             // FileInfo(),
             // ActionButtons(),

@@ -136,6 +136,12 @@ abstract class AppLocalizations {
   /// **'Add download'**
   String get addDownload;
 
+  /// No description provided for @additionalInformation.
+  ///
+  /// In en, this message translates to:
+  /// **'Additional information'**
+  String get additionalInformation;
+
   /// No description provided for @additionalParameters.
   ///
   /// In en, this message translates to:
@@ -233,6 +239,12 @@ abstract class AppLocalizations {
   /// **'Cancel'**
   String get cancel;
 
+  /// No description provided for @cannotOpenFileMaybeFileNotExists.
+  ///
+  /// In en, this message translates to:
+  /// **'Cannot open file. Maybe file not exists'**
+  String get cannotOpenFileMaybeFileNotExists;
+
   /// No description provided for @categoriesSettings.
   ///
   /// In en, this message translates to:
@@ -263,6 +275,12 @@ abstract class AppLocalizations {
   /// **'Configure behavior when network connection changes'**
   String get configureBehaviorWhenNetworkConnectionChanges;
 
+  /// No description provided for @confirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get confirm;
+
   /// No description provided for @continueText.
   ///
   /// In en, this message translates to:
@@ -287,6 +305,18 @@ abstract class AppLocalizations {
   /// **'Dark Mode'**
   String get darkMode;
 
+  /// No description provided for @delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get delete;
+
+  /// No description provided for @deleteFile.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete file'**
+  String get deleteFile;
+
   /// No description provided for @developer.
   ///
   /// In en, this message translates to:
@@ -304,6 +334,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Download confirmation'**
   String get downloadConfirmation;
+
+  /// No description provided for @downloadDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Download details'**
+  String get downloadDetails;
 
   /// No description provided for @downloadError.
   ///
@@ -422,11 +458,23 @@ abstract class AppLocalizations {
   /// **'Errors'**
   String get errors;
 
+  /// No description provided for @fileDeleted.
+  ///
+  /// In en, this message translates to:
+  /// **'File deleted'**
+  String get fileDeleted;
+
   /// No description provided for @fileName.
   ///
   /// In en, this message translates to:
   /// **'File name'**
   String get fileName;
+
+  /// No description provided for @fileNotExists.
+  ///
+  /// In en, this message translates to:
+  /// **'File not exists'**
+  String get fileNotExists;
 
   /// No description provided for @files.
   ///
@@ -555,6 +603,12 @@ abstract class AppLocalizations {
   /// **'On pause'**
   String get onPause;
 
+  /// No description provided for @openFile.
+  ///
+  /// In en, this message translates to:
+  /// **'Open file'**
+  String get openFile;
+
   /// No description provided for @optimizationAdvice.
   ///
   /// In en, this message translates to:
@@ -634,6 +688,12 @@ abstract class AppLocalizations {
   /// **'Private'**
   String get private;
 
+  /// No description provided for @progress.
+  ///
+  /// In en, this message translates to:
+  /// **'Progress'**
+  String get progress;
+
   /// No description provided for @quickSelection.
   ///
   /// In en, this message translates to:
@@ -706,6 +766,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Settings'**
   String get settings;
+
+  /// No description provided for @share.
+  ///
+  /// In en, this message translates to:
+  /// **'Share'**
+  String get share;
+
+  /// No description provided for @size.
+  ///
+  /// In en, this message translates to:
+  /// **'Size'**
+  String get size;
 
   /// No description provided for @sorting.
   ///

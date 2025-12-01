@@ -1,16 +1,15 @@
 import 'dart:io';
-
 import 'package:easy_download_manager/core/constant/app_constant.dart';
 import 'package:easy_download_manager/core/constant/app_icon.dart';
 import 'package:easy_download_manager/core/utils/custom_toastification.dart';
 import 'package:easy_download_manager/data/repository/flutter_downloader_repository_impl.dart';
+import 'package:easy_download_manager/l10n/app_localizations.dart';
 import 'package:easy_download_manager/main.dart';
 import 'package:easy_download_manager/presentation/downloads_page/blocs/picked_task_bloc.dart';
 import 'package:easy_download_manager/widget/big_button.dart';
 import 'package:easy_download_manager/widget/big_button_delete.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:go_router/go_router.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -19,23 +18,28 @@ class OpenShareDelete extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final theme = Theme.of(context);
     return BlocBuilder<PickedTaskBloc, PickedTaskBlocState>(
       builder: (context, state) {
         if (state is PickedTaskBlocState_loaded) {
           void deleteTapped() {
             showDialog(
+              useRootNavigator: true,
               context: context,
               builder: (context) {
                 return AlertDialog(
-                  title: Text('Delete file'),
+                  title: Text(
+                    l10n.deleteFile,
+                    style: theme.textTheme.titleMedium,
+                  ),
                   content: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text("""Подтверждение удаления файла\n
-      1. Файл будет удален из базы данных приложения\n
-      2. Файл будет удален из локального хранилища устройства\n
-      3. Все связанные метаданные будут удалены\n
-      """),
+                      Text(
+                        "Confirm file deletion\n1. The file will be deleted from the application database\n2. The file will be deleted from the device's local storage\n3. All associated metadata will be deleted\n",
+                        style: theme.textTheme.bodyMedium,
+                      ),
                     ],
                   ),
                   actions: [
@@ -52,11 +56,13 @@ class OpenShareDelete extends StatelessWidget {
                         logger.i(fullpath);
                         if (await file.exists()) {
                           await file.delete().then((value) {
-                            showSuccessToastification(success: 'File deleted');
+                            showSuccessToastification(
+                              success: l10n.fileDeleted,
+                            );
                           });
                           logger.i('Deleted file');
                         } else {
-                          showErrorToastification(error: 'File not exists');
+                          showErrorToastification(error: l10n.fileNotExists);
                         }
 
                         // delete from app ui
@@ -65,13 +71,13 @@ class OpenShareDelete extends StatelessWidget {
                           taskId: state.task.taskId,
                         );
                       },
-                      child: Text('Confirm'),
+                      child: Text(l10n.confirm),
                     ),
                     ElevatedButton(
                       onPressed: () {
                         context.pop();
                       },
-                      child: Text('Cancel'),
+                      child: Text(l10n.cancel),
                     ),
                   ],
                 );
@@ -87,7 +93,7 @@ class OpenShareDelete extends StatelessWidget {
             if (await file.exists()) {
               await Share.shareXFiles([XFile(fullpath)]);
             } else {
-              showErrorToastification(error: 'File not exists');
+              showErrorToastification(error: l10n.fileNotExists);
             }
           }
 
@@ -96,22 +102,24 @@ class OpenShareDelete extends StatelessWidget {
             children: [
               BigButton(
                 icon: AppIcon.folderIcon,
-                title: 'Open file',
+                title: l10n.openFile,
                 onTap: () => FlutterDownloaderRepositoryImpl.instance
                     .openFile(taskId: state.task.taskId)
                     .then((value) {
                       if (!value)
-                        showErrorToastification(error: 'Cannot open file');
+                        showErrorToastification(
+                          error: l10n.cannotOpenFileMaybeFileNotExists,
+                        );
                     }),
               ),
               BigButton(
                 icon: AppIcon.shareIcon,
-                title: 'Share',
+                title: l10n.share,
                 onTap: shareTapped,
               ),
               BigButtonDelete(
                 icon: AppIcon.deleteIcon,
-                title: 'Delete',
+                title: l10n.delete,
                 onTap: deleteTapped,
               ),
             ],
