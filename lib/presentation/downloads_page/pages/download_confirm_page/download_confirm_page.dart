@@ -46,7 +46,7 @@ class DownloadConfirmPage extends StatelessWidget {
                 }
 
                 if (state is AddDownloadBlocStateSuccess) {
-                  showErrorToastification(error: state.success);
+                  showSuccessToastification(success: state.success);
                   context.go('/downloads');
                 }
               },
