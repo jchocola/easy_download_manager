@@ -1,11 +1,15 @@
 import 'package:easy_download_manager/core/constant/app_constant.dart';
 import 'package:easy_download_manager/core/constant/app_icon.dart';
+import 'package:easy_download_manager/domain/models/download_task.dart';
 import 'package:easy_download_manager/l10n/app_localizations.dart';
+import 'package:easy_download_manager/presentation/downloads_page/blocs/add_download_bloc.dart';
 import 'package:easy_download_manager/widget/appbar.dart';
 import 'package:easy_download_manager/widget/file_info_card.dart';
 import 'package:easy_download_manager/widget/file_info_card_2.dart';
 import 'package:easy_download_manager/widget/setting_tile.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:path_provider/path_provider.dart';
 
 
 class AboutAppPage extends StatelessWidget {
@@ -20,16 +24,12 @@ class AboutAppPage extends StatelessWidget {
     );
   }
 
-  Widget buildBody(context) {
+  Widget buildBody(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final l10n = AppLocalizations.of(context);
     final theme = Theme.of(context);
 
-    // Future<void> _launchUrl({required String url}) async {
-    //   if (!await launchUrl(Uri.parse(url))) {
-    //     throw Exception('Could not launch $url');
-    //   }
-    // }
+
 
     return Padding(
       padding: EdgeInsets.symmetric(
@@ -57,7 +57,7 @@ class AboutAppPage extends StatelessWidget {
               FileInfoCard(
                 icon: AppIcon.calendarIcon,
                 title: l10n.buildDate,
-                subtitle: '2025-11-18',
+                subtitle: AppConstant.buildDate,
               ),
 
               FileInfoCard(
@@ -72,17 +72,17 @@ class AboutAppPage extends StatelessWidget {
                 title: l10n.termsOfService,
                 subtitle: '',
                 icon: AppIcon.filesIcon,
-                onTap: () {
-                
-                },
+                onTap: () => context.read<AddDownloadBloc>().add(
+                  AddDownloadBlocEvent_onLegalInfoTap(url: AppConstant.termsOfServiceURLDownload)
+                ),
               ),
               FileInfoCard2(
                 title: l10n.privacyPolicy,
                 subtitle: '',
                 icon: AppIcon.privacyPolicyIcon,
-                onTap: () {
-                
-                },
+                onTap: () => context.read<AddDownloadBloc>().add(
+                  AddDownloadBlocEvent_onLegalInfoTap(url: AppConstant.privacyPolicyURLDownload)
+                ),
               ),
 
               Text(AppConstant.BacDev, style: theme.textTheme.bodySmall),

@@ -77,7 +77,18 @@ class AddDownloadBlocEvent_ChangeFileName extends AddDownloadBlocEvent {
 class AddDownloadBlocEvent_StartDownload extends AddDownloadBlocEvent {
   final String? notificationTitle;
   final String? notificationContent;
-  AddDownloadBlocEvent_StartDownload({this.notificationTitle, this.notificationContent});
+  AddDownloadBlocEvent_StartDownload({
+    this.notificationTitle,
+    this.notificationContent,
+  });
+}
+
+class AddDownloadBlocEvent_onLegalInfoTap extends AddDownloadBlocEvent {
+  final String url;
+  AddDownloadBlocEvent_onLegalInfoTap({required this.url});
+
+  @override
+  List<Object?> get props => [url];
 }
 
 ///
@@ -364,18 +375,20 @@ class AddDownloadBloc extends Bloc<AddDownloadBlocEvent, AddDownloadBlocState> {
             ///
             if (event.notificationTitle != null &&
                 event.notificationContent != null) {
-                await startService(notificationTitle: event.notificationTitle!, notificationText: event.notificationContent! );
+              await startService(
+                notificationTitle: event.notificationTitle!,
+                notificationText: event.notificationContent!,
+              );
             } else {
-                await startService();
+              await startService();
             }
-          
 
             ///
             /// PASS DATA TO START DOWNLOAD
             ///
             await sendDataFromUI(
               torrentFilePath: currentState.torrentFile!.path,
-              saveDir: currentState.savePath
+              saveDir: currentState.savePath,
             );
 
             emit(AddDownloadBlocStateSuccess(success: 'Start Downloading'));
@@ -385,6 +398,38 @@ class AddDownloadBloc extends Bloc<AddDownloadBlocEvent, AddDownloadBlocState> {
             emit(currentState);
           }
         }
+      }
+    });
+
+    ///
+    /// ON LEGAL INFO TAP
+    ///
+    on<AddDownloadBlocEvent_onLegalInfoTap>((event, emit) async {
+      // Implement your logic to open the URL, e.g., using url_launcher package
+      final saveDir = await getFullSavingPath(place: SAVE_PLACE.DOWNLOADS);
+
+      // downloadtask model
+      final DownloadTask downloadTaskModel = DownloadTask(
+        id: '',
+        url: event.url,
+        fileName: '',
+        directory: saveDir,
+        method: DOWNLOAD_METHOD.HTTP_HTTPS,
+        status: DOWNLOAD_STATUS.QUEUED,
+        downloadedBytes: 0,
+        totalBytes: 0,
+        speedBytesPerSecond: 0,
+        isResumable: true,
+        createdAt: DateTime.now(),
+        updatedAt: DateTime.now(),
+      );
+
+      try {
+        await flutterDownloader
+            .createNewTask(task: downloadTaskModel)
+            .then((value) {});
+      } catch (e) {
+        logger.e(e.toString());
       }
     });
   }
