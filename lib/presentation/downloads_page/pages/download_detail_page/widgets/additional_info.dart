@@ -31,7 +31,7 @@ class AdditionalInfo extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Дополнительная информация',
+                  '',
                   style: theme.textTheme.titleMedium,
                 ),
                 Text(

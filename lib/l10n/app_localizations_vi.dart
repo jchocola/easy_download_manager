@@ -18,6 +18,9 @@ class AppLocalizationsVi extends AppLocalizations {
   String get addDownload => 'Tải thêm';
 
   @override
+  String get additionalInformation => 'Thông tin bổ sung';
+
+  @override
   String get additionalParameters => 'Tham số khác';
 
   @override
@@ -28,6 +31,11 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get attention => 'Chú ý';
+
+  @override
+  String
+  get atTheMomentYouCanDownloadOneTorrentAtATimeWeReWorkingOnAddingSupportForMultipleSimultaneousDownloadsComingSoon =>
+      'Hiện tại, bạn có thể tải xuống một tệp torrent tại một thời điểm. Chúng tôi đang phát triển tính năng hỗ trợ tải xuống nhiều tệp cùng lúc và sẽ sớm ra mắt!';
 
   @override
   String get audibleAlerts => 'CẢNH BÁO ÂM THANH';
@@ -64,10 +72,17 @@ class AppLocalizationsVi extends AppLocalizations {
   String get cancel => 'Huỷ';
 
   @override
+  String get cannotOpenFileMaybeFileNotExists =>
+      'Không thể mở tệp. Có thể tệp không tồn tại';
+
+  @override
   String get categoriesSettings => 'DANH MỤC CÀI ĐẶT';
 
   @override
   String get cloud => 'Cloud';
+
+  @override
+  String get comment => 'Bình luận';
 
   @override
   String get completed => 'Hoàn thành';
@@ -75,6 +90,27 @@ class AppLocalizationsVi extends AppLocalizations {
   @override
   String get configureBehaviorWhenNetworkConnectionChanges =>
       'Cấu hình hành vi khi kết nối mạng thay đổi';
+
+  @override
+  String get confirm => 'Xác nhận';
+
+  @override
+  String get continueText => 'Tiếp tục';
+
+  @override
+  String get createdBy => 'Được tạo bởi';
+
+  @override
+  String get creationDate => 'Ngày tạo';
+
+  @override
+  String get darkMode => 'Chế độ tối';
+
+  @override
+  String get delete => 'Xóa';
+
+  @override
+  String get deleteFile => 'Xóa tệp';
 
   @override
   String get developer => 'Nhà phát triển';
@@ -86,6 +122,12 @@ class AppLocalizationsVi extends AppLocalizations {
   String get downloadConfirmation => 'Xác nhận tải xuống';
 
   @override
+  String get downloadDetails => 'Chi tiết tải xuống';
+
+  @override
+  String get downloadError => 'Lỗi tải xuống';
+
+  @override
   String get downloadHistory => 'Lịch sử tải xuống';
 
   @override
@@ -95,7 +137,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get downloadingViaTorrentProtocol => 'Tải theo Torrent Protocol';
 
   @override
-  String get downloadOnlyViaWiFi => 'Download only via Wi-Fi';
+  String get downloadOnlyViaWiFi => 'Chỉ tải xuống qua Wi-Fi';
 
   @override
   String get downloads => 'Tải xuống';
@@ -133,6 +175,9 @@ class AppLocalizationsVi extends AppLocalizations {
       'Bật thông báo âm thanh để bạn không bỏ lỡ các tệp tải xuống quan trọng hoàn tất. Thanh tiến trình giúp bạn theo dõi quá trình tải xuống mà không cần mở ứng dụng.';
 
   @override
+  String get encoding => 'Mã hóa';
+
+  @override
   String
   get ensureThatAllDownloadSettingsAreConfiguredCorrectlyBeforeConfirming =>
       'Hãy đảm bảo rằng tất cả các cài đặt tải xuống đã được cấu hình chính xác trước khi xác nhận.';
@@ -144,7 +189,13 @@ class AppLocalizationsVi extends AppLocalizations {
   String get errors => 'Lỗi';
 
   @override
+  String get fileDeleted => 'Tệp đã bị xóa';
+
+  @override
   String get fileName => 'Tên file';
+
+  @override
+  String get fileNotExists => 'Tệp không tồn tại';
 
   @override
   String get files => 'Tệp';
@@ -154,7 +205,15 @@ class AppLocalizationsVi extends AppLocalizations {
       'Nhận thông báo khi quá trình tải xuống hoàn tất.';
 
   @override
+  String get hash => 'Hash';
+
+  @override
   String get httpHttps => 'HTTP/HTTPS';
+
+  @override
+  String
+  get ifDownloadsAreNotProgressingStopTheForegroundDeleteADownloadAndRestartIt =>
+      'Nếu quá trình tải xuống không tiến triển, hãy dừng tiến trình nền, xóa một tải xuống và khởi động lại nó.';
 
   @override
   String get insertUrl => 'Gắn URL ...';
@@ -164,6 +223,9 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get legalInformation => 'THÔNG TIN PHÁP LÝ';
+
+  @override
+  String get lightMode => 'Chế độ sáng';
 
   @override
   String get manageDownloadNotificationsAndSoundAlerts =>
@@ -182,16 +244,28 @@ class AppLocalizationsVi extends AppLocalizations {
   String get next => 'Tiếp tục';
 
   @override
+  String get note => 'Chú ý';
+
+  @override
   String get notification => 'Thông báo';
 
   @override
   String get notifyWhenCompleted => 'Thông báo khi hoàn thành';
 
   @override
+  String get numberOfFiles => 'Số lượng tệp';
+
+  @override
+  String get numberOfPieces => 'Số lượng phần';
+
+  @override
   String get onlyWiFi => 'Chỉ Wi-Fi';
 
   @override
   String get onPause => 'Ngừng';
+
+  @override
+  String get openFile => 'Mở tệp';
 
   @override
   String get optimizationAdvice => 'Lời khuyên tối ưu hóa';
@@ -206,14 +280,37 @@ class AppLocalizationsVi extends AppLocalizations {
   String get otherSettings => 'CÁC CÀI ĐẶT KHÁC';
 
   @override
+  String get pause => 'Tạm dừng';
+
+  @override
+  String get paused => 'Đã tạm dừng';
+
+  @override
+  String get pickTorrentFile => 'Chọn tệp torrent';
+
+  @override
+  String get pieceSize => 'Kích thước phần';
+
+  @override
   String get playSoundWhenDownloadIsComplete =>
       'Phát âm thanh khi quá trình tải xuống hoàn tất';
+
+  @override
+  String
+  get pleaseEnterTheFileNameWithExtensionExPdfMp4Mp3IfDonTKnowLeaveItAsDefault =>
+      'Vui lòng nhập tên tệp kèm phần mở rộng (ví dụ: .pdf, .mp4, .mp3)\nNếu không biết, hãy để mặc định.';
 
   @override
   String get priority => 'Độ ưu tiên';
 
   @override
   String get privacyPolicy => 'Chính sách bảo mật';
+
+  @override
+  String get private => 'Riêng tư';
+
+  @override
+  String get progress => 'Tiến trình';
 
   @override
   String get quickSelection => 'Chọn nhanh';
@@ -235,6 +332,9 @@ class AppLocalizationsVi extends AppLocalizations {
   String get saveFolder => 'Tệp lưu';
 
   @override
+  String get selectFile => 'Chọn tệp';
+
+  @override
   String get selectHowYouWantToDownloadTheFile =>
       'Chọn cách bạn sẽ tải file xuống';
 
@@ -252,6 +352,12 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get settings => 'Cài đặt';
+
+  @override
+  String get share => 'Chia sẻ';
+
+  @override
+  String get size => 'Kích thước';
 
   @override
   String get sorting => 'Xắp xếp';
@@ -275,13 +381,35 @@ class AppLocalizationsVi extends AppLocalizations {
   String get termsOfService => 'Điều khoản dịch vụ';
 
   @override
+  String get theme => 'Chủ đề';
+
+  @override
   String get tipsForSavingTraffic => 'Mẹo tiết kiệm dữ liệu di động';
+
+  @override
+  String get title => 'Tiêu đề';
 
   @override
   String get torrent => 'Torrent';
 
   @override
+  String get torrentInformation => 'Thông tin về torrent';
+
+  @override
+  String get torrentnotificationcontent =>
+      'Thường xuyên đang nhập app để không bị dán đoạn (10 phút/lần)';
+
+  @override
+  String get torrentnotificationtitle => 'Đang tải tệp torrent';
+
+  @override
   String get torrents => 'Torrents';
+
+  @override
+  String get totalFileSize => 'Kích thước tổng của tệp';
+
+  @override
+  String get totalSize => 'Tổng kích thước';
 
   @override
   String get url => 'URL';

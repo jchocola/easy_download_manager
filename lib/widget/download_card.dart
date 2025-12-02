@@ -1,24 +1,36 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:easy_download_manager/core/constant/app_color.dart';
 import 'package:easy_download_manager/core/constant/app_constant.dart';
 import 'package:easy_download_manager/core/constant/app_icon.dart';
 import 'package:easy_download_manager/core/enum/download_card_status.dart';
+import 'package:easy_download_manager/core/utils/icon_coverter_from_filename.dart';
+import 'package:easy_download_manager/core/utils/task_status_color.dart';
+import 'package:easy_download_manager/l10n/app_localizations.dart';
 import 'package:easy_download_manager/widget/button_with_icon.dart';
 import 'package:easy_download_manager/widget/container_with_border_color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class DownloadCard extends StatelessWidget {
-   DownloadCard({
+  DownloadCard({
     super.key,
-    this.status = DOWNLOAD_CARD_STATUS.DOWNLOADING,
-    this.onTap
+    this.status = DOWNLOAD_CARD_STATUS.RUNNING,
+    this.onTap,
+    this.onCancelTapped,
+    this.onContinueTapped,
+    this.task,
   });
   final DOWNLOAD_CARD_STATUS status;
   void Function()? onTap;
+  final DownloadTask? task;
+  void Function()? onCancelTapped;
+  void Function()? onContinueTapped;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final size = MediaQuery.of(context).size;
+    final l10n = AppLocalizations.of(context);
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -32,64 +44,113 @@ class DownloadCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                ContainerWithBorderColor(),
-      
+                ContainerWithBorderColor(
+                  icon: IconConverterFromFileName(
+                    filename: task?.filename ?? '',
+                  ),
+                  color: TaskStattusColorConverter(task: task!),
+                ),
+
                 SizedBox(width: AppConstant.containerPadding),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Presentation.pdf', style: theme.textTheme.titleMedium),
-                    buildProgress(context),
-                    if (status == DOWNLOAD_CARD_STATUS.DOWNLOADING)
-                      buildSpeedDuration(context),
-                    if (status == DOWNLOAD_CARD_STATUS.DOWNLOADING)
+                    ///
+                    /// file name
+                    ///
+                    SizedBox(
+                      width: size.width * 0.7,
+                      child: Text(
+                        task?.filename ?? 'Unknown',
+                        style: theme.textTheme.titleMedium,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+
+                    ///
+                    /// progress
+                    ///
+                    if (task?.status != DownloadTaskStatus.complete)
+                      buildProgress(context),
+
+                    ///
+                    /// speed duration
+                    ///
+                    // if (task?.status == DownloadTaskStatus.running)
+                    //   buildSpeedDuration(context),
+
+                    if (status == DOWNLOAD_CARD_STATUS.RUNNING)
                       SizedBox(width: size.width * 0.7, child: Divider()),
-      
-                     if (status == DOWNLOAD_CARD_STATUS.COMPLETED) Text('Completed', style: theme.textTheme.bodyMedium!.copyWith(color: theme.colorScheme.scrim),) ,
-                      if (status == DOWNLOAD_CARD_STATUS.ERROR) Text('Ошибка загрузки', style: theme.textTheme.bodyMedium!.copyWith(color: theme.colorScheme.error),) , 
+
+                    if (task?.status == DownloadTaskStatus.complete)
+                      Text(
+                        l10n.completed,
+                        style: theme.textTheme.bodyMedium!.copyWith(
+                          color: theme.colorScheme.scrim,
+                        ),
+                      ),
+
+                    if (task?.status == DownloadTaskStatus.failed)
+                      Text(
+                        l10n.downloadError,
+                        style: theme.textTheme.bodyMedium!.copyWith(
+                          color: theme.colorScheme.error,
+                        ),
+                      ),
+
+                    if (task?.status == DownloadTaskStatus.paused)
+                      Text(
+                        l10n.paused,
+                        style: theme.textTheme.bodyMedium!.copyWith(
+                          color: theme.colorScheme.onTertiary,
+                        ),
+                      ),
                   ],
                 ),
               ],
             ),
-      
-      
-            if (status == DOWNLOAD_CARD_STATUS.ERROR) ButtonWithIcon(
-              label: 'Cancel',
-              icon: AppIcon.cancelIcon,
-                    color: theme.colorScheme.error, 
-            ),
-      
-            if (status == DOWNLOAD_CARD_STATUS.DOWNLOADING)
+
+            if (task?.status == DownloadTaskStatus.failed)
+              ButtonWithIcon(
+                label: l10n.cancel,
+                icon: AppIcon.cancelIcon,
+                color: theme.colorScheme.error,
+                onPressed: onCancelTapped,
+              ),
+
+            if (task?.status == DownloadTaskStatus.running)
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   ButtonWithIcon(
-                    label: 'Pause',
+                    label: l10n.pause,
                     icon: AppIcon.pauseIcon,
                     color: theme.colorScheme.tertiary,
                   ),
                   ButtonWithIcon(
-                    label: 'Cancel',
+                    label: l10n.cancel,
                     icon: AppIcon.cancelIcon,
                     color: theme.colorScheme.error,
                   ),
                 ],
               ),
-      
-      
-                if (status == DOWNLOAD_CARD_STATUS.PAUSED)
+
+            if (task?.status == DownloadTaskStatus.paused)
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   ButtonWithIcon(
-                    label: 'Continue',
+                    label: l10n.continueText,
                     icon: AppIcon.continueIcon,
                     color: theme.colorScheme.tertiary,
+                    onPressed: onContinueTapped,
                   ),
                   ButtonWithIcon(
-                    label: 'Cancel',
+                    label: l10n.cancel,
                     icon: AppIcon.cancelIcon,
                     color: theme.colorScheme.error,
+                    onPressed: onCancelTapped,
                   ),
                 ],
               ),
@@ -102,6 +163,7 @@ class DownloadCard extends StatelessWidget {
   Widget buildProgress(context) {
     final size = MediaQuery.of(context).size;
     final theme = Theme.of(context);
+    final isDarkMode = AdaptiveTheme.of(context).mode == AdaptiveThemeMode.dark;
     return Padding(
       padding: EdgeInsets.symmetric(vertical: AppConstant.containerPadding),
       child: Column(
@@ -110,11 +172,15 @@ class DownloadCard extends StatelessWidget {
           StepProgressIndicator(
             fallbackLength: size.width * 0.7,
             totalSteps: 100,
-            currentStep: 32,
+            currentStep: task?.progress ?? 0,
             size: AppConstant.loadingHeight,
             padding: 0,
-            selectedColor: AppColor.activeProgressColor,
-            unselectedColor: AppColor.inactiveProgressColor,
+            selectedColor: isDarkMode
+                ? AppDarkColor.activeProgressColor
+                : AppLightColor.activeProgressColor,
+            unselectedColor: isDarkMode
+                ? AppDarkColor.inactiveProgressColor
+                : AppLightColor.inactiveProgressColor,
             roundedEdges: Radius.circular(10),
           ),
 
@@ -123,8 +189,8 @@ class DownloadCard extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('32%', style: theme.textTheme.bodySmall),
-                Text('43.3 MB', style: theme.textTheme.bodySmall),
+                Text('${task?.progress} %', style: theme.textTheme.bodySmall),
+                Text('...', style: theme.textTheme.bodySmall),
               ],
             ),
           ),

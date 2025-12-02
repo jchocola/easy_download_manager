@@ -1,0 +1,8 @@
+<resources>
+    <string name="flutter_downloader_notification_started">डाउनलोड शुरू हो गया</string>
+    <string name="flutter_downloader_notification_in_progress">डाउनलोड प्रगति पर है</string>
+    <string name="flutter_downloader_notification_canceled">डाउनलोड रद्द कर दिया गया</string>
+    <string name="flutter_downloader_notification_failed">डाउनलोड विफल रहा</string>
+    <string name="flutter_downloader_notification_complete">डाउनलोड पूरा हो गया</string>
+    <string name="flutter_downloader_notification_paused">डाउनलोड रोक दिया गया</string>
+</resources>

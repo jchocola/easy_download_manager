@@ -76,4 +76,15 @@ class AppIcon {
 
   static final descSortIcon = Icons.sort_by_alpha;
   static final ascSortIcon = Icons.sort;
+
+  static final pickIcon = Icons.task_rounded;
+
+  static final imageIcon = Icons.image_outlined;
+
+  static final documentIcon = Icons.edit_document;
+
+  static final audioIcon = Icons.audio_file_outlined;
+
+  static final themeDarkIcon = Icons.brightness_2_outlined;
+  static final themeLightIcon = Icons.brightness_5_outlined;
 }

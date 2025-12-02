@@ -5,9 +5,18 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
+import 'app_localizations_ar.dart';
+import 'app_localizations_de.dart';
 import 'app_localizations_en.dart';
+import 'app_localizations_fr.dart';
+import 'app_localizations_hi.dart';
+import 'app_localizations_it.dart';
+import 'app_localizations_ja.dart';
+import 'app_localizations_ko.dart';
 import 'app_localizations_ru.dart';
+import 'app_localizations_uk.dart';
 import 'app_localizations_vi.dart';
+import 'app_localizations_zh.dart';
 
 // ignore_for_file: type=lint
 
@@ -95,9 +104,18 @@ abstract class AppLocalizations {
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
+    Locale('ar'),
+    Locale('de'),
     Locale('en'),
+    Locale('fr'),
+    Locale('hi'),
+    Locale('it'),
+    Locale('ja'),
+    Locale('ko'),
     Locale('ru'),
+    Locale('uk'),
     Locale('vi'),
+    Locale('zh'),
   ];
 
   /// No description provided for @aboutTheApp.
@@ -117,6 +135,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Add download'**
   String get addDownload;
+
+  /// No description provided for @additionalInformation.
+  ///
+  /// In en, this message translates to:
+  /// **'Additional information'**
+  String get additionalInformation;
 
   /// No description provided for @additionalParameters.
   ///
@@ -141,6 +165,13 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Attention'**
   String get attention;
+
+  /// No description provided for @atTheMomentYouCanDownloadOneTorrentAtATimeWeReWorkingOnAddingSupportForMultipleSimultaneousDownloadsComingSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'At the moment, you can download one torrent at a time. We\'re working on adding support for multiple simultaneous downloads coming soon!'**
+  String
+  get atTheMomentYouCanDownloadOneTorrentAtATimeWeReWorkingOnAddingSupportForMultipleSimultaneousDownloadsComingSoon;
 
   /// No description provided for @audibleAlerts.
   ///
@@ -208,6 +239,12 @@ abstract class AppLocalizations {
   /// **'Cancel'**
   String get cancel;
 
+  /// No description provided for @cannotOpenFileMaybeFileNotExists.
+  ///
+  /// In en, this message translates to:
+  /// **'Cannot open file. Maybe file not exists'**
+  String get cannotOpenFileMaybeFileNotExists;
+
   /// No description provided for @categoriesSettings.
   ///
   /// In en, this message translates to:
@@ -220,6 +257,12 @@ abstract class AppLocalizations {
   /// **'Cloud'**
   String get cloud;
 
+  /// No description provided for @comment.
+  ///
+  /// In en, this message translates to:
+  /// **'Comment'**
+  String get comment;
+
   /// No description provided for @completed.
   ///
   /// In en, this message translates to:
@@ -231,6 +274,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Configure behavior when network connection changes'**
   String get configureBehaviorWhenNetworkConnectionChanges;
+
+  /// No description provided for @confirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get confirm;
+
+  /// No description provided for @continueText.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue_text'**
+  String get continueText;
+
+  /// No description provided for @createdBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Created by'**
+  String get createdBy;
+
+  /// No description provided for @creationDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Creation date'**
+  String get creationDate;
+
+  /// No description provided for @darkMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark Mode'**
+  String get darkMode;
+
+  /// No description provided for @delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get delete;
+
+  /// No description provided for @deleteFile.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete file'**
+  String get deleteFile;
 
   /// No description provided for @developer.
   ///
@@ -249,6 +334,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Download confirmation'**
   String get downloadConfirmation;
+
+  /// No description provided for @downloadDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Download details'**
+  String get downloadDetails;
+
+  /// No description provided for @downloadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Download error'**
+  String get downloadError;
 
   /// No description provided for @downloadHistory.
   ///
@@ -336,6 +433,12 @@ abstract class AppLocalizations {
   String
   get enableSoundNotificationsSoYouDonTMissImportantDownloadsCompletingTheProgressBarHelpsYouTrackDownloadsWithoutOpeningTheApp;
 
+  /// No description provided for @encoding.
+  ///
+  /// In en, this message translates to:
+  /// **'Encoding'**
+  String get encoding;
+
   /// No description provided for @ensureThatAllDownloadSettingsAreConfiguredCorrectlyBeforeConfirming.
   ///
   /// In en, this message translates to:
@@ -355,11 +458,23 @@ abstract class AppLocalizations {
   /// **'Errors'**
   String get errors;
 
+  /// No description provided for @fileDeleted.
+  ///
+  /// In en, this message translates to:
+  /// **'File deleted'**
+  String get fileDeleted;
+
   /// No description provided for @fileName.
   ///
   /// In en, this message translates to:
   /// **'File name'**
   String get fileName;
+
+  /// No description provided for @fileNotExists.
+  ///
+  /// In en, this message translates to:
+  /// **'File not exists'**
+  String get fileNotExists;
 
   /// No description provided for @files.
   ///
@@ -373,11 +488,24 @@ abstract class AppLocalizations {
   /// **'Get notified when the download is complete'**
   String get getNotifiedWhenTheDownloadIsComplete;
 
+  /// No description provided for @hash.
+  ///
+  /// In en, this message translates to:
+  /// **'Hash'**
+  String get hash;
+
   /// No description provided for @httpHttps.
   ///
   /// In en, this message translates to:
   /// **'HTTP/HTTPS'**
   String get httpHttps;
+
+  /// No description provided for @ifDownloadsAreNotProgressingStopTheForegroundDeleteADownloadAndRestartIt.
+  ///
+  /// In en, this message translates to:
+  /// **'If downloads are not progressing, stop the foreground , delete a download, and restart it.'**
+  String
+  get ifDownloadsAreNotProgressingStopTheForegroundDeleteADownloadAndRestartIt;
 
   /// No description provided for @insertUrl.
   ///
@@ -396,6 +524,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'LEGAL INFORMATION'**
   String get legalInformation;
+
+  /// No description provided for @lightMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Light Mode'**
+  String get lightMode;
 
   /// No description provided for @manageDownloadNotificationsAndSoundAlerts.
   ///
@@ -427,6 +561,12 @@ abstract class AppLocalizations {
   /// **'Next'**
   String get next;
 
+  /// No description provided for @note.
+  ///
+  /// In en, this message translates to:
+  /// **'Note'**
+  String get note;
+
   /// No description provided for @notification.
   ///
   /// In en, this message translates to:
@@ -439,6 +579,18 @@ abstract class AppLocalizations {
   /// **'Notify when completed'**
   String get notifyWhenCompleted;
 
+  /// No description provided for @numberOfFiles.
+  ///
+  /// In en, this message translates to:
+  /// **'Number of files'**
+  String get numberOfFiles;
+
+  /// No description provided for @numberOfPieces.
+  ///
+  /// In en, this message translates to:
+  /// **'Number of pieces'**
+  String get numberOfPieces;
+
   /// No description provided for @onlyWiFi.
   ///
   /// In en, this message translates to:
@@ -450,6 +602,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'On pause'**
   String get onPause;
+
+  /// No description provided for @openFile.
+  ///
+  /// In en, this message translates to:
+  /// **'Open file'**
+  String get openFile;
 
   /// No description provided for @optimizationAdvice.
   ///
@@ -475,11 +633,42 @@ abstract class AppLocalizations {
   /// **'OTHER SETTINGS'**
   String get otherSettings;
 
+  /// No description provided for @pause.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause'**
+  String get pause;
+
+  /// No description provided for @paused.
+  ///
+  /// In en, this message translates to:
+  /// **'Paused'**
+  String get paused;
+
+  /// No description provided for @pickTorrentFile.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick torrent file'**
+  String get pickTorrentFile;
+
+  /// No description provided for @pieceSize.
+  ///
+  /// In en, this message translates to:
+  /// **'Piece size'**
+  String get pieceSize;
+
   /// No description provided for @playSoundWhenDownloadIsComplete.
   ///
   /// In en, this message translates to:
   /// **'Play sound when download is complete'**
   String get playSoundWhenDownloadIsComplete;
+
+  /// No description provided for @pleaseEnterTheFileNameWithExtensionExPdfMp4Mp3IfDonTKnowLeaveItAsDefault.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter the file name with extension (ex: .pdf, .mp4, .mp3)\nIf don\'t know, leave it as default.'**
+  String
+  get pleaseEnterTheFileNameWithExtensionExPdfMp4Mp3IfDonTKnowLeaveItAsDefault;
 
   /// No description provided for @priority.
   ///
@@ -492,6 +681,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Privacy Policy'**
   String get privacyPolicy;
+
+  /// No description provided for @private.
+  ///
+  /// In en, this message translates to:
+  /// **'Private'**
+  String get private;
+
+  /// No description provided for @progress.
+  ///
+  /// In en, this message translates to:
+  /// **'Progress'**
+  String get progress;
 
   /// No description provided for @quickSelection.
   ///
@@ -529,6 +730,12 @@ abstract class AppLocalizations {
   /// **'Save folder'**
   String get saveFolder;
 
+  /// No description provided for @selectFile.
+  ///
+  /// In en, this message translates to:
+  /// **'Select file'**
+  String get selectFile;
+
   /// No description provided for @selectHowYouWantToDownloadTheFile.
   ///
   /// In en, this message translates to:
@@ -559,6 +766,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Settings'**
   String get settings;
+
+  /// No description provided for @share.
+  ///
+  /// In en, this message translates to:
+  /// **'Share'**
+  String get share;
+
+  /// No description provided for @size.
+  ///
+  /// In en, this message translates to:
+  /// **'Size'**
+  String get size;
 
   /// No description provided for @sorting.
   ///
@@ -602,11 +821,23 @@ abstract class AppLocalizations {
   /// **'Terms of Service'**
   String get termsOfService;
 
+  /// No description provided for @theme.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme'**
+  String get theme;
+
   /// No description provided for @tipsForSavingTraffic.
   ///
   /// In en, this message translates to:
   /// **'Tips for saving traffic'**
   String get tipsForSavingTraffic;
+
+  /// No description provided for @title.
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get title;
 
   /// No description provided for @torrent.
   ///
@@ -614,11 +845,41 @@ abstract class AppLocalizations {
   /// **'Torrent'**
   String get torrent;
 
+  /// No description provided for @torrentInformation.
+  ///
+  /// In en, this message translates to:
+  /// **'Torrent information'**
+  String get torrentInformation;
+
+  /// No description provided for @torrentnotificationcontent.
+  ///
+  /// In en, this message translates to:
+  /// **'Frequently sign in to the app to avoid interruptions (every 10 minutes)'**
+  String get torrentnotificationcontent;
+
+  /// No description provided for @torrentnotificationtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Downloading torrent file'**
+  String get torrentnotificationtitle;
+
   /// No description provided for @torrents.
   ///
   /// In en, this message translates to:
   /// **'Torrents'**
   String get torrents;
+
+  /// No description provided for @totalFileSize.
+  ///
+  /// In en, this message translates to:
+  /// **'Total file size'**
+  String get totalFileSize;
+
+  /// No description provided for @totalSize.
+  ///
+  /// In en, this message translates to:
+  /// **'Total size'**
+  String get totalSize;
 
   /// No description provided for @url.
   ///
@@ -650,8 +911,20 @@ class _AppLocalizationsDelegate
   }
 
   @override
-  bool isSupported(Locale locale) =>
-      <String>['en', 'ru', 'vi'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>[
+    'ar',
+    'de',
+    'en',
+    'fr',
+    'hi',
+    'it',
+    'ja',
+    'ko',
+    'ru',
+    'uk',
+    'vi',
+    'zh',
+  ].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -660,12 +933,30 @@ class _AppLocalizationsDelegate
 AppLocalizations lookupAppLocalizations(Locale locale) {
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
+    case 'ar':
+      return AppLocalizationsAr();
+    case 'de':
+      return AppLocalizationsDe();
     case 'en':
       return AppLocalizationsEn();
+    case 'fr':
+      return AppLocalizationsFr();
+    case 'hi':
+      return AppLocalizationsHi();
+    case 'it':
+      return AppLocalizationsIt();
+    case 'ja':
+      return AppLocalizationsJa();
+    case 'ko':
+      return AppLocalizationsKo();
     case 'ru':
       return AppLocalizationsRu();
+    case 'uk':
+      return AppLocalizationsUk();
     case 'vi':
       return AppLocalizationsVi();
+    case 'zh':
+      return AppLocalizationsZh();
   }
 
   throw FlutterError(

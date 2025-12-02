@@ -27,7 +27,10 @@ class BigButtonDelete extends StatelessWidget {
           border: Border.all(color: theme.colorScheme.error.withOpacity(0.4)),
           gradient: withGradient
               ? LinearGradient(
-                  colors: [AppColor.activeBeginColor, AppColor.activeEndColor],
+                  colors: [
+                    AppDarkColor.activeBeginColor,
+                    AppDarkColor.activeEndColor,
+                  ],
                   begin: AlignmentGeometry.topLeft,
                   end: AlignmentGeometry.bottomRight,
                 )

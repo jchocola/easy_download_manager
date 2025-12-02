@@ -1,6 +1,9 @@
 import 'package:easy_download_manager/core/constant/app_constant.dart';
 import 'package:easy_download_manager/core/constant/app_icon.dart';
+import 'package:easy_download_manager/l10n/app_localizations.dart';
+import 'package:easy_download_manager/presentation/downloads_page/blocs/picked_task_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MainInfoCompleted extends StatelessWidget {
   const MainInfoCompleted({super.key});
@@ -8,41 +11,54 @@ class MainInfoCompleted extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return Container(
-      padding: EdgeInsets.all(AppConstant.containerPadding),
-      decoration: BoxDecoration(
-        color: theme.colorScheme.onPrimary,
-        borderRadius: BorderRadius.circular(AppConstant.borderRadius),
-      ),
-      child: Column(
-        spacing: AppConstant.containerPadding,
-        children: [
-          Text('Новый_фильм_4K.mkv', style: theme.textTheme.titleMedium),
-          Divider(),
+    final l10n = AppLocalizations.of(context);
+    return BlocBuilder<PickedTaskBloc, PickedTaskBlocState>(
+      builder: (context, state) {
+        if (state is PickedTaskBlocState_loaded) {
+          return Container(
+            padding: EdgeInsets.all(AppConstant.containerPadding),
+            decoration: BoxDecoration(
+              color: theme.colorScheme.onPrimary,
+              borderRadius: BorderRadius.circular(AppConstant.borderRadius),
+            ),
+            child: Column(
+              spacing: AppConstant.containerPadding,
+              children: [
+                Text(
+                  state.task.filename ?? 'Unknown',
+                  style: theme.textTheme.titleMedium,
+                ),
+                Divider(),
 
-          _customInfo(
-            title: 'Размер',
-            value: '7.92 GB',
-            icon: AppIcon.sizeIcon,
-          ),
-          _customInfo(
-            title: 'Изменено',
-            value: '18 ноября 2025 г. в 15:45',
-            icon: AppIcon.calendarIcon,
-          ),
-          _customInfo(
-            title: 'Путь',
-            value: '/storage/Video/Новый_фильм_4K.mkv',
-            icon: AppIcon.pathIcon,
-          ),
-          _customInfo(
-            title: 'Тип',
-            value: 'Файл',
-            icon: AppIcon.typeFileIcon,
-          ),
-         
-        ],
-      ),
+                _customInfo(
+                  title: l10n.progress,
+                  value: '${state.task.progress} %',
+                  icon: AppIcon.sizeIcon,
+                ),
+                _customInfo(
+                  title: l10n.creationDate,
+                  value: DateTime.fromMillisecondsSinceEpoch(
+                    state.task.timeCreated,
+                  ).toString().substring(0, 16),
+                  icon: AppIcon.calendarIcon,
+                ),
+                _customInfo(
+                  title: l10n.saveFolder,
+                  value: state.task.savedDir,
+                  icon: AppIcon.pathIcon,
+                ),
+                // _customInfo(
+                //   title: 'Type',
+                //   value: 'Файл',
+                //   icon: AppIcon.typeFileIcon,
+                // ),
+              ],
+            ),
+          );
+        } else {
+          return CircularProgressIndicator();
+        }
+      },
     );
   }
 }
@@ -78,7 +94,10 @@ class _customInfo extends StatelessWidget {
           ),
         ),
 
-        Expanded(flex: 2, child: Text(value, style: theme.textTheme.titleSmall)),
+        Expanded(
+          flex: 2,
+          child: Text(value, style: theme.textTheme.titleSmall),
+        ),
       ],
     );
   }

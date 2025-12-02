@@ -1,5 +1,6 @@
 import 'package:easy_download_manager/core/constant/app_constant.dart';
 import 'package:easy_download_manager/core/constant/app_icon.dart';
+import 'package:easy_download_manager/flutter_foreground_task.dart';
 import 'package:easy_download_manager/l10n/app_localizations.dart';
 import 'package:easy_download_manager/presentation/settings_page/widgets/advice.dart';
 import 'package:easy_download_manager/presentation/settings_page/widgets/quick_setting.dart';
@@ -15,7 +16,7 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context);
     return Scaffold(
       appBar: AppAppBar(
         title: l10n.settings,
@@ -28,7 +29,7 @@ class SettingsPage extends StatelessWidget {
   }
 
   Widget buildBody(context) {
-      final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context);
     return Padding(
       padding: EdgeInsets.symmetric(
         vertical: AppConstant.containerPadding / 2,
@@ -38,12 +39,39 @@ class SettingsPage extends StatelessWidget {
         child: Column(
           spacing: AppConstant.containerPadding,
           children: [
-            ThreeInfo(),
+            //ThreeInfo(),
 
-            SizedBox(height: AppConstant.containerPadding * 2),
+           // SizedBox(height: AppConstant.containerPadding * 2),
             SettingCategories(),
-            QuickSetting(),
-            AdviceCard(title: l10n.advice, subtitle: l10n.useSpeedLimitsToSaveBandwidthAndPreventNetworkOverloadNetworkSettingsWillHelpOptimizeDownloadsDependingOnTheTypeOfConnection,),
+            //QuickSetting(),
+
+            // ElevatedButton(
+            //   onPressed: () {
+            //     startService();
+               
+            //   },
+            //   child: Text('Start Sevcie'),
+            // ),
+
+            //  ElevatedButton(
+            //   onPressed: () {
+            //     sendDataFromUI(torrentFilePath: 'hello/.torrenr', saveDir: '');
+            //   },
+            //   child: Text('Send data'),
+            // ),
+
+            // ElevatedButton(
+            //   onPressed: () {
+            //     stopService();
+            //   },
+            //   child: Text('Stop Sevcie'),
+            // ),
+
+            // AdviceCard(
+            //   title: l10n.advice,
+            //   subtitle: l10n
+            //       .useSpeedLimitsToSaveBandwidthAndPreventNetworkOverloadNetworkSettingsWillHelpOptimizeDownloadsDependingOnTheTypeOfConnection,
+            // ),
           ],
         ),
       ),

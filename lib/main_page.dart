@@ -26,10 +26,10 @@ class MainPage extends StatelessWidget {
             icon: Icon(AppIcon.downloadIcon),
             label: l10n.downloads,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(AppIcon.filesIcon),
-            label: l10n.files,
-          ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(AppIcon.filesIcon),
+          //   label: l10n.files,
+          // ),
           BottomNavigationBarItem(
             icon: Icon(AppIcon.torrentIcon),
             label: l10n.torrents,

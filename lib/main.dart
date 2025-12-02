@@ -1,13 +1,42 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:easy_download_manager/app_config.bloc.dart';
 import 'package:easy_download_manager/core/constant/router.dart';
+import 'package:easy_download_manager/core/di/DI.dart';
 import 'package:easy_download_manager/core/theme/dark_theme.dart';
 import 'package:easy_download_manager/core/theme/light_theme.dart';
+import 'package:easy_download_manager/data/repository/flutter_downloader_repository_impl.dart';
+import 'package:easy_download_manager/data/repository/flutter_torrent_downloader_impl.dart';
+import 'package:easy_download_manager/data/repository/permission_handler_repository_impl.dart';
+import 'package:easy_download_manager/data/repository/shared_prefs_impl.dart';
+import 'package:easy_download_manager/flutter_foreground_task.dart';
 import 'package:easy_download_manager/l10n/app_localizations.dart';
 import 'package:easy_download_manager/main_page.dart';
+import 'package:easy_download_manager/presentation/downloads_page/blocs/add_download_bloc.dart';
+import 'package:easy_download_manager/presentation/downloads_page/blocs/picked_task_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_foreground_task/flutter_foreground_task.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:logger/logger.dart';
+import 'package:toastification/toastification.dart';
 
-void main() {
+var logger = Logger();
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await FlutterDownloaderRepositoryImpl.instance
+      .initPlugin(); // init downloader plugin
+
+  await DI(); // DI
+
+  await PermissionHandlerRepositoryImpl.instance
+      .requestNotificationForForegroundTask(); // notification request
+
+  // Initialize port for communication between TaskHandler and UI.
+  FlutterForegroundTask.initCommunicationPort();
+
+  initService(); // init flutter foreground service
+
   runApp(const MyApp());
 }
 
@@ -16,20 +45,49 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AdaptiveTheme(
-      light: appLightTheme,
-      dark: appDarkTheme,
-      initial: AdaptiveThemeMode.dark,
-      builder: (theme, darkTheme) => MaterialApp.router(
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
-        supportedLocales: AppLocalizations.supportedLocales,
-        locale: Locale('vi'),
-        debugShowCheckedModeBanner: false,
-        title: 'EDM',
-        theme: theme,
-        darkTheme: darkTheme,
-        routerConfig: router,
-        // home: const MainPage(),
+    return MultiBlocProvider(
+      // USE FOR GLOBAL PROVIDERS
+      providers: [
+        BlocProvider(
+          create: (context) =>
+              AppConfigBloc(sharedPrefs: getIt<SharedPrefsImpl>())
+                ..add(AppConfigBlocEvent_load()),
+        ),
+
+        BlocProvider(
+          create: (context) => AddDownloadBloc(
+            flutterDownloader: getIt<FlutterDownloaderRepositoryImpl>(),
+            torrentDownloader: getIt<FlutterTorrentDownloaderImpl>(),
+          )..add(AddDownloadBlocEvent_Init()),
+        ),
+        BlocProvider(create: (context) => PickedTaskBloc()),
+      ],
+      child: BlocBuilder<AppConfigBloc, AppConfigBlocState>(
+        builder: (context, state) {
+          if (state is AppConfigBloacState_Loaded) {
+            return AdaptiveTheme(
+              light: appLightTheme,
+              dark: appDarkTheme,
+              initial: AdaptiveThemeMode.dark,
+              builder: (theme, darkTheme) => ToastificationWrapper(
+                child: MaterialApp.router(
+                  localizationsDelegates:
+                      AppLocalizations.localizationsDelegates,
+                  supportedLocales: AppLocalizations.supportedLocales,
+                  locale: Locale(state.locale),
+                  debugShowCheckedModeBanner: false,
+                  title: 'EDM',
+                  theme: theme,
+                  darkTheme: darkTheme,
+                  routerConfig: router,
+                  // home: const MainPage(),
+                ),
+              ),
+            );
+          } else {
+            return Center(child: CircularProgressIndicator());
+          }
+        },
       ),
     );
   }

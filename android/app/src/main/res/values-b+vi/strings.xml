@@ -1,0 +1,8 @@
+<resources>
+    <string name="flutter_downloader_notification_started">Tải xuống đã bắt đầu</string>
+    <string name="flutter_downloader_notification_in_progress">Đang tải xuống</string>
+    <string name="flutter_downloader_notification_canceled">Tải xuống đã bị hủy</string>
+    <string name="flutter_downloader_notification_failed">Tải xuống thất bại</string>
+    <string name="flutter_downloader_notification_complete">Tải xuống hoàn tất</string>
+    <string name="flutter_downloader_notification_paused">Tải xuống đã tạm dừng</string>
+</resources>
