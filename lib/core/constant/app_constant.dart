@@ -11,8 +11,8 @@ class AppConstant {
   static final String pathDefault = '0/EDM/Downloads/';
 
 
-  static final String buildDate = '2025-11-18';
-  static final String appVersion = 'Version 1.0.0+1';
+  static final String buildDate = '2025-12-02';
+  static final String appVersion = 'Version 1.0.0+2';
   static final String developer = 'Nguen T.B';
 
   static final String BacDev = '©2025 BacDev';
