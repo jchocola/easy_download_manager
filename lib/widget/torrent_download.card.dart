@@ -60,6 +60,8 @@ class TorrentDownloadCard extends StatelessWidget {
                     Text(
                       task?.name ?? 'Unknown',
                       style: theme.textTheme.titleMedium,
+                      maxLines: 1,
+                      overflow: TextOverflow.fade,
                     ),
 
                     ///

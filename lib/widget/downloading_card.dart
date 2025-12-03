@@ -8,6 +8,7 @@ import 'package:easy_download_manager/core/constant/app_icon.dart';
 import 'package:easy_download_manager/core/enum/download_card_status.dart';
 import 'package:easy_download_manager/core/utils/icon_coverter_from_filename.dart';
 import 'package:easy_download_manager/data/repository/flutter_downloader_repository_impl.dart';
+import 'package:easy_download_manager/l10n/app_localizations.dart';
 import 'package:easy_download_manager/widget/button_with_icon.dart';
 import 'package:easy_download_manager/widget/container_with_border_color.dart';
 import 'package:flutter/material.dart';
@@ -93,6 +94,7 @@ class _DownloadingCardState extends State<DownloadingCard> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final size = MediaQuery.of(context).size;
+    final l10n = AppLocalizations.of(context);
 
     // Determine the status based on the download task status
     // Determine the status based on the download task status
@@ -147,14 +149,14 @@ class _DownloadingCardState extends State<DownloadingCard> {
                       SizedBox(width: size.width * 0.7, child: Divider()),
                     if (widget.task.status == fl_dl.DownloadTaskStatus.complete)
                       Text(
-                        'Completed',
+                        l10n.completed,
                         style: theme.textTheme.bodyMedium!.copyWith(
                           color: theme.colorScheme.scrim,
                         ),
                       ),
                     if (widget.task.status == fl_dl.DownloadTaskStatus.failed)
                       Text(
-                        'Ошибка загрузки',
+                        l10n.downloadError,
                         style: theme.textTheme.bodyMedium!.copyWith(
                           color: theme.colorScheme.error,
                         ),
@@ -165,7 +167,7 @@ class _DownloadingCardState extends State<DownloadingCard> {
             ),
             if (widget.task.status == fl_dl.DownloadTaskStatus.failed)
               ButtonWithIcon(
-                label: 'Cancel',
+                label: l10n.cancel,
                 icon: AppIcon.cancelIcon,
                 color: theme.colorScheme.error,
                 onPressed: widget.onCancelTapped,
@@ -175,13 +177,13 @@ class _DownloadingCardState extends State<DownloadingCard> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   ButtonWithIcon(
-                    label: 'Pause',
+                    label: l10n.pause,
                     icon: AppIcon.pauseIcon,
                     color: theme.colorScheme.tertiary,
                     onPressed: widget.onPauseTapped,
                   ),
                   ButtonWithIcon(
-                    label: 'Cancel',
+                    label: l10n.pause,
                     icon: AppIcon.cancelIcon,
                     color: theme.colorScheme.error,
                     onPressed: widget.onCancelTapped,
@@ -193,12 +195,12 @@ class _DownloadingCardState extends State<DownloadingCard> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   ButtonWithIcon(
-                    label: 'Continue',
+                    label: l10n.continueText,
                     icon: AppIcon.continueIcon,
                     color: theme.colorScheme.tertiary,
                   ),
                   ButtonWithIcon(
-                    label: 'Cancel',
+                    label: l10n.cancel,
                     icon: AppIcon.cancelIcon,
                     color: theme.colorScheme.error,
                     onPressed: widget.onCancelTapped,
@@ -236,8 +238,12 @@ class _DownloadingCardState extends State<DownloadingCard> {
             currentStep: widget.task.progress,
             size: AppConstant.loadingHeight,
             padding: 0,
-            selectedColor: isDarkMode ? AppDarkColor.activeProgressColor : AppLightColor.activeProgressColor,
-            unselectedColor: isDarkMode ? AppDarkColor.inactiveProgressColor : AppLightColor.inactiveProgressColor,
+            selectedColor: isDarkMode
+                ? AppDarkColor.activeProgressColor
+                : AppLightColor.activeProgressColor,
+            unselectedColor: isDarkMode
+                ? AppDarkColor.inactiveProgressColor
+                : AppLightColor.inactiveProgressColor,
             roundedEdges: Radius.circular(10),
           ),
           SizedBox(
