@@ -1,4 +1,5 @@
 import 'package:easy_download_manager/presentation/downloads_page/blocs/active_downloading_tasks_bloc.dart';
+import 'package:easy_download_manager/presentation/downloads_page/blocs/picked_task_bloc.dart';
 import 'package:easy_download_manager/widget/downloading_card.dart';
 import 'package:easy_download_manager/widget/empty_card.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +33,12 @@ class ActiveDownloadsList extends StatelessWidget {
                     .read<ActiveDownloadingTasksBloc>()
                     .add(ActiveDownloadingTasksEvent_PauseTask(task: task)),
                 task: task,
-                onTap: () => context.push('/downloads/download_detail_page'),
+                onTap: () {
+                  // context.read<PickedTaskBloc>().add(
+                  //   PickedTaskBlocEvent_pickTask(task: state.tasks[index]),
+                  // );
+                  // context.push('/downloads/download_detail_page');
+                },
               );
             },
           );

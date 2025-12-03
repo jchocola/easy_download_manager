@@ -57,7 +57,7 @@ class FlutterDownloaderRepositoryImpl {
             logger.i('CreatedTask : $value');
           });
       if (taskId == null) {
-        //throw Exception('Unknown error');
+        throw Exception('Oopps');
       }
       return taskId;
     } catch (e) {

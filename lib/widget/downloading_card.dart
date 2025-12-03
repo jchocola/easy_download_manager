@@ -141,8 +141,8 @@ class _DownloadingCardState extends State<DownloadingCard> {
                       style: theme.textTheme.titleMedium,
                     ),
                     _buildProgress(context),
-                    if (widget.task.status == fl_dl.DownloadTaskStatus.running)
-                      _buildSpeedDuration(context),
+                    // if (widget.task.status == fl_dl.DownloadTaskStatus.running)
+                    //   _buildSpeedDuration(context),
                     if (widget.task.status == fl_dl.DownloadTaskStatus.running)
                       SizedBox(width: size.width * 0.7, child: Divider()),
                     if (widget.task.status == fl_dl.DownloadTaskStatus.complete)
