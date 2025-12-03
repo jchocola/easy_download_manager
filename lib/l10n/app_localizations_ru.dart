@@ -95,13 +95,13 @@ class AppLocalizationsRu extends AppLocalizations {
   String get confirm => 'Подтвердить';
 
   @override
-  String get continueText => 'Продолжить_текст';
+  String get continueText => 'Продолжить';
 
   @override
   String get createdBy => 'Создано';
 
   @override
-  String get creationDate => 'Дата создания';
+  String get creationDate => 'Дата созд.';
 
   @override
   String get darkMode => 'Темный режим';
@@ -331,7 +331,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get roamingPause => 'Пауза в роуминге';
 
   @override
-  String get saveFolder => 'Папка сохранения';
+  String get saveFolder => 'Папка сохр.';
 
   @override
   String get selectFile => 'Выбрать файл';

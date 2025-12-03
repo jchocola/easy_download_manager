@@ -141,6 +141,8 @@ class _DownloadingCardState extends State<DownloadingCard> {
                     Text(
                       widget.task.filename ?? 'Unknown File',
                       style: theme.textTheme.titleMedium,
+                      maxLines: 1,
+                       overflow: TextOverflow.ellipsis,
                     ),
                     _buildProgress(context),
                     // if (widget.task.status == fl_dl.DownloadTaskStatus.running)
@@ -175,35 +177,49 @@ class _DownloadingCardState extends State<DownloadingCard> {
             if (widget.task.status == fl_dl.DownloadTaskStatus.running)
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
+                spacing: AppConstant.containerPadding,
                 children: [
-                  ButtonWithIcon(
-                    label: l10n.pause,
-                    icon: AppIcon.pauseIcon,
-                    color: theme.colorScheme.tertiary,
-                    onPressed: widget.onPauseTapped,
+                  Expanded(
+                    flex: 1,
+                    child: ButtonWithIcon(
+                      label: l10n.pause,
+                      icon: AppIcon.pauseIcon,
+                      color: theme.colorScheme.tertiary,
+                      onPressed: widget.onPauseTapped,
+                    ),
                   ),
-                  ButtonWithIcon(
-                    label: l10n.pause,
-                    icon: AppIcon.cancelIcon,
-                    color: theme.colorScheme.error,
-                    onPressed: widget.onCancelTapped,
+                  Expanded(
+                    flex: 1,
+                    child: ButtonWithIcon(
+                      label: l10n.pause,
+                      icon: AppIcon.cancelIcon,
+                      color: theme.colorScheme.error,
+                      onPressed: widget.onCancelTapped,
+                    ),
                   ),
                 ],
               ),
             if (widget.task.status == fl_dl.DownloadTaskStatus.paused)
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
+                spacing: AppConstant.containerPadding,
                 children: [
-                  ButtonWithIcon(
-                    label: l10n.continueText,
-                    icon: AppIcon.continueIcon,
-                    color: theme.colorScheme.tertiary,
+                  Expanded(
+                    flex: 1,
+                    child: ButtonWithIcon(
+                      label: l10n.continueText,
+                      icon: AppIcon.continueIcon,
+                      color: theme.colorScheme.tertiary,
+                    ),
                   ),
-                  ButtonWithIcon(
-                    label: l10n.cancel,
-                    icon: AppIcon.cancelIcon,
-                    color: theme.colorScheme.error,
-                    onPressed: widget.onCancelTapped,
+                  Expanded(
+                    flex: 1,
+                    child: ButtonWithIcon(
+                      label: l10n.cancel,
+                      icon: AppIcon.cancelIcon,
+                      color: theme.colorScheme.error,
+                      onPressed: widget.onCancelTapped,
+                    ),
                   ),
                 ],
               ),

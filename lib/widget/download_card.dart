@@ -122,16 +122,23 @@ class DownloadCard extends StatelessWidget {
             if (task?.status == DownloadTaskStatus.running)
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
+                spacing: AppConstant.containerPadding,
                 children: [
-                  ButtonWithIcon(
-                    label: l10n.pause,
-                    icon: AppIcon.pauseIcon,
-                    color: theme.colorScheme.tertiary,
+                  Expanded(
+                    flex: 1,
+                    child: ButtonWithIcon(
+                      label: l10n.pause,
+                      icon: AppIcon.pauseIcon,
+                      color: theme.colorScheme.tertiary,
+                    ),
                   ),
-                  ButtonWithIcon(
-                    label: l10n.cancel,
-                    icon: AppIcon.cancelIcon,
-                    color: theme.colorScheme.error,
+                  Expanded(
+                    flex: 1,
+                    child: ButtonWithIcon(
+                      label: l10n.cancel,
+                      icon: AppIcon.cancelIcon,
+                      color: theme.colorScheme.error,
+                    ),
                   ),
                 ],
               ),
@@ -139,18 +146,25 @@ class DownloadCard extends StatelessWidget {
             if (task?.status == DownloadTaskStatus.paused)
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
+                spacing: AppConstant.containerPadding,
                 children: [
-                  ButtonWithIcon(
-                    label: l10n.continueText,
-                    icon: AppIcon.continueIcon,
-                    color: theme.colorScheme.tertiary,
-                    onPressed: onContinueTapped,
+                  Expanded(
+                    flex: 1,
+                    child: ButtonWithIcon(
+                      label: l10n.continueText,
+                      icon: AppIcon.continueIcon,
+                      color: theme.colorScheme.tertiary,
+                      onPressed: onContinueTapped,
+                    ),
                   ),
-                  ButtonWithIcon(
-                    label: l10n.cancel,
-                    icon: AppIcon.cancelIcon,
-                    color: theme.colorScheme.error,
-                    onPressed: onCancelTapped,
+                  Expanded(
+                    flex: 1,
+                    child: ButtonWithIcon(
+                      label: l10n.cancel,
+                      icon: AppIcon.cancelIcon,
+                      color: theme.colorScheme.error,
+                      onPressed: onCancelTapped,
+                    ),
                   ),
                 ],
               ),
