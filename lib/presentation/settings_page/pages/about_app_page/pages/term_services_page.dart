@@ -1,5 +1,6 @@
 import 'package:easy_download_manager/core/constant/app_constant.dart';
 import 'package:easy_download_manager/l10n/app_localizations.dart';
+import 'package:easy_download_manager/widget/appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -41,7 +42,7 @@ class _TermServicesPageState extends State<TermServicesPage> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.termsOfService)),
+      appBar: AppAppBar(title: l10n.termsOfService, showLeading: true,),
       body: WebViewWidget(controller: _controller),
     );
   }
