@@ -9,8 +9,8 @@ import 'package:easy_download_manager/widget/file_info_card_2.dart';
 import 'package:easy_download_manager/widget/setting_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:path_provider/path_provider.dart';
-
 
 class AboutAppPage extends StatelessWidget {
   const AboutAppPage({super.key});
@@ -28,8 +28,6 @@ class AboutAppPage extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     final l10n = AppLocalizations.of(context);
     final theme = Theme.of(context);
-
-
 
     return Padding(
       padding: EdgeInsets.symmetric(
@@ -72,17 +70,29 @@ class AboutAppPage extends StatelessWidget {
                 title: l10n.termsOfService,
                 subtitle: '',
                 icon: AppIcon.filesIcon,
-                onTap: () => context.read<AddDownloadBloc>().add(
-                  AddDownloadBlocEvent_onLegalInfoTap(url: AppConstant.termsOfServiceURLDownload)
-                ),
+                onTap: () {
+                  // context.read<AddDownloadBloc>().add(
+                  //   AddDownloadBlocEvent_onLegalInfoTap(
+                  //     url: AppConstant.termsOfServiceURLDownload,
+                  //   ),
+                  // );
+
+                    context.push('/settings/about_app/term_service');
+                },
               ),
               FileInfoCard2(
                 title: l10n.privacyPolicy,
                 subtitle: '',
                 icon: AppIcon.privacyPolicyIcon,
-                onTap: () => context.read<AddDownloadBloc>().add(
-                  AddDownloadBlocEvent_onLegalInfoTap(url: AppConstant.privacyPolicyURLDownload)
-                ),
+                onTap: () {
+                  // context.read<AddDownloadBloc>().add(
+                  //   AddDownloadBlocEvent_onLegalInfoTap(
+                  //     url: AppConstant.privacyPolicyURLDownload,
+                  //   ),
+                  // );
+
+                  context.push('/settings/about_app/privacy_policy');
+                },
               ),
 
               Text(AppConstant.BacDev, style: theme.textTheme.bodySmall),

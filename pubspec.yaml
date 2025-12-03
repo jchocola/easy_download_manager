@@ -3,7 +3,7 @@ description: "A new Flutter project."
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 1.0.0+2
+version: 1.0.0+3
 
 environment:
   sdk: ^3.9.2
@@ -37,6 +37,7 @@ dependencies:
   localstore: ^1.4.0
   uuid: ^4.5.2
   shared_preferences: ^2.5.3
+  webview_flutter: ^4.13.0
 
 dev_dependencies:
   flutter_test:

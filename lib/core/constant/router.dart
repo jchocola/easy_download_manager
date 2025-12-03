@@ -6,6 +6,8 @@ import 'package:easy_download_manager/presentation/downloads_page/pages/download
 import 'package:easy_download_manager/presentation/downloads_page/pages/history_page/history_page.dart';
 import 'package:easy_download_manager/presentation/files_page/files_page.dart';
 import 'package:easy_download_manager/presentation/settings_page/pages/about_app_page/about_app_page.dart';
+import 'package:easy_download_manager/presentation/settings_page/pages/about_app_page/pages/privacy_policy_page.dart';
+import 'package:easy_download_manager/presentation/settings_page/pages/about_app_page/pages/term_services_page.dart';
 import 'package:easy_download_manager/presentation/settings_page/pages/network_setting_page/network_setting_page.dart';
 import 'package:easy_download_manager/presentation/settings_page/pages/network_speed_page/network_speed_page.dart';
 import 'package:easy_download_manager/presentation/settings_page/pages/notification_page/notification_page.dart';
@@ -97,6 +99,10 @@ final GoRouter router = GoRouter(
                     GoRoute(
                   path: '/about_app',
                   builder: (context, state) => const AboutAppPage(),
+                  routes: [
+                    GoRoute(path: '/privacy_policy', builder: (context, state) => PrivacyPolicyPage(),),
+                    GoRoute(path: '/term_service', builder: (context, state) => TermServicesPage(),)
+                  ]
                 ),
               ],
             ),
