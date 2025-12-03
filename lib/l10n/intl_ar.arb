@@ -117,6 +117,7 @@
   "termsOfService": "شروط الخدمة",
   "TheFileIsLocatedInTheDeviceSLocalStorageYouCanOpenShareOrDeleteThisFileDeletingTheFileIsIrreversible": "\n  • يقع الملف في وحدة التخزين المحلية للجهاز.\n  • يمكنك فتح هذا الملف أو مشاركته أو حذفه.\n  • حذف الملف لا رجعة فيه.\n",
   "theme": "السمة",
+  "thisApplicationMayNotWorkCorrectlyWhenTheDeviceBatteryLevelIsCriticallyLow": "قد لا يعمل التطبيق بكفاءة عند انخفاض شحن البطارية.",
   "tipsForSavingTraffic": "نصائح لتوفير حركة المرور",
   "title": "العنوان",
   "torrent": "تورنت",

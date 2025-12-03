@@ -387,6 +387,11 @@ class AppLocalizationsHi extends AppLocalizations {
   String get theme => 'थीम';
 
   @override
+  String
+  get thisApplicationMayNotWorkCorrectlyWhenTheDeviceBatteryLevelIsCriticallyLow =>
+      'जब डिवाइस की बैटरी बहुत कम हो तो यह एप्लिकेशन सही ढंग से काम नहीं कर सकता है।';
+
+  @override
   String get tipsForSavingTraffic => 'ट्रैफ़िक बचाने के लिए सुझाव';
 
   @override

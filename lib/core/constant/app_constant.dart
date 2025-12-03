@@ -12,7 +12,7 @@ class AppConstant {
 
 
   static final String buildDate = '2025-12-03';
-  static final String appVersion = 'Version 1.0.1+7';
+  static final String appVersion = 'Version 1.0.1+11';
   static final String developer = 'Nguen T.B';
 
   static final String BacDev = '©2025 BacDev';

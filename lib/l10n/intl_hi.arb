@@ -117,6 +117,7 @@
   "termsOfService": "सेवा की शर्तें",
   "TheFileIsLocatedInTheDeviceSLocalStorageYouCanOpenShareOrDeleteThisFileDeletingTheFileIsIrreversible": "\n  • फ़ाइल डिवाइस के स्थानीय संग्रहण में स्थित है।\n  • आप इस फ़ाइल को खोल सकते हैं, साझा कर सकते हैं या हटा सकते हैं।\n  • फ़ाइल को हटाना अपरिवर्तनीय है।\n",
   "theme": "थीम",
+  "thisApplicationMayNotWorkCorrectlyWhenTheDeviceBatteryLevelIsCriticallyLow": "जब डिवाइस की बैटरी बहुत कम हो तो यह एप्लिकेशन सही ढंग से काम नहीं कर सकता है।",
   "tipsForSavingTraffic": "ट्रैफ़िक बचाने के लिए सुझाव",
   "title": "शीर्षक",
   "torrent": "टॉरेंट",

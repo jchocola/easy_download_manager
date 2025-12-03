@@ -388,6 +388,11 @@ class AppLocalizationsUk extends AppLocalizations {
   String get theme => 'Тема';
 
   @override
+  String
+  get thisApplicationMayNotWorkCorrectlyWhenTheDeviceBatteryLevelIsCriticallyLow =>
+      'Цей додаток може працювати некоректно, якщо рівень заряду батареї пристрою критично низький.';
+
+  @override
   String get tipsForSavingTraffic => 'Поради щодо економії трафіку';
 
   @override

@@ -117,6 +117,7 @@
   "termsOfService": "服务条款",
   "TheFileIsLocatedInTheDeviceSLocalStorageYouCanOpenShareOrDeleteThisFileDeletingTheFileIsIrreversible": "\n  • 文件位于设备的本地存储中。\n  • 您可以打开、分享或删除此文件。\n  • 删除文件是不可逆的。\n",
   "theme": "主题",
+  "thisApplicationMayNotWorkCorrectlyWhenTheDeviceBatteryLevelIsCriticallyLow": "当设备电池电量严重不足时，本应用程序可能无法正常工作。",
   "tipsForSavingTraffic": "节省流量的提示",
   "title": "标题",
   "torrent": "种子",

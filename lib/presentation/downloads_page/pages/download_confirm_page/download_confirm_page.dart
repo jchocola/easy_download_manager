@@ -75,6 +75,12 @@ class DownloadConfirmPage extends StatelessWidget {
               subtitle: l10n
                   .ensureThatAllDownloadSettingsAreConfiguredCorrectlyBeforeConfirming,
             ),
+
+            AdviceCard(
+              title: l10n.note,
+              subtitle: l10n
+                  .thisApplicationMayNotWorkCorrectlyWhenTheDeviceBatteryLevelIsCriticallyLow,
+            ),
           ],
         ),
       ),

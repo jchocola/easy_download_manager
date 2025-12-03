@@ -117,6 +117,7 @@
   "termsOfService": "利用規約",
   "TheFileIsLocatedInTheDeviceSLocalStorageYouCanOpenShareOrDeleteThisFileDeletingTheFileIsIrreversible": "\n  • ファイルはデバイスのローカルストレージにあります。\n  • このファイルを開く、共有する、または削除することができます。\n  • ファイルの削除は元に戻せません。\n",
   "theme": "テーマ",
+  "thisApplicationMayNotWorkCorrectlyWhenTheDeviceBatteryLevelIsCriticallyLow": "デバイスのバッテリー残量が非常に少ない場合、このアプリは正常に動作しない可能性があります。",
   "tipsForSavingTraffic": "トラフィック節約のヒント",
   "title": "タイトル",
   "torrent": "トレント",

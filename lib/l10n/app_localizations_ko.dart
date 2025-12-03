@@ -380,6 +380,11 @@ class AppLocalizationsKo extends AppLocalizations {
   String get theme => '테마';
 
   @override
+  String
+  get thisApplicationMayNotWorkCorrectlyWhenTheDeviceBatteryLevelIsCriticallyLow =>
+      '디바이스의 배터리 수준이 매우 낮을 경우 이 애플리케이션이 제대로 작동하지 않을 수 있습니다.';
+
+  @override
   String get tipsForSavingTraffic => '트래픽 절약 팁';
 
   @override

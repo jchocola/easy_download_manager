@@ -265,10 +265,10 @@ class _DownloadingCardState extends State<DownloadingCard> {
           SizedBox(
             width: size.width * 0.7,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(progressText, style: theme.textTheme.bodySmall),
-                Text(_formatFileSize(), style: theme.textTheme.bodySmall),
+                //Text(_formatFileSize(), style: theme.textTheme.bodySmall),
               ],
             ),
           ),

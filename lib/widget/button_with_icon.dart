@@ -18,7 +18,7 @@ class ButtonWithIcon extends StatelessWidget {
     return ElevatedButton.icon(
       style: ButtonStyle(foregroundColor: WidgetStatePropertyAll(color)),
       onPressed: onPressed,
-      label: Text(label),
+      label: Text(label , maxLines: 1,),
       icon: Icon(icon),
     );
   }

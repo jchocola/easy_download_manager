@@ -117,6 +117,7 @@
   "termsOfService": "Điều khoản dịch vụ",
   "TheFileIsLocatedInTheDeviceSLocalStorageYouCanOpenShareOrDeleteThisFileDeletingTheFileIsIrreversible": "\n  • The file is located in the device's local storage.\n  • You can open, share, or delete this file.\n  • Deleting the file is irreversible.\n",
   "theme": "Chủ đề",
+  "thisApplicationMayNotWorkCorrectlyWhenTheDeviceBatteryLevelIsCriticallyLow": "Ứng dụng này có thể không hoạt động chính xác khi mức pin của thiết bị ở mức quá thấp.",
   "tipsForSavingTraffic": "Mẹo tiết kiệm dữ liệu di động",
   "title": "Tiêu đề",
   "torrent": "Torrent",

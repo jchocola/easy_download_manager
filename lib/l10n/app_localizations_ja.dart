@@ -382,6 +382,11 @@ class AppLocalizationsJa extends AppLocalizations {
   String get theme => 'テーマ';
 
   @override
+  String
+  get thisApplicationMayNotWorkCorrectlyWhenTheDeviceBatteryLevelIsCriticallyLow =>
+      'デバイスのバッテリー残量が非常に少ない場合、このアプリは正常に動作しない可能性があります。';
+
+  @override
   String get tipsForSavingTraffic => 'トラフィック節約のヒント';
 
   @override

@@ -390,6 +390,11 @@ class AppLocalizationsDe extends AppLocalizations {
   String get theme => 'Thema';
 
   @override
+  String
+  get thisApplicationMayNotWorkCorrectlyWhenTheDeviceBatteryLevelIsCriticallyLow =>
+      'Die Funktionalität der Anwendung kann bei kritisch niedrigem Akkustand eingeschränkt sein.';
+
+  @override
   String get tipsForSavingTraffic => 'Tipps zum Sparen von Datenverkehr';
 
   @override

@@ -827,6 +827,13 @@ abstract class AppLocalizations {
   /// **'Theme'**
   String get theme;
 
+  /// No description provided for @thisApplicationMayNotWorkCorrectlyWhenTheDeviceBatteryLevelIsCriticallyLow.
+  ///
+  /// In en, this message translates to:
+  /// **'This application may not work correctly when the device battery level is critically low.'**
+  String
+  get thisApplicationMayNotWorkCorrectlyWhenTheDeviceBatteryLevelIsCriticallyLow;
+
   /// No description provided for @tipsForSavingTraffic.
   ///
   /// In en, this message translates to:

@@ -117,6 +117,7 @@
   "termsOfService": "Условия обслуживания",
   "TheFileIsLocatedInTheDeviceSLocalStorageYouCanOpenShareOrDeleteThisFileDeletingTheFileIsIrreversible": "\n  • Файл находится в локальном хранилище устройства.\n  • Вы можете открыть, поделиться или удалить этот файл.\n  • Удаление файла необратимо.\n",
   "theme": "Тема",
+  "thisApplicationMayNotWorkCorrectlyWhenTheDeviceBatteryLevelIsCriticallyLow": "Это приложение может работать некорректно при критически низком уровне заряда батареи устройства.",
   "tipsForSavingTraffic": "Советы по экономии трафика",
   "title": "Заголовок",
   "torrent": "Торрент",

@@ -117,6 +117,7 @@
   "termsOfService": "Conditions d'utilisation",
   "TheFileIsLocatedInTheDeviceSLocalStorageYouCanOpenShareOrDeleteThisFileDeletingTheFileIsIrreversible": "\n  • Le fichier est situé dans le stockage local de l'appareil.\n  • Vous pouvez ouvrir, partager ou supprimer ce fichier.\n  • La suppression du fichier est irréversible.\n",
   "theme": "Thème",
+  "thisApplicationMayNotWorkCorrectlyWhenTheDeviceBatteryLevelIsCriticallyLow": "Cette application risque de ne pas fonctionner correctement lorsque le niveau de la batterie de l'appareil est très faible.",
   "tipsForSavingTraffic": "Conseils pour économiser le trafic",
   "title": "Titre",
   "torrent": "Torrent",

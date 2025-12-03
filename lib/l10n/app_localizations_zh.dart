@@ -376,6 +376,11 @@ class AppLocalizationsZh extends AppLocalizations {
   String get theme => '主题';
 
   @override
+  String
+  get thisApplicationMayNotWorkCorrectlyWhenTheDeviceBatteryLevelIsCriticallyLow =>
+      '当设备电池电量严重不足时，本应用程序可能无法正常工作。';
+
+  @override
   String get tipsForSavingTraffic => '节省流量的提示';
 
   @override

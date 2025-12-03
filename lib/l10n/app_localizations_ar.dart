@@ -382,6 +382,11 @@ class AppLocalizationsAr extends AppLocalizations {
   String get theme => 'السمة';
 
   @override
+  String
+  get thisApplicationMayNotWorkCorrectlyWhenTheDeviceBatteryLevelIsCriticallyLow =>
+      'قد لا يعمل التطبيق بكفاءة عند انخفاض شحن البطارية.';
+
+  @override
   String get tipsForSavingTraffic => 'نصائح لتوفير حركة المرور';
 
   @override

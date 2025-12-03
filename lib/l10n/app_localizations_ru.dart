@@ -386,6 +386,11 @@ class AppLocalizationsRu extends AppLocalizations {
   String get theme => 'Тема';
 
   @override
+  String
+  get thisApplicationMayNotWorkCorrectlyWhenTheDeviceBatteryLevelIsCriticallyLow =>
+      'Это приложение может работать некорректно при критически низком уровне заряда батареи устройства.';
+
+  @override
   String get tipsForSavingTraffic => 'Советы по экономии трафика';
 
   @override

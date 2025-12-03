@@ -384,6 +384,11 @@ class AppLocalizationsVi extends AppLocalizations {
   String get theme => 'Chủ đề';
 
   @override
+  String
+  get thisApplicationMayNotWorkCorrectlyWhenTheDeviceBatteryLevelIsCriticallyLow =>
+      'Ứng dụng này có thể không hoạt động chính xác khi mức pin của thiết bị ở mức quá thấp.';
+
+  @override
   String get tipsForSavingTraffic => 'Mẹo tiết kiệm dữ liệu di động';
 
   @override
